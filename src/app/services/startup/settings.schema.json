@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "title": "ARLAS-wui settings file validator",
+  "description": "The settings file is used to configure: 1) authentication 2) persistence",
+  "type": "object",
+  "$id": "settings.schema.json",
+  "properties": {
+    "authentication": {
+      "description": "Configuration of Oauth2 OIDC connection",
+      "type": "object",
+      "properties": {
+        "use_authent": {
+          "description": "Defines whether to be authenticated to Auth0",
+          "enum": [
+            "false",
+            "iam",
+            "openid"
+          ]
+        },
+        "force_connect": {
+          "description": "When authentication is enabled, this option forces to be connected to Auth0 at application bootstrap.",
+          "type": "boolean"
+        },
+        "use_discovery": {
+          "description": "Defines whether we use document discovery service",
+          "type": "boolean"
+        },
+        "threshold": {
+          "description": "Time before refresh",
+          "type": "number"
+        },
+        "url": {
+          "description": "Url to iam service",
+          "type": "string"
+        }
+      },
+      "required": [
+        "use_authent",
+        "force_connect"
+      ]
+    }
+  }
+}
