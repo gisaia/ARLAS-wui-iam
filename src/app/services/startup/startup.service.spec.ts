@@ -5,18 +5,20 @@ import {
   TranslateFakeLoader, TranslateStore
 } from '@ngx-translate/core';
 import { ArlasSettingsService } from 'arlas-wui-toolkit';
+import { IamStartupService } from './startup.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IamStartupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-
         ArlasSettingsService,
         TranslateService, TranslateStore,
       ],
       imports: [
         HttpClientModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        RouterTestingModule
       ]
     });
   });

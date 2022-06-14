@@ -93,7 +93,6 @@ export class IamStartupService {
         return Promise.reject(err);
       })
       .then(s => {
-        console.log( s.authentication.url);
         this.settingsService.setSettings(s);
         this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, window.fetch);
         this.arlasIamService.setArlasIamApi(this.arlasIamApi);
@@ -113,18 +112,14 @@ export class IamStartupService {
           const err = 'Authentication is set while ' + this.arlasIamService.areSettingsValid(authent)[1] + ' are not configured';
           reject(err);
         }
-        console.log(settings);
         this.arlasIamApi = new ArlasIamApi(new Configuration(), authent.url, window.fetch);
         this.arlasIamService.setArlasIamApi(this.arlasIamApi);
-        console.log('BEFORE RESOLVE')
         resolve(settings);
       }
       return resolve(settings);
     })).catch((err: any) => {
       // application should not run if the settings.yaml file is not valid
       this.shouldRunApp = false;
-      console.log('HAHA')
-      console.error(err);
       const error = {
         origin: 'ARLAS-wui `' + SETTINGS_FILE_NAME + '` file',
         message: err.toString().replace('Error:', ''),
@@ -138,7 +133,6 @@ export class IamStartupService {
     return this.applyAppSettings()
 
       .catch((err: any) => {
-        console.log('OK MICHEl')
         this.shouldRunApp = false;
         console.error(err);
         let message = '';
