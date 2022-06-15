@@ -1,0 +1,13 @@
+.content {
+  .table {
+    width: 100%;
+
+    .mat-column-actions {
+      width: 50px;
+
+      .edit-actions{
+        cursor: pointer;
+      }
+    }
+  }
+}

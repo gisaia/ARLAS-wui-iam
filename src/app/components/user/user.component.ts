@@ -14,7 +14,7 @@ import { ManagerService } from '../../services/manager/manager.service';
 export class UserComponent implements OnInit, OnDestroy {
 
   public dataSource: MatTableDataSource<MemberData>;
-  public displayedColumns: string[] = ['id', 'email', 'isOwner', 'actions'];
+  public displayedColumns: string[] = ['email', 'creation', 'update', 'isOwner', 'verified', 'active','actions'];
 
   public userSubscription: Subscription = null;
 

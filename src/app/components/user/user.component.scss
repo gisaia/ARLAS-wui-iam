@@ -3,11 +3,17 @@
     width: 100%;
 
     .mat-column-actions {
-      width: 50px;
-
       .edit-actions{
         cursor: pointer;
       }
+    }
+
+    .mat-column-actions,
+    .mat-column-active,
+    .mat-column-verified,
+    .mat-column-isOwner {
+      text-align: center;
+      width: 80px;
     }
   }
 }

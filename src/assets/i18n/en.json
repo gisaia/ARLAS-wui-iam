@@ -4,8 +4,14 @@
 	"Roles": "Roles",
 	"Permissions": "Permissions",
 	"Logout": "Logout",
+	"Value": "Value",
+	"Description": "Description",
 	"Name": "Name",
+	"Creation": "Creation",
+	"Last update": "Last update",
 	"Email": "Email",
 	"Owner": "Owner",
+	"Active": "Active",
+	"Verified": "Verified",
 	"Actions": "Actions"
 }

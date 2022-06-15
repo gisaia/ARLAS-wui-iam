@@ -14,7 +14,7 @@ import { ManagerService } from '../../services/manager/manager.service';
 export class RoleComponent implements OnInit {
 
   public dataSource: MatTableDataSource<RoleData>;
-  public displayedColumns: string[] = ['id', 'name'];
+  public displayedColumns: string[] = ['name', 'description'];
 
   public roleSubscription: Subscription = null;
 

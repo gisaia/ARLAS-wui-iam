@@ -39,6 +39,6 @@ export class ManagerService {
 
   /** PERMISSIONS **/
   public getOrgPermissions(orgId: string){
-    // return from(this.arlasIamApi.getPermissions(orgId, '', this.options));
+    return from(this.arlasIamApi.getPermissionsOfOrganisation(orgId, this.options));
   }
 }

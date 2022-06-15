@@ -4,8 +4,14 @@
 	"Roles": "Rôles",
 	"Permissions": "Permissions",
 	"Logout": "Déconnexion",
+	"Value": "Valeur",
+	"Description": "Description",
 	"Name": "Nom",
+	"Creation": "Créé le",
+	"Last update": "Modifié le",
 	"Email": "Email",
 	"Owner": "Gestionnaire",
+	"Active": "Actif",
+	"Verified": "Vérifié",
 	"Actions": "Actions"
 }
