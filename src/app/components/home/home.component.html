@@ -1,0 +1,50 @@
+<mat-toolbar class="header">
+  <span [routerLink]="'/'">ARLAS IAM</span>
+  <div class="orga">
+    {{'Organisation'| translate}}
+    <mat-select class="current-orga" [value]="organisations[0]?.id" (selectionChange)="updateCurrentOrga($event)">
+      <mat-option *ngFor="let org of this.organisations" [value]="org.id">{{org.name}}</mat-option>
+    </mat-select>
+  </div>
+</mat-toolbar>
+<div class="app">
+  <div class="menu">
+    <mat-nav-list class="route-nav-list">
+      <mat-list-item matTooltip="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page">
+        <span class="material-symbols-outlined">
+          face
+        </span>
+        <span class="label">{{'Users' | translate}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="'Roles' | translate" [routerLink]="'role'" routerLinkActive="active-page">
+        <span class="material-symbols-outlined">
+          group
+        </span>
+        <span class="label">{{'Roles'| translate}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="'Permissions' | translate" [routerLink]="'permission'" routerLinkActive="active-page">
+        <span class="material-symbols-outlined">
+          verified_user
+        </span>
+        <span class="label">{{'Permissions'| translate}}</span>
+      </mat-list-item>
+
+
+    </mat-nav-list>
+    <mat-nav-list class="route-nav-list login">
+      <mat-list-item matTooltip="Logout" (click)="logout()">
+        <span class="material-symbols-outlined">
+          logout
+        </span>
+        <span class="label">{{'Logout' | translate}}</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <div class="main-view">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<mat-toolbar class="footer">© Gisaïa 2022</mat-toolbar>

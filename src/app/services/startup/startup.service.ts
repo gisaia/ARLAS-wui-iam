@@ -1,12 +1,15 @@
+import { LOCATION_INITIALIZED } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import Ajv from 'ajv';
 import ajvKeywords from 'ajv-keywords';
 import * as draftSchema from 'ajv/lib/refs/json-schema-draft-06.json';
 import { Configuration, DefaultApi } from 'arlas-iam-api';
-import { ArlasIamService, ArlasSettings, ArlasSettingsService, AuthentSetting } from 'arlas-wui-toolkit';
+import { ArlasIamService, ArlasSettings, ArlasSettingsService } from 'arlas-wui-toolkit';
 import * as YAML from 'js-yaml';
 import { Subject } from 'rxjs/internal/Subject';
+import { ManagerService } from '../manager/manager.service';
 import * as arlasSettingsSchema from './settings.schema.json';
 
 export const SETTINGS_FILE_NAME = 'settings.yaml';
@@ -32,7 +35,10 @@ export class IamStartupService {
   public constructor(
     private http: HttpClient,
     private settingsService: ArlasSettingsService,
-    private arlasIamService: ArlasIamService
+    private arlasIamService: ArlasIamService,
+    private injector: Injector,
+    private translateService: TranslateService,
+    private managerService: ManagerService
   ) { }
 
   public validateSettings(settings: any): Promise<any> {
@@ -96,42 +102,73 @@ export class IamStartupService {
         this.settingsService.setSettings(s);
         this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, window.fetch);
         this.arlasIamService.setArlasIamApi(this.arlasIamApi);
+        this.managerService.setArlasIamApi(this.arlasIamApi);
         return s;
       });
   }
 
-  public authenticate(settings: ArlasSettings): Promise<ArlasSettings> {
+  public translationLoaded(data: any) {
+    return new Promise<any>((resolve: any) => {
+      const url = window.location.href;
+      const paramLangage = 'lg';
+      // Set default language to current browser language
+      let langToSet = navigator.language.slice(0, 2);
+      const regex = new RegExp('[?&]' + paramLangage + '(=([^&#]*)|&|#|$)');
+      const results = regex.exec(url);
+      if (results && results[2]) {
+        langToSet = decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      const locationInitialized = this.injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
+      locationInitialized.then(() => {
+        this.translateService.setDefaultLang('en');
+        this.translateService.use(langToSet).subscribe(() => {
+          console.log(`Successfully initialized '${langToSet}' language.`);
+        }, err => {
+          console.error(`Problem with '${langToSet}' language initialization.'`);
+        }, () => {
+          resolve([data, langToSet]);
+        });
+      });
+    });
+  }
 
-    return (new Promise<ArlasSettings>((resolve, reject) => {
-      // if authentication is configured, trigger authentication service that
-      // redirects to login page if it's the first time and fetches the appropriate token
-      if (settings) {
-        const authent: AuthentSetting = settings.authentication;
-
-        if (!this.arlasIamService.areSettingsValid(authent)[0]) {
-          const err = 'Authentication is set while ' + this.arlasIamService.areSettingsValid(authent)[1] + ' are not configured';
-          reject(err);
-        }
-        this.arlasIamApi = new ArlasIamApi(new Configuration(), authent.url, window.fetch);
-        this.arlasIamService.setArlasIamApi(this.arlasIamApi);
+  public enrichHeaders(settings: ArlasSettings): Promise<ArlasSettings> {
+    return new Promise<ArlasSettings>((resolve, reject) => {
+      const useAuthent = !!settings && !!settings.authentication
+        && !!settings.authentication.use_authent && settings.authentication.use_authent !== 'false';
+      const useAuthentIam = useAuthent && settings.authentication.use_authent === 'iam';
+      if (useAuthentIam) {
+        this.arlasIamService.currentUserSubject.subscribe({
+          next: response => {
+            if (!!response?.accessToken) {
+              this.arlasIamService.setOptions({
+                headers: {
+                  Authorization: 'Bearer ' + response.accessToken
+                }
+              });
+              this.managerService.setOptions({
+                headers: {
+                  Authorization: 'Bearer ' + response.accessToken
+                }
+              });
+            } else {
+              this.managerService.setOptions({});
+              this.arlasIamService.setOptions({});
+            }
+            resolve(settings);
+          }
+        });
+      } else {
         resolve(settings);
       }
-      return resolve(settings);
-    })).catch((err: any) => {
-      // application should not run if the settings.yaml file is not valid
-      this.shouldRunApp = false;
-      const error = {
-        origin: 'ARLAS-wui `' + SETTINGS_FILE_NAME + '` file',
-        message: err.toString().replace('Error:', ''),
-        reason: 'Please check if authentication is well configured in `' + SETTINGS_FILE_NAME + '` file .'
-      };
-      throw new Error(err);
+
     });
   }
 
   public load(): Promise<any> {
     return this.applyAppSettings()
-
+      .then((data) => this.enrichHeaders(data))
+      .then((data) => this.translationLoaded(data))
       .catch((err: any) => {
         this.shouldRunApp = false;
         console.error(err);

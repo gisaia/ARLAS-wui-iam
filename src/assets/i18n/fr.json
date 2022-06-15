@@ -1,0 +1,11 @@
+{
+	"Organisation": "Organisation",
+	"Users": "Utilisateurs",
+	"Roles": "Rôles",
+	"Permissions": "Permissions",
+	"Logout": "Déconnexion",
+	"Name": "Nom",
+	"Email": "Email",
+	"Owner": "Gestionnaire",
+	"Actions": "Actions"
+}
