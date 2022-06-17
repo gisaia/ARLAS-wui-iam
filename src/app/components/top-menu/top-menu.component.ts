@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'arlas-iam-top-menu',
@@ -7,13 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
-  @Input()  public showCreate = true;
-  @Input()  public showSpinner = false;
-  @Input()  public page = '';
+  @Input() public showCreate = false;
+  @Input() public showSpinner = false;
+  @Input() public page = '';
+
+  @Output() public createEvent = new Subject<boolean>();
 
   public constructor() { }
 
   public ngOnInit(): void {
+  }
+
+  public addEvent() {
+    this.createEvent.next(true);
   }
 
 }

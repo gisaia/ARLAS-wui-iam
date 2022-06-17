@@ -1,0 +1,21 @@
+<arlas-iam-top-menu [page]="'Update user' | translate"></arlas-iam-top-menu>
+
+<form [formGroup]="userForm" class="form-user">
+  <div class="form-content">
+    <h4>{{'Information' | translate}}</h4>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{'Roles' | translate}}</mat-label>
+      <mat-select formControlName="roles" multiple>
+        <mat-option *ngFor="let role of orgRoles" [value]="role.id">{{role.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
+      {{'Update' | translate}}
+    </button>
+    <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
+    </button>
+  </div>
+</form>

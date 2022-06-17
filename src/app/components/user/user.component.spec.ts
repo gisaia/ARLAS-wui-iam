@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -36,7 +37,8 @@ describe('UserComponent', () => {
         MatSortModule,
         MatToolbarModule,
         MatDividerModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        RouterTestingModule
       ],
       declarations: [UserComponent, TopMenuComponent]
     })

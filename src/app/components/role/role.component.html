@@ -1,4 +1,4 @@
-<arlas-iam-top-menu [page]="'Roles' | translate"></arlas-iam-top-menu>
+<arlas-iam-top-menu [page]="'Roles' | translate" [showCreate]="true" (createEvent)="add()"></arlas-iam-top-menu>
 
 <div class="content">
   <table mat-table class="table" [dataSource]="dataSource" matSort>

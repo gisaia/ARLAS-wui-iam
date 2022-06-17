@@ -1,9 +1,18 @@
 .top-menu {
   background-color: whitesmoke;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   .title {
     font-weight: 300;
     font-size: 18px;
+  }
+
+  .actions {
+    .add-button {
+      line-height: 28px;
+    }
   }
 }

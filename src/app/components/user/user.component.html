@@ -45,7 +45,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Actions' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-        <span class="material-symbols-outlined edit-actions">
+        <span (click)="editUser(row.member.id)" class="material-symbols-outlined edit-actions">
           edit
         </span>
       </td>

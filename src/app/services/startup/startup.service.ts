@@ -95,7 +95,6 @@ export class IamStartupService {
           message: err.toString().replace('Error:', ''),
           reason: 'Please check that the `src/' + SETTINGS_FILE_NAME + '` file is valid.'
         };
-        // this.errorService.errorsQueue.push(error);
         return Promise.reject(err);
       })
       .then(s => {
@@ -183,7 +182,6 @@ export class IamStartupService {
           message,
           reason: ''
         };
-        // this.errorService.errorsQueue.push(error);
         return Promise.resolve(null);
       }).then((x) => {
         this.arlasIamIsUp.next(true);

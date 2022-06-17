@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PermissionComponent', () => {
   let component: PermissionComponent;
@@ -25,6 +26,7 @@ describe('PermissionComponent', () => {
       imports: [
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
         BrowserAnimationsModule,
+        RouterTestingModule,
         MatTableModule,
         MatInputModule,
         MatFormFieldModule,

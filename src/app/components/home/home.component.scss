@@ -1,6 +1,5 @@
 .header {
   color: #fff;
-  background-color: rgb(255, 64, 129);
   height: 48px;
   display: flex;
   justify-content: space-between;
@@ -41,7 +40,7 @@
     }
     .route-nav-list {
       .active-page {
-        color: rgb(255, 64, 129);
+        color: #FF5722;
       }
     }
     .mat-list-item {

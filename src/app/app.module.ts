@@ -2,7 +2,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -24,6 +24,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { RoleFormComponent } from './components/role/role-form/role-form.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
+import { UserFormComponent } from './components/user/user-form/user-form.component';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -41,21 +46,28 @@ export function createTranslateLoader(http: HttpClient) {
     HomeComponent,
     RoleComponent,
     PermissionComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    RoleFormComponent,
+    PermissionCreateComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ArlasToolkitSharedModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatToolbarModule,
     MatTableModule,
     MatListModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatInputModule,
     FormsModule,
     LoginModule,
     RouterModule,

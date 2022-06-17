@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { MemberData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
@@ -14,7 +15,7 @@ import { ManagerService } from '../../services/manager/manager.service';
 export class UserComponent implements OnInit, OnDestroy {
 
   public dataSource: MatTableDataSource<MemberData>;
-  public displayedColumns: string[] = ['email', 'creation', 'update', 'isOwner', 'verified', 'active','actions'];
+  public displayedColumns: string[] = ['email', 'creation', 'update', 'isOwner', 'verified', 'active', 'actions'];
 
   public userSubscription: Subscription = null;
 
@@ -22,7 +23,8 @@ export class UserComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) public sort: MatSort;
 
   public constructor(
-    private managerService: ManagerService
+    private managerService: ManagerService,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
@@ -41,6 +43,10 @@ export class UserComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
       }
     });
+  }
+
+  public editUser(userId: string) {
+    this.router.navigate(['user', 'edit', userId]);
   }
 
   public ngOnDestroy(): void {

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'arlas-iam-permission',
@@ -22,7 +23,8 @@ export class PermissionComponent implements OnInit {
   @ViewChild(MatSort) public sort: MatSort;
 
   public constructor(
-    private managerService: ManagerService
+    private managerService: ManagerService,
+    private router: Router
   ) { }
 
   public ngOnInit(): void {
@@ -41,6 +43,10 @@ export class PermissionComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
     });
+  }
+
+  public add() {
+    this.router.navigate(['permission', 'create']);
   }
 
   public ngOnDestroy(): void {

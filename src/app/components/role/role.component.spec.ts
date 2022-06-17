@@ -15,6 +15,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-tran
 import { TopMenuComponent } from '../top-menu/top-menu.component';
 import { RoleComponent } from './role.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RoleComponent', () => {
   let component: RoleComponent;
@@ -36,7 +37,8 @@ describe('RoleComponent', () => {
         MatSortModule,
         MatToolbarModule,
         MatDividerModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        RouterTestingModule
       ],
       declarations: [RoleComponent, TopMenuComponent]
     })
