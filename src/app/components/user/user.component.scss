@@ -1,0 +1,19 @@
+.content {
+  .table {
+    width: 100%;
+
+    .mat-column-actions {
+      .edit-actions{
+        cursor: pointer;
+      }
+    }
+
+    .mat-column-actions,
+    .mat-column-active,
+    .mat-column-verified,
+    .mat-column-isOwner {
+      text-align: center;
+      width: 80px;
+    }
+  }
+}

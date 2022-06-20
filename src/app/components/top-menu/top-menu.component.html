@@ -1,0 +1,9 @@
+<div class="top-menu">
+  <div class="title">
+    {{page}}
+    <mat-spinner class="spinner" [diameter]="40" *ngIf="showSpinner"></mat-spinner>
+  </div>
+  <div class="actions">
+    <button *ngIf="showCreate" class="add-button" (click)="addEvent()" mat-flat-button color="accent">{{'Add' | translate}}</button>
+  </div>
+</div>

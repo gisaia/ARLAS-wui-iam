@@ -1,0 +1,79 @@
+.header {
+  color: #fff;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+
+  .orga {
+    font-size: medium;
+    font-weight: 300;
+
+    .current-orga {
+      width: 150px;
+      background-color: white;
+      color: black;
+      padding: 0 5px;
+    }
+  }
+}
+
+.app {
+  height: calc(100% - 84px);
+  display: flex;
+  flex-direction: row;
+  min-height: 520px;
+
+  .menu {
+    height: 100%;
+    width: 165px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+    .action-list {
+      color: #ededed;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .route-nav-list {
+      .active-page {
+        color: #FF5722;
+      }
+    }
+    .mat-list-item {
+      color: #28292b;
+    }
+    .mat-list-item-content {
+      margin: 15px !important;
+      padding: unset !important;
+    }
+
+    .login {
+      max-height: 130px;
+      .user-name {
+        .label {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .label {
+      margin: 4px;
+      font-size: 14px;
+    }
+  }
+
+  .main-view {
+    width: 100%;
+  }
+}
+
+.footer {
+  height: 36px;
+  font-size: small;
+}
