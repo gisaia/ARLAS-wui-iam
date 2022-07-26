@@ -39,7 +39,8 @@
             ],
             "styles": [
               "src/arlas-wui-theme.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -111,7 +112,8 @@
             ],
             "styles": [
               "src/arlas-wui-theme.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }

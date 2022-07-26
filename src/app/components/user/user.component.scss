@@ -3,7 +3,7 @@
     width: 100%;
 
     .mat-column-actions {
-      .edit-actions{
+      .actions-menu {
         cursor: pointer;
       }
     }
@@ -16,4 +16,8 @@
       width: 80px;
     }
   }
+}
+
+.button-actions {
+  vertical-align: middle;
 }

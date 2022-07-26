@@ -8,6 +8,8 @@ import { RoleFormComponent } from './components/role/role-form/role-form.compone
 import { RoleComponent } from './components/role/role.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
+import { UserAddComponent } from './components/user/user-add/user-add.component';
+import { RulesComponent } from './components/rules/rules.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,7 @@ const routes: Routes = [
         path: 'user', canActivate: [AuthGuardIamService],
         children: [
           { path: '', component: UserComponent },
+          { path: 'create', component: UserAddComponent },
           { path: 'edit/:id', component: UserFormComponent }
         ]
       },
@@ -34,6 +37,9 @@ const routes: Routes = [
           { path: '', component: PermissionComponent },
           { path: 'create', component: PermissionCreateComponent }
         ]
+      },
+      {
+        path: 'rules', component: RulesComponent, canActivate: [AuthGuardIamService]
       }
     ]
   },

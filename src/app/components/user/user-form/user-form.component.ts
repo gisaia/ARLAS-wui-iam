@@ -16,6 +16,8 @@ export class UserFormComponent implements OnInit {
 
   public roleSubscription: Subscription = null;
 
+  public userId = '';
+
   public orgRoles: RoleData[] = [];
   public userRoles: string[] = [];
 
@@ -26,13 +28,13 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');
-    this.roleSubscription = this.managerService.currentOrga.subscribe(orgId => {
-      if (!!orgId) {
-        this.managerService.getOrgRoles(orgId).subscribe({
+    this.userId = this.route.snapshot.paramMap.get('id');
+    this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
+      if (!!org) {
+        this.managerService.getOrgRoles().subscribe({
           next: roles => this.orgRoles = roles
         });
-        this.managerService.getUserRoles(userId).subscribe({
+        this.managerService.getUserRoles(this.userId).subscribe({
           next: rls => {
             this.userRoles = rls.map(r => r.id);
             this.userForm.get('roles').setValue(this.userRoles);
@@ -50,7 +52,9 @@ export class UserFormComponent implements OnInit {
   }
 
   public submit() {
-    // TODO: call role update missing endpoint for now
+    this.managerService.updateRole(this.userId, this.userForm.get('roles').value).subscribe({
+      next: () => this.router.navigate(['user'])
+    });
   }
 
 }

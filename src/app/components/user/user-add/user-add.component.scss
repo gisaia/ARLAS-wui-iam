@@ -1,0 +1,12 @@
+.form-add-user {
+  padding: 10px;
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+
+    .owner{
+      padding: 0 0 15px 10px;
+    }
+  }
+}

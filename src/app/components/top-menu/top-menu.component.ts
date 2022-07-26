@@ -11,6 +11,7 @@ export class TopMenuComponent implements OnInit {
   @Input() public showCreate = false;
   @Input() public showSpinner = false;
   @Input() public page = '';
+  @Input() public createText = 'Add';
 
   @Output() public createEvent = new Subject<boolean>();
 
