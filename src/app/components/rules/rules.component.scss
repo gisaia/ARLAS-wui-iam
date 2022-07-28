@@ -1,0 +1,20 @@
+.rules {
+  width: 100%;
+
+  tr {
+    height: 48px;
+
+    th {
+      background-color: lightgrey;
+
+      &.empty {
+        background-color: white;
+      }
+    }
+
+    td {
+      text-align: center;
+      background-color: whitesmoke;
+    }
+  }
+}

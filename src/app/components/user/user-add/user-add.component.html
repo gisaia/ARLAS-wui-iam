@@ -1,0 +1,20 @@
+<arlas-iam-top-menu [page]="'Invite user to organisation' | translate"></arlas-iam-top-menu>
+
+<form [formGroup]="userForm" class="form-add-user">
+  <div class="form-content">
+    <h4>{{'Information' | translate}}</h4>
+
+    <mat-form-field appearance="outline" class="email">
+      <mat-label>{{'Email' | translate}}</mat-label>
+      <input type="text" formControlName="email" matInput required>
+    </mat-form-field>
+    <mat-checkbox class="owner" color="primary" formControlName="isOwner">{{'Is owner ?' | translate}}</mat-checkbox>
+  </div>
+  <div>
+    <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
+      {{'Invite' | translate}}
+    </button>
+    <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
+    </button>
+  </div>
+</form>

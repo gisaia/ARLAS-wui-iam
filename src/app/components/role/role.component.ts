@@ -28,15 +28,15 @@ export class RoleComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.roleSubscription = this.managerService.currentOrga.subscribe(orgId => {
-      if (!!orgId) {
-        this.showRoles(orgId);
+    this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
+      if (!!org) {
+        this.showRoles();
       }
     });
   }
 
-  public showRoles(orgId: string) {
-    this.managerService.getOrgRoles(orgId).subscribe({
+  public showRoles() {
+    this.managerService.getOrgRoles().subscribe({
       next: roles => {
         this.dataSource = new MatTableDataSource(roles);
         this.dataSource.paginator = this.paginator;

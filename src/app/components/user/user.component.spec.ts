@@ -16,6 +16,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrService } from 'ngx-toastr';
+import { MockToastrService } from 'src/app/tools/mock';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -40,7 +42,13 @@ describe('UserComponent', () => {
         MatPaginatorModule,
         RouterTestingModule
       ],
-      declarations: [UserComponent, TopMenuComponent]
+      declarations: [UserComponent, TopMenuComponent],
+      providers: [
+        {
+          provide: ToastrService,
+          useClass: MockToastrService
+        }
+      ]
     })
       .compileComponents();
   });

@@ -2,8 +2,8 @@
   <span [routerLink]="'/'">ARLAS IAM</span>
   <div class="orga">
     {{'Organisation'| translate}}
-    <mat-select class="current-orga" [value]="organisations[0]?.id" (selectionChange)="updateCurrentOrga($event)">
-      <mat-option *ngFor="let org of this.organisations" [value]="org.id">{{org.name}}</mat-option>
+    <mat-select class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
+      <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
     </mat-select>
   </div>
 </mat-toolbar>
@@ -30,6 +30,14 @@
         </span>
         <span class="label">{{'Permissions'| translate}}</span>
       </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item matTooltip="'Rules' | translate" [routerLink]="'rules'" routerLinkActive="active-page">
+        <span class="material-symbols-outlined">
+          rule
+        </span>
+        <span class="label">{{'Rules'| translate}}</span>
+      </mat-list-item>
+
 
 
     </mat-nav-list>

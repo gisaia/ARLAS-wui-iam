@@ -28,15 +28,15 @@ export class PermissionComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.permSubscription = this.managerService.currentOrga.subscribe(orgId => {
-      if (!!orgId) {
-        this.showPerms(orgId);
+    this.permSubscription = this.managerService.currentOrga.subscribe(org => {
+      if (!!org) {
+        this.showPerms();
       }
     });
   }
 
-  public showPerms(orgId: string) {
-    this.managerService.getOrgPermissions(orgId).subscribe({
+  public showPerms() {
+    this.managerService.getOrgPermissions().subscribe({
       next: perms => {
         this.dataSource = new MatTableDataSource(perms);
         this.dataSource.paginator = this.paginator;

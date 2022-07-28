@@ -29,6 +29,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
+import { UserAddComponent } from './components/user/user-add/user-add.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ToastrModule } from 'ngx-toastr';
+import { RulesComponent } from './components/rules/rules.component';
+import { RulesItemComponent } from './components/rules-item/rules-item.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -49,7 +56,10 @@ export function createTranslateLoader(http: HttpClient) {
     TopMenuComponent,
     RoleFormComponent,
     PermissionCreateComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserAddComponent,
+    RulesComponent,
+    RulesItemComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +71,12 @@ export function createTranslateLoader(http: HttpClient) {
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatChipsModule,
     MatToolbarModule,
     MatTableModule,
     MatListModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatSelectModule,
@@ -78,7 +91,12 @@ export function createTranslateLoader(http: HttpClient) {
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
+    }),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
   ],
   providers: [
     {

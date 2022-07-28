@@ -1,0 +1,14 @@
+<arlas-iam-top-menu [page]="'Rules' | translate"></arlas-iam-top-menu>
+
+<table class="rules">
+  <tr>
+    <th class="empty"></th>
+    <th *ngFor="let role of roles">{{role.name}}</th>
+  </tr>
+  <tr *ngFor="let perm of perms">
+    <th>{{perm.description}}</th>
+    <td *ngFor="let role of roles">
+      <arlas-iam-rules-item [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id" [permId]="perm.id" ></arlas-iam-rules-item>
+    </td>
+  </tr>
+</table>
