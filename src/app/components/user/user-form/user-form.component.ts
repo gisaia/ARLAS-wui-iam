@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
+import { Page } from '../../../tools/model';
 
 @Component({
   selector: 'arlas-iam-user-form',
@@ -17,9 +19,10 @@ export class UserFormComponent implements OnInit {
   public roleSubscription: Subscription = null;
 
   public userId = '';
-
   public orgRoles: RoleData[] = [];
   public userRoles: string[] = [];
+
+  public pages: Page[] = [];
 
   public constructor(
     private router: Router,
@@ -45,6 +48,10 @@ export class UserFormComponent implements OnInit {
     this.userForm = new FormGroup({
       roles: new FormControl([], [Validators.required])
     });
+    this.pages = [
+      { label: marker('Users'), route: ['user'] },
+      { label: marker('Update user')}
+    ];
   }
 
   public back() {

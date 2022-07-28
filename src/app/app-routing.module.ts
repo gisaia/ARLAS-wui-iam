@@ -39,7 +39,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'rules', component: RulesComponent, canActivate: [AuthGuardIamService]
+        path: 'rule', component: RulesComponent, canActivate: [AuthGuardIamService]
       }
     ]
   },

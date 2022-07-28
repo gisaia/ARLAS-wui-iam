@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ManagerService } from '../../services/manager/manager.service';
 import { RoleData, PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
+import { Page } from '../../tools/model';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
   selector: 'arlas-iam-rules',
@@ -12,6 +14,8 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   public roles: RoleData[] = [];
   public perms: PermissionData[] = [];
+
+  public pages: Page[] = [];
 
   public userSubscription: Subscription = null;
 
@@ -25,6 +29,9 @@ export class RulesComponent implements OnInit, OnDestroy {
         this.showRules();
       }
     });
+    this.pages = [
+      { label: marker('Rules') }
+    ];
   }
 
   public showRules() {

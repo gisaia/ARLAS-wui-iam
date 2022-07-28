@@ -3,9 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
+import { Page } from '../../tools/model';
 
 @Component({
   selector: 'arlas-iam-role',
@@ -18,6 +20,8 @@ export class RoleComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'description'];
 
   public roleSubscription: Subscription = null;
+
+  public pages: Page[];
 
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
@@ -33,6 +37,9 @@ export class RoleComponent implements OnInit {
         this.showRoles();
       }
     });
+    this.pages = [
+      {label: marker('Roles')},
+    ];
   }
 
   public showRoles() {

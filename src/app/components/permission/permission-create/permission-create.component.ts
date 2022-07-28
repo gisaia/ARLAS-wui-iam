@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { ManagerService } from 'src/app/services/manager/manager.service';
+import { Page } from '../../../tools/model';
 
 @Component({
   selector: 'arlas-iam-permission-create',
@@ -11,6 +13,7 @@ import { ManagerService } from 'src/app/services/manager/manager.service';
 export class PermissionCreateComponent implements OnInit {
 
   public permForm: FormGroup;
+  public pages: Page[];
 
   public constructor(
     private router: Router,
@@ -22,6 +25,10 @@ export class PermissionCreateComponent implements OnInit {
       value: new FormControl('', [Validators.required]),
       description: new FormControl('')
     });
+    this.pages = [
+      {label: marker('Permissions'), route: ['permission']  },
+      {label: marker('Create a permission')}
+    ];
   }
 
   public back() {
