@@ -1,5 +1,5 @@
 <mat-toolbar class="header" [color]="'primary'">
-  <span [routerLink]="'/'">ARLAS IAM</span>
+  <span style="cursor: pointer;" [routerLink]="'/'">ARLAS IAM</span>
   <div class="orga">
     {{'Organisation'| translate}}
     <mat-select class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
@@ -31,7 +31,7 @@
         <span class="label">{{'Permissions'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item matTooltip="'Rules' | translate" [routerLink]="'rules'" routerLinkActive="active-page">
+      <mat-list-item matTooltip="'Rules' | translate" [routerLink]="'rule'" routerLinkActive="active-page">
         <span class="material-symbols-outlined">
           rule
         </span>
@@ -51,7 +51,33 @@
     </mat-nav-list>
   </div>
   <div class="main-view">
+    <div *ngIf="displayDashboard" class="dashboard">
+      <div class="card user" (click)="navigate('user')">
+        <span class="material-symbols-outlined large">
+          face
+        </span>
+        {{'Users' | translate}}
+      </div>
+      <div class="card role"  (click)="navigate('role')">
+        <span class="material-symbols-outlined large">
+          group
+        </span>
+        <span class="label">{{'Roles'| translate}}</span>
+      </div>
+      <div class="card permission" (click)="navigate('permission')">
+        <span class="material-symbols-outlined large">
+          verified_user
+        </span>
+        <span class="label">{{'Permissions'| translate}}</span>
 
+      </div>
+      <div class="card rule"  (click)="navigate('rule')">
+        <span class="material-symbols-outlined large">
+          rule
+        </span>
+        <span class="label">{{'Rules'| translate}}</span>
+      </div>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

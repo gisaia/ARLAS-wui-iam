@@ -6,6 +6,7 @@ import { PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Router } from '@angular/router';
+import { Page } from '../../tools/model';
 
 @Component({
   selector: 'arlas-iam-permission',
@@ -18,6 +19,7 @@ export class PermissionComponent implements OnInit {
   public displayedColumns: string[] = ['value', 'description'];
 
   public permSubscription: Subscription = null;
+  public pages: Page[];
 
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
@@ -33,6 +35,9 @@ export class PermissionComponent implements OnInit {
         this.showPerms();
       }
     });
+    this.pages = [
+      {label: 'Permissions'},
+    ];
   }
 
   public showPerms() {

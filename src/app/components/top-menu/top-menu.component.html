@@ -1,6 +1,10 @@
 <div class="top-menu">
   <div class="title">
-    {{page}}
+    <ng-container *ngFor="let page of pages">
+      <span class="link" *ngIf="!!page.route" (click)="navigateTo(page.route)">{{page.label | translate}}</span>
+      <span class="divider" *ngIf="!!page.route">></span>
+      <span *ngIf="!page.route">{{page.label | translate}}</span>
+    </ng-container>
     <mat-spinner class="spinner" [diameter]="40" *ngIf="showSpinner"></mat-spinner>
   </div>
   <div class="actions">

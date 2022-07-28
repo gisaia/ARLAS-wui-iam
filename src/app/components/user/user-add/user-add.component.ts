@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from 'src/app/services/manager/manager.service';
+import { Page } from '../../../tools/model';
 
 @Component({
   selector: 'arlas-iam-user-add',
@@ -14,6 +15,8 @@ export class UserAddComponent implements OnInit {
 
   public userForm: FormGroup;
   public isOwner = false;
+
+  public pages: Page[] = [];
 
   public constructor(
     private router: Router,
@@ -27,6 +30,10 @@ export class UserAddComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       isOwner: new FormControl(false)
     });
+    this.pages = [
+      { label: 'Users', route: ['user'] },
+      { label: 'Invite user to organisation'}
+    ];
   }
 
   public back() {
