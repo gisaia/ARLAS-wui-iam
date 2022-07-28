@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
@@ -37,7 +38,7 @@ export class RoleComponent implements OnInit {
       }
     });
     this.pages = [
-      {label: 'Roles'},
+      {label: marker('Roles')},
     ];
   }
 

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Router } from '@angular/router';
 import { Page } from '../../tools/model';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
   selector: 'arlas-iam-permission',
@@ -36,7 +37,7 @@ export class PermissionComponent implements OnInit {
       }
     });
     this.pages = [
-      {label: 'Permissions'},
+      {label: marker('Permissions')},
     ];
   }
 

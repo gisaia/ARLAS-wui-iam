@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '../../tools/model';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
   selector: 'arlas-iam-user',
@@ -45,7 +46,7 @@ export class UserComponent implements OnInit, OnDestroy {
       }
     });
     this.pages = [
-      { label: 'Users' }
+      { label: marker('Users') }
     ];
   }
 

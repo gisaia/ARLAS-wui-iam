@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { ManagerService } from '../../../services/manager/manager.service';
 import { Page } from '../../../tools/model';
 
@@ -25,8 +26,8 @@ export class RoleFormComponent implements OnInit {
       description: new FormControl('')
     });
     this.pages = [
-      {label: 'Roles', route: ['role']  },
-      {label: 'Create a role'}
+      {label: marker('Roles'), route: ['role']  },
+      {label: marker('Create a role')}
     ];
   }
 

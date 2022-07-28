@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
 
@@ -25,8 +26,8 @@ export class PermissionCreateComponent implements OnInit {
       description: new FormControl('')
     });
     this.pages = [
-      {label: 'Permissions', route: ['permission']  },
-      {label: 'Create a permission'}
+      {label: marker('Permissions'), route: ['permission']  },
+      {label: marker('Create a permission')}
     ];
   }
 

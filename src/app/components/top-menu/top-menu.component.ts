@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Page } from '../../tools/model';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 @Component({
   selector: 'arlas-iam-top-menu',
@@ -13,7 +14,7 @@ export class TopMenuComponent implements OnInit {
   @Input() public showCreate = false;
   @Input() public showSpinner = false;
   @Input() public pages: Page[] = [];
-  @Input() public createText = 'Add';
+  @Input() public createText = marker('Add');
 
   @Output() public createEvent = new Subject<boolean>();
 

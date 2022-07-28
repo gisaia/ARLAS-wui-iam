@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from 'src/app/services/manager/manager.service';
@@ -31,8 +32,8 @@ export class UserAddComponent implements OnInit {
       isOwner: new FormControl(false)
     });
     this.pages = [
-      { label: 'Users', route: ['user'] },
-      { label: 'Invite user to organisation'}
+      { label: marker('Users'), route: ['user'] },
+      { label: marker('Invite user to organisation')}
     ];
   }
 

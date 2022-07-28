@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
@@ -48,8 +49,8 @@ export class UserFormComponent implements OnInit {
       roles: new FormControl([], [Validators.required])
     });
     this.pages = [
-      { label: 'Users', route: ['user'] },
-      { label: 'Update user'}
+      { label: marker('Users'), route: ['user'] },
+      { label: marker('Update user')}
     ];
   }
 
