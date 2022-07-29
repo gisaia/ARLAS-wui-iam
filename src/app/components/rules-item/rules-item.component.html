@@ -1,4 +1,4 @@
 
-  <mat-checkbox *ngIf="!isLoading" [checked]="checked" (change)="change($event)"></mat-checkbox>
+  <mat-checkbox *ngIf="!isLoading" [disabled]="disabled" [checked]="checked" (change)="change($event)"></mat-checkbox>
   <mat-spinner class="spinner" *ngIf="isLoading" [diameter]="30"></mat-spinner>
 

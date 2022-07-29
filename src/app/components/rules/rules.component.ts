@@ -14,8 +14,9 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   public roles: RoleData[] = [];
   public perms: PermissionData[] = [];
-
   public pages: Page[] = [];
+
+  public updateLock = true;
 
   public userSubscription: Subscription = null;
 

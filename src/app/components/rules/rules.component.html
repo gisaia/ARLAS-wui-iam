@@ -1,14 +1,33 @@
 <arlas-iam-top-menu [pages]="pages"></arlas-iam-top-menu>
 
+<div *ngIf="updateLock" class="lock">
+  <button mat-icon-button (click)="updateLock = !updateLock">
+    <span class="material-symbols-outlined">
+      lock
+    </span>
+  </button>
+  <div>{{'Locked, click to edit'}}</div>
+</div>
+<div *ngIf="!updateLock" class="lock">
+  <button mat-icon-button (click)="updateLock = !updateLock">
+    <span class="material-symbols-outlined" (click)="updateLock = !updateLock">
+      lock_open
+    </span>
+  </button>
+  <div>{{'Unlocked, click to prevent changes'}}</div>
+</div>
 <table class="rules">
   <tr>
-    <th class="empty"></th>
+    <th class="empty">
+
+    </th>
     <th *ngFor="let role of roles">{{role.name}}</th>
   </tr>
   <tr *ngFor="let perm of perms">
     <th>{{perm.description}}</th>
     <td *ngFor="let role of roles">
-      <arlas-iam-rules-item [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id" [permId]="perm.id" ></arlas-iam-rules-item>
+      <arlas-iam-rules-item [disabled]="updateLock" [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id"
+        [permId]="perm.id"></arlas-iam-rules-item>
     </td>
   </tr>
 </table>

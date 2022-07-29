@@ -61,7 +61,7 @@
             {{'Edit' | translate}}
           </button>
           <button mat-menu-item (click)="removeUser(row.member.id)"
-            [disabled]="row.member.id === arlasIamService.currentUserValue.userId">
+            [disabled]="row.member.id === this.currentUser.id">
             <span class="material-symbols-outlined button-actions">
               delete
             </span>

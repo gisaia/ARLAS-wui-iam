@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { MemberData } from 'arlas-iam-api';
+import { MemberData, UserData } from 'arlas-iam-api';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
@@ -27,6 +27,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public userSubscription: Subscription = null;
 
+  public currentUser: UserData = null;
+
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
 
@@ -39,10 +41,11 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    this.currentUser = this.arlasIamService.currentUserValue?.user;
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showUsers();
-        this.isMyOrganisation = org.name === this.translate.instant('Me');
+        this.isMyOrganisation = org.name === this.currentUser.email.split('@')[0];
       }
     });
     this.pages = [

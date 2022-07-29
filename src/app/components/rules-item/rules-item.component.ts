@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class RulesItemComponent implements OnInit {
 
   @Input() public checked: boolean;
+  @Input() public disabled: boolean;
   @Input() public roleId: string;
   @Input() public permId: string;
 
@@ -29,31 +30,36 @@ export class RulesItemComponent implements OnInit {
   public change(event: MatCheckboxChange): void {
     this.isLoading = true;
     if (event.checked) {
-      this.managerService.addPermissionToRole(this.roleId, this.permId).subscribe({
-        next: () => {
-          this.toastr.success(this.translate.instant('Permission updated'));
-        },
-        error: (err) => {
-          this.toastr.error(err.message);
-        },
-        complete: () => {
-          this.isLoading = false;
-          this.checked = true;
-        }
-      });
+      setTimeout(() =>
+        this.managerService.addPermissionToRole(this.roleId, this.permId)
+          .subscribe({
+            next: () => {
+              this.toastr.success(this.translate.instant('Permission updated'));
+            },
+            error: (err) => {
+              this.toastr.error(err.message);
+            },
+            complete: () => {
+              this.isLoading = false;
+              this.checked = true;
+            }
+          }), 500
+      );
     } else {
-      this.managerService.removePermissionFromRole(this.roleId, this.permId).subscribe({
-        next: () => {
-          this.toastr.success(this.translate.instant('Permission updated'));
-        },
-        error: (err) => {
-          this.toastr.error(err.message);
-        },
-        complete: () => {
-          this.isLoading = false;
-          this.checked = false;
-        }
-      });
+      setTimeout(() =>
+        this.managerService.removePermissionFromRole(this.roleId, this.permId).subscribe({
+          next: () => {
+            this.toastr.success(this.translate.instant('Permission updated'));
+          },
+          error: (err) => {
+            this.toastr.error(err.message);
+          },
+          complete: () => {
+            this.isLoading = false;
+            this.checked = false;
+          }
+        }), 500
+      );
     }
   }
 
