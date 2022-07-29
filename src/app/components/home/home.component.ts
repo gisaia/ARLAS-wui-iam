@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { OrgData } from 'arlas-iam-api';
+import { OrgData, UserData } from 'arlas-iam-api';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { filter } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
@@ -26,10 +26,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    const user: UserData = this.arlasIamService.currentUserValue?.user;
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
+        // TODO: filter organisations to keep only org where user is owner
         this.organisations = orgs;
-        this.organisations.map(org => org.name === this.arlasIamService.currentUserValue.userId ? org.name = this.translate.instant('Me') : '');
+        this.organisations.map(org => org.name === user.id ? org.name = user.email.split('@')[0] : '');
         this.managerService.currentOrga.next({ id: this.organisations[0].id, name: this.organisations[0].name });
       }
     });

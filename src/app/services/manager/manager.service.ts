@@ -11,7 +11,9 @@ export class ManagerService {
   private options = {};
   private arlasIamApi: ArlasIamApi;
 
-  public currentOrga = new BehaviorSubject<{id: string; name: string;}>(null);
+  public currentOrga = new BehaviorSubject<{ id: string; name: string; }>(null);
+
+  public currentUser: UserData = null;
 
   public constructor() { }
 
@@ -23,16 +25,22 @@ export class ManagerService {
     this.arlasIamApi = api;
   }
 
-  /** USERS **/
+  /** ORGA **/
   public getOrganisations(): Observable<OrgData[]> {
     return from(this.arlasIamApi.getOrganisations(this.options));
   }
 
-
-
   /** USERS **/
   public getOrgUsers(): Observable<MemberData[]> {
     return from(this.arlasIamApi.getUsers(this.currentOrga.getValue().id, this.options));
+  }
+
+  public getOrgUser(orgId: string, userId: string): Observable<MemberData> {
+    return from(this.arlasIamApi.getUsers1(orgId, userId, this.options));
+  }
+
+  public getUser(userId: string): Observable<UserData> {
+    return from(this.arlasIamApi.getUser(userId, this.options));
   }
 
   public getUserRoles(userId: string): Observable<RoleData[]> {
