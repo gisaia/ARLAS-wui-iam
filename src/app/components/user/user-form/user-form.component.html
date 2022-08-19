@@ -10,6 +10,7 @@
         <mat-option *ngFor="let role of orgRoles" [value]="role.id">{{role.name}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-checkbox class="owner" color="primary" formControlName="isOwner">{{'Owner' | translate}}</mat-checkbox>
   </div>
   <div>
     <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">

@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { PermissionCreateComponent } from './permission-create.component';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { MockToastrService } from '../../../tools/mock';
 
 describe('PermissionCreateComponent', () => {
   let component: PermissionCreateComponent;
@@ -14,6 +16,12 @@ describe('PermissionCreateComponent', () => {
       imports: [
         RouterTestingModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+      ],
+      providers: [
+        {
+          provide: ToastrService,
+          useClass: MockToastrService
+        }
       ]
     })
       .compileComponents();

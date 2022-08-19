@@ -29,8 +29,7 @@ export class HomeComponent implements OnInit {
     const user: UserData = this.arlasIamService.currentUserValue?.user;
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
-        // TODO: filter organisations to keep only org where user is owner
-        this.organisations = orgs;
+        this.organisations = orgs.filter( o => (o as any).isOwner);
         this.organisations.map(org => org.name === user.id ? org.name = user.email.split('@')[0] : '');
         this.managerService.currentOrga.next({ id: this.organisations[0].id, name: this.organisations[0].name });
       }
