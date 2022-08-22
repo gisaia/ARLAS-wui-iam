@@ -1,13 +1,21 @@
 .content {
+  height: calc(100% - 50px);
+  overflow: auto;
   .table {
     width: 100%;
 
     .mat-column-actions {
       width: 50px;
 
-      .edit-actions{
+      .edit-actions {
         cursor: pointer;
       }
     }
+  }
+
+  .mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+    z-index: 10;
   }
 }

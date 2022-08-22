@@ -36,6 +36,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { RulesItemComponent } from './components/rules-item/rules-item.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSortModule } from '@angular/material/sort';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -75,6 +76,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatChipsModule,
     MatToolbarModule,
     MatTableModule,
+    MatSortModule,
     MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,

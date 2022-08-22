@@ -20,7 +20,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 export class UserComponent implements OnInit, OnDestroy {
 
   public dataSource: MatTableDataSource<MemberData>;
-  public displayedColumns: string[] = ['email', 'roles', 'update', 'isOwner', 'verified', 'active', 'actions'];
+  public displayedColumns: string[] = ['email', 'roles', 'updateDate', 'isOwner', 'verified', 'active', 'actions'];
 
   public isMyOrganisation = false;
   public pages: Page[] = [];
@@ -58,6 +58,10 @@ export class UserComponent implements OnInit, OnDestroy {
       next: users => {
         this.dataSource = new MatTableDataSource(users.map(user => {
           (user as any).roles = user.member.roles.map(r => r.name);
+          (user as any).email = user.member.email;
+          (user as any).updateDate = user.member.updateDate;
+          (user as any).isActive = user.member.isActive;
+          (user as any).isVerified = user.member.isVerified;
           return user;
         }));
         this.dataSource.paginator = this.paginator;

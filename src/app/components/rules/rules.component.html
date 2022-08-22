@@ -21,10 +21,10 @@
     <th class="empty">
 
     </th>
-    <th *ngFor="let role of roles">{{role.name}}</th>
+    <th class="roles" *ngFor="let role of roles">{{role.name}}</th>
   </tr>
   <tr *ngFor="let perm of perms">
-    <th>{{perm.description}}</th>
+    <th class="perm">{{perm.description}}</th>
     <td *ngFor="let role of roles">
       <arlas-iam-rules-item [disabled]="updateLock" [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id"
         [permId]="perm.id"></arlas-iam-rules-item>
