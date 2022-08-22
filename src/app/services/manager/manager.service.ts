@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MemberData, OrgData, RoleData, PermissionData, UserData, OrgUserDef } from 'arlas-iam-api';
+import {
+  MemberData, OrgData, RoleData, PermissionData,
+  UserData, OrgUserDef, UpdateUserDef, UpdateOrgUserDef
+} from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 
@@ -36,11 +39,11 @@ export class ManagerService {
   }
 
   public getOrgUser(orgId: string, userId: string): Observable<MemberData> {
-    return from(this.arlasIamApi.getUsers1(orgId, userId, this.options));
+    return from(this.arlasIamApi.getUser(orgId, userId, this.options));
   }
 
   public getUser(userId: string): Observable<UserData> {
-    return from(this.arlasIamApi.getUser(userId, this.options));
+    return from(this.arlasIamApi.readUser(userId, this.options));
   }
 
   public getUserRoles(userId: string): Observable<RoleData[]> {
@@ -55,6 +58,10 @@ export class ManagerService {
     return from(this.arlasIamApi.removeRoleFromUserInOrganisation(this.currentOrga.getValue().id, userId, roleId, this.options));
   }
 
+  public updateUser(userId: string, userDef: UpdateUserDef): Observable<UserData> {
+    return from(this.arlasIamApi.updateUser(userId, userDef, this.options));
+  }
+
   public updateRole(userId: string, roleList: string[]) {
     return from(this.arlasIamApi.putRoles(this.currentOrga.getValue().id, userId, { ids: roleList }, this.options));
   }
@@ -65,6 +72,10 @@ export class ManagerService {
 
   public removeUserFromOrg(userId: string): Observable<OrgData> {
     return from(this.arlasIamApi.removeUserFromOrganisation(this.currentOrga.getValue().id, userId, this.options));
+  }
+
+  public updateUserOwnership(userId: string, userOrgDef: UpdateOrgUserDef) {
+    return from(this.arlasIamApi.updateUserInOrganisation(this.currentOrga.getValue().id, userId, userOrgDef, this.options));
   }
 
   /** ROLES **/
