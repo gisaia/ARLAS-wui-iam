@@ -85,7 +85,7 @@ export class PermissionCreateComponent implements OnInit {
           this.toastr.success(this.translate.instant('Permission updated'));
           this.router.navigate(['permission']);
         },
-        error: err => this.toastr.success(err.statusText, this.translate.instant('Permission not updated'))
+        error: err => this.toastr.error(err.statusText, this.translate.instant('Permission not updated'))
       });
     }
   }

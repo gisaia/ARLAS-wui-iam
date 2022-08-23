@@ -83,7 +83,7 @@ export class RoleFormComponent implements OnInit {
           this.toastr.success(this.translate.instant('Role updated'));
           this.router.navigate(['role']);
         },
-        error: err => this.toastr.success(err.statusText, this.translate.instant('Role not updated'))
+        error: err => this.toastr.error(err.statusText, this.translate.instant('Role not updated'))
       });
     }
   }
