@@ -4,7 +4,7 @@ import {
   UserData, OrgUserDef, UpdateUserDef, UpdateOrgUserDef
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
-import { BehaviorSubject, from, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable, filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +70,7 @@ export class ManagerService {
     return from(this.arlasIamApi.updateUser(userId, userDef, this.options));
   }
 
-  public updateRole(userId: string, roleList: string[]) {
+  public updateUserRole(userId: string, roleList: string[]) {
     return from(this.arlasIamApi.putRoles(this.currentOrga.getValue().id, userId, { ids: roleList }, this.options));
   }
 
@@ -93,6 +93,16 @@ export class ManagerService {
 
   public addRole(name: string, description: string): Observable<RoleData> {
     return from(this.arlasIamApi.addRoleToOrganisation(this.currentOrga.getValue().id, { name, description }, this.options));
+  }
+
+  public updateRole(roleId: string, name: string, description: string): Observable<RoleData> {
+    return from(this.arlasIamApi.updateRoleInOrganisation(this.currentOrga.getValue().id, roleId, { name, description }, this.options));
+  }
+
+  public getRole(roleId: string): Observable<RoleData> {
+    return from(this.arlasIamApi.getRolesOfOrganisation(this.currentOrga.getValue().id, this.options)
+      .then(roles => roles.find(r => r.id === roleId))
+    );
   }
 
   /** PERMISSIONS **/
