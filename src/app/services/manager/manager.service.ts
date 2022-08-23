@@ -114,6 +114,16 @@ export class ManagerService {
     return from(this.arlasIamApi.addPermission(this.currentOrga.getValue().id, { value, description }, this.options));
   }
 
+  public updatePermission(permId: string, value: string, description: string): Observable<PermissionData> {
+    return from(this.arlasIamApi.updatePermission(this.currentOrga.getValue().id, permId, { value, description }, this.options));
+  }
+
+  public getPermission(permId: string) {
+    return from(this.arlasIamApi.getPermissionsOfOrganisation(this.currentOrga.getValue().id, this.options)
+      .then(perms => perms.find(p => p.id === permId))
+    );
+  }
+
   public addPermissionToRole(roleId: string, permId: string): Observable<RoleData> {
     return from(this.arlasIamApi.addPermissionToRole(this.currentOrga.getValue().id, roleId, permId, this.options));
   }

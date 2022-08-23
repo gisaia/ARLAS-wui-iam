@@ -36,7 +36,8 @@ const routes: Routes = [
         path: 'permission', canActivate: [AuthGuardIamService],
         children: [
           { path: '', component: PermissionComponent },
-          { path: 'create', component: PermissionCreateComponent }
+          { path: 'create', component: PermissionCreateComponent },
+          { path: 'edit/:id', component: PermissionCreateComponent }
         ]
       },
       {

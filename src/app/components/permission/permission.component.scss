@@ -5,11 +5,14 @@
     width: 100%;
 
     .mat-column-actions {
-      width: 50px;
-
-      .edit-actions {
+      .actions-menu {
         cursor: pointer;
       }
+    }
+
+    .mat-column-actions {
+      text-align: center;
+      width: 80px;
     }
   }
 
@@ -18,4 +21,8 @@
     position: sticky;
     z-index: 10;
   }
+}
+
+.button-actions {
+  vertical-align: middle;
 }

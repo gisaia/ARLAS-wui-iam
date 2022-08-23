@@ -17,7 +17,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 export class PermissionComponent implements OnInit {
 
   public dataSource: MatTableDataSource<PermissionData>;
-  public displayedColumns: string[] = ['value', 'description'];
+  public displayedColumns: string[] = ['value', 'description', 'actions'];
 
   public permSubscription: Subscription = null;
   public pages: Page[];
@@ -53,6 +53,10 @@ export class PermissionComponent implements OnInit {
 
   public add() {
     this.router.navigate(['permission', 'create']);
+  }
+
+  public edit(permId: string){
+    this.router.navigate(['permission', 'edit', permId]);
   }
 
   public ngOnDestroy(): void {
