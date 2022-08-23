@@ -10,19 +10,31 @@
     font-weight: 300;
     font-size: 18px;
 
-    .link{
+    .link {
       cursor: pointer;
-      &:hover{
+      &:hover {
         color: #ff5722;
       }
     }
 
-    .divider{
+    .divider {
       padding: 0 10px;
     }
   }
 
   .actions {
+    display: flex;
+    gap: 0 15px;
+    align-items: center;
+
+    .show-technical {
+      font-size: 12px;
+      ::ng-deep .mat-checkbox-inner-container {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
     .add-button {
       line-height: 28px;
     }

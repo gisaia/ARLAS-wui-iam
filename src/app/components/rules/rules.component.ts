@@ -4,6 +4,7 @@ import { RoleData, PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { Page } from '../../tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { getState, saveState } from '../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-rules',
@@ -17,6 +18,7 @@ export class RulesComponent implements OnInit, OnDestroy {
   public pages: Page[] = [];
 
   public updateLock = true;
+  public showTechnicalRoles = false;
 
   public userSubscription: Subscription = null;
 
@@ -25,6 +27,7 @@ export class RulesComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    this.showTechnicalRoles = getState('showTechnicalRoles');
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showRules();
@@ -37,7 +40,7 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   public showRules() {
     this.managerService.getOrgRoles().subscribe({
-      next: roles => this.roles = roles
+      next: roles => this.roles = roles.filter(r => (!this.showTechnicalRoles && !r.isTechnical) || this.showTechnicalRoles)
     });
     this.managerService.getOrgPermissions().subscribe({
       next: perms => {
@@ -47,6 +50,12 @@ export class RulesComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  public toggleTechnicalRoles(show: boolean) {
+    saveState('showTechnicalRoles', show);
+    this.showTechnicalRoles = show;
+    this.showRules();
   }
 
   public ngOnDestroy(): void {

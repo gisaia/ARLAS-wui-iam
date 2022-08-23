@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { forkJoin, Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
+import { ArlasIamService } from 'arlas-wui-toolkit';
 
 @Component({
   selector: 'arlas-iam-user-form',
@@ -32,7 +33,8 @@ export class UserFormComponent implements OnInit {
     private route: ActivatedRoute,
     private managerService: ManagerService,
     private translate: TranslateService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private arlasIamService: ArlasIamService
   ) { }
 
   public ngOnInit(): void {
@@ -72,16 +74,22 @@ export class UserFormComponent implements OnInit {
 
     this.managerService.updateUserRole(this.userId, this.userForm.get('roles').value).subscribe({
       next: () => {
-        this.managerService.updateUserOwnership(this.userId, {
-          isOwner: this.userForm.get('isOwner').value
-        }).subscribe({
-          next: () => {
-            this.toastr.success(this.translate.instant('User updated'));
-            this.router.navigate(['user']);
+        if (this.arlasIamService.currentUserValue.user.id === this.userId) {
+          this.toastr.success(this.translate.instant('User updated'));
+          this.router.navigate(['user']);
+        } else {
+          this.managerService.updateUserOwnership(this.userId, {
+            isOwner: this.userForm.get('isOwner').value
+          }).subscribe({
+            next: () => {
+              this.toastr.success(this.translate.instant('User updated'));
+              this.router.navigate(['user']);
 
-          },
-          error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
-        });
+            },
+            error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
+          });
+        }
+
       },
       error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
     });

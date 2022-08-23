@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { Page } from '../../tools/model';
 import { Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'arlas-iam-top-menu',
@@ -13,10 +14,13 @@ export class TopMenuComponent implements OnInit {
 
   @Input() public showCreate = false;
   @Input() public showSpinner = false;
+  @Input() public showTechnical = false;
+  @Input() public showTechnicalState = false;
   @Input() public pages: Page[] = [];
   @Input() public createText = marker('Add');
 
   @Output() public createEvent = new Subject<boolean>();
+  @Output() public technicalRolesEvent = new Subject<boolean>();
 
   public constructor(
     private router: Router
@@ -29,7 +33,11 @@ export class TopMenuComponent implements OnInit {
     this.createEvent.next(true);
   }
 
-  public navigateTo(route: string[]){
+  public emitTechnical(event: MatCheckboxChange) {
+    this.technicalRolesEvent.next(event.checked);
+  }
+
+  public navigateTo(route: string[]) {
     this.router.navigate(route);
   }
 
