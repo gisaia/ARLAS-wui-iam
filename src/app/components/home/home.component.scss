@@ -4,15 +4,24 @@
   display: flex;
   justify-content: space-between;
 
-  .orga {
-    font-size: medium;
-    font-weight: 300;
+  .right {
+    display: flex;
+    gap: 0 15px;
 
-    .current-orga {
-      width: 150px;
-      background-color: white;
-      color: black;
-      padding: 0 5px;
+    .create-org {
+    }
+
+    .orga {
+      font-size: medium;
+      font-weight: 300;
+      margin: auto;
+
+      .current-orga {
+        width: 150px;
+        background-color: white;
+        color: black;
+        padding: 0 5px;
+      }
     }
   }
 }

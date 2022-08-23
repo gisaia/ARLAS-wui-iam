@@ -10,6 +10,10 @@ export class MockManagerService {
   public getOrgRoles(): Observable<any> {
     return of([]);
   }
+
+  public checkOrganisation(): Observable<any> {
+    return of({});
+  }
 }
 
 export class MockToastrService {

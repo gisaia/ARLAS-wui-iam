@@ -11,12 +11,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ArlasIamService } from 'arlas-wui-toolkit';
-import { MockManagerService } from '../../tools/mock';
+import { MockManagerService, MockToastrService } from '../../tools/mock';
 import { HomeComponent } from './home.component';
 import { ManagerService } from '../../services/manager/manager.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
+import { ToastrService } from 'ngx-toastr';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -44,6 +45,10 @@ describe('HomeComponent', () => {
         {
           provide: ManagerService,
           useClass: MockManagerService
+        },
+        {
+          provide: ToastrService,
+          useClass: MockToastrService
         },
         ArlasIamService
       ]
