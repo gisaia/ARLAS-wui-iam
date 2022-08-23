@@ -1,10 +1,15 @@
 <mat-toolbar class="header" [color]="'primary'">
   <span style="cursor: pointer;" [routerLink]="'/'">ARLAS IAM</span>
-  <div class="orga">
-    {{'Organisation'| translate}}
-    <mat-select class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
-      <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
-    </mat-select>
+  <div class="right">
+    <div *ngIf="!domainOrgExist" class="create-org">
+      <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' | translate}}</button>
+    </div>
+    <div class="orga">
+      {{'Organisation'| translate}}
+      <mat-select class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
+        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
+      </mat-select>
+    </div>
   </div>
 </mat-toolbar>
 <div class="app">
@@ -58,7 +63,7 @@
         </span>
         {{'Users' | translate}}
       </div>
-      <div class="card role"  (click)="navigate('role')">
+      <div class="card role" (click)="navigate('role')">
         <span class="material-symbols-outlined large">
           group
         </span>
@@ -71,7 +76,7 @@
         <span class="label">{{'Permissions'| translate}}</span>
 
       </div>
-      <div class="card rule"  (click)="navigate('rule')">
+      <div class="card rule" (click)="navigate('rule')">
         <span class="material-symbols-outlined large">
           rule
         </span>

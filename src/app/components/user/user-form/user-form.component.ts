@@ -80,10 +80,10 @@ export class UserFormComponent implements OnInit {
             this.router.navigate(['user']);
 
           },
-          error: (err) => this.toastr.error(err, this.translate.instant('User not updated'))
+          error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
         });
       },
-      error: (err) => this.toastr.error(err, this.translate.instant('User not updated'))
+      error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
     });
   }
 

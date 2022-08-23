@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  MemberData, OrgData, RoleData, PermissionData,
+  MemberData, OrgData, RoleData, PermissionData, OrgExists,
   UserData, OrgUserDef, UpdateUserDef, UpdateOrgUserDef
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
@@ -31,6 +31,14 @@ export class ManagerService {
   /** ORGA **/
   public getOrganisations(): Observable<OrgData[]> {
     return from(this.arlasIamApi.getOrganisations(this.options));
+  }
+
+  public checkOrganisation(): Observable<OrgExists> {
+    return from(this.arlasIamApi.checkOrganisation(this.options));
+  }
+
+  public createOrganisation(): Observable<OrgData> {
+    return from(this.arlasIamApi.createOrganisation(this.options));
   }
 
   /** USERS **/
