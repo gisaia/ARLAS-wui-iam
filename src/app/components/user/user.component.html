@@ -15,7 +15,7 @@
 
     <ng-container matColumnDef="updateDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Last update' | translate}} </th>
-      <td mat-cell *matCellDef="let row">{{row.member.updateDate | date:'medium'}}</td>
+      <td mat-cell *matCellDef="let row">{{row.member.updateDate * 1000 | date:'medium'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">
