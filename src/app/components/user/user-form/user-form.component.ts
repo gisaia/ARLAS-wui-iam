@@ -70,7 +70,7 @@ export class UserFormComponent implements OnInit {
 
   public submit() {
 
-    this.managerService.updateRole(this.userId, this.userForm.get('roles').value).subscribe({
+    this.managerService.updateUserRole(this.userId, this.userForm.get('roles').value).subscribe({
       next: () => {
         this.managerService.updateUserOwnership(this.userId, {
           isOwner: this.userForm.get('isOwner').value

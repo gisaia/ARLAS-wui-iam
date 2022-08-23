@@ -28,7 +28,8 @@ const routes: Routes = [
         path: 'role', canActivate: [AuthGuardIamService],
         children: [
           { path: '', component: RoleComponent },
-          { path: 'create', component: RoleFormComponent }
+          { path: 'create', component: RoleFormComponent },
+          { path: 'edit/:id', component: RoleFormComponent }
         ]
       },
       {

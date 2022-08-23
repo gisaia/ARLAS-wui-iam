@@ -17,7 +17,7 @@ import { Page } from '../../tools/model';
 export class RoleComponent implements OnInit {
 
   public dataSource: MatTableDataSource<RoleData>;
-  public displayedColumns: string[] = ['name', 'description'];
+  public displayedColumns: string[] = ['name', 'description', 'actions'];
 
   public roleSubscription: Subscription = null;
 
@@ -38,7 +38,7 @@ export class RoleComponent implements OnInit {
       }
     });
     this.pages = [
-      {label: marker('Roles')},
+      { label: marker('Roles') },
     ];
   }
 
@@ -54,6 +54,11 @@ export class RoleComponent implements OnInit {
 
   public add() {
     this.router.navigate(['role', 'create']);
+  }
+
+
+  public editRole(roleId: string): void {
+    this.router.navigate(['role', 'edit', roleId]);
   }
 
   public ngOnDestroy(): void {
