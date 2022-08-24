@@ -8,6 +8,7 @@ import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
 import { Page } from '../../tools/model';
+import { getState, saveState } from '../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-role',
@@ -20,6 +21,7 @@ export class RoleComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'description', 'actions'];
 
   public roleSubscription: Subscription = null;
+  public showTechnicalRoles = false;
 
   public pages: Page[];
 
@@ -32,6 +34,7 @@ export class RoleComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.showTechnicalRoles = getState('showTechnicalRoles');
     this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showRoles();
@@ -45,7 +48,11 @@ export class RoleComponent implements OnInit {
   public showRoles() {
     this.managerService.getOrgRoles().subscribe({
       next: roles => {
-        this.dataSource = new MatTableDataSource(roles);
+        let rls = roles;
+        if (!this.showTechnicalRoles) {
+          rls = rls.filter(r => !r.isTechnical);
+        }
+        this.dataSource = new MatTableDataSource(rls);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
@@ -59,6 +66,12 @@ export class RoleComponent implements OnInit {
 
   public editRole(roleId: string): void {
     this.router.navigate(['role', 'edit', roleId]);
+  }
+
+  public toggleTechnicalRoles(show: boolean) {
+    saveState('showTechnicalRoles', show);
+    this.showTechnicalRoles = show;
+    this.showRoles();
   }
 
   public ngOnDestroy(): void {

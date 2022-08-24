@@ -1,4 +1,5 @@
-<arlas-iam-top-menu [pages]="pages" [showCreate]="true" (createEvent)="add()"></arlas-iam-top-menu>
+<arlas-iam-top-menu [pages]="pages" [showCreate]="true" (createEvent)="add()"
+[showTechnical]="true" (technicalRolesEvent)="toggleTechnicalRoles($event)" [showTechnicalState]="showTechnicalRoles"></arlas-iam-top-menu>
 
 <div class="content">
   <table mat-table class="table" [dataSource]="dataSource" matSort>

@@ -15,7 +15,6 @@ export class ManagerService {
   private arlasIamApi: ArlasIamApi;
 
   public currentOrga = new BehaviorSubject<{ id: string; name: string; }>(null);
-
   public currentUser: UserData = null;
 
   public constructor() { }
@@ -118,7 +117,7 @@ export class ManagerService {
     return from(this.arlasIamApi.updatePermission(this.currentOrga.getValue().id, permId, { value, description }, this.options));
   }
 
-  public getPermission(permId: string) {
+  public getPermission(permId: string): Observable<PermissionData> {
     return from(this.arlasIamApi.getPermissionsOfOrganisation(this.currentOrga.getValue().id, this.options)
       .then(perms => perms.find(p => p.id === permId))
     );

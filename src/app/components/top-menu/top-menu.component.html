@@ -8,6 +8,7 @@
     <mat-spinner class="spinner" [diameter]="40" *ngIf="showSpinner"></mat-spinner>
   </div>
   <div class="actions">
+    <mat-checkbox *ngIf="showTechnical" [checked]="showTechnicalState" (change)="emitTechnical($event)" class="show-technical">{{'Show technical roles' | translate}}</mat-checkbox>
     <button *ngIf="showCreate" class="add-button" (click)="addEvent()" mat-flat-button color="accent">{{createText | translate}}</button>
   </div>
 </div>

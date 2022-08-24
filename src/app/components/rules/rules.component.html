@@ -1,4 +1,5 @@
-<arlas-iam-top-menu [pages]="pages"></arlas-iam-top-menu>
+<arlas-iam-top-menu [pages]="pages" [showTechnical]="true"
+(technicalRolesEvent)="toggleTechnicalRoles($event)" [showTechnicalState]="showTechnicalRoles"></arlas-iam-top-menu>
 
 <div *ngIf="updateLock" class="lock">
   <button mat-icon-button (click)="updateLock = !updateLock">
