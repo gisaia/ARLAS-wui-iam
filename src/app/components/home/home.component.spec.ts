@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
 import { ToastrService } from 'ngx-toastr';
+import { MatCardModule } from '@angular/material/card';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -38,7 +39,8 @@ describe('HomeComponent', () => {
         MatTooltipModule,
         MatSortModule,
         MatToolbarModule,
-        MatDividerModule
+        MatDividerModule,
+        MatCardModule
       ],
       declarations: [HomeComponent, TopMenuComponent],
       providers: [

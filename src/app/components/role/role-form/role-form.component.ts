@@ -14,11 +14,11 @@ import { Page } from '../../../tools/model';
 })
 export class RoleFormComponent implements OnInit {
 
-  public roleForm: FormGroup;
+  public groupForm: FormGroup;
   public pages: Page[];
 
   public isCreateMode = true;
-  public roleId: string = null;
+  public groupId: string = null;
 
   public constructor(
     private router: Router,
@@ -29,28 +29,28 @@ export class RoleFormComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.roleForm = new FormGroup({
+    this.groupForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('')
     });
     this.pages = [
-      { label: marker('Roles'), route: ['role'] },
-      { label: marker('Create a role') }
+      { label: marker('Groups'), route: ['role'] },
+      { label: marker('Create a group') }
     ];
 
     this.route.params.subscribe({
       next: params => {
         if (!!params['id']) {
-          this.roleId = params['id'];
+          this.groupId = params['id'];
           this.isCreateMode = false;
           this.pages = [
-            { label: marker('Roles'), route: ['role'] },
-            { label: marker('Update a role') }
+            { label: marker('Groups'), route: ['role'] },
+            { label: marker('Update a group') }
           ];
-          this.managerService.getRole(this.roleId).subscribe({
+          this.managerService.getGroup(this.groupId).subscribe({
             next: role => {
-              this.roleForm.get('name').setValue(role.name);
-              this.roleForm.get('description').setValue(role.description);
+              this.groupForm.get('name').setValue(role.name);
+              this.groupForm.get('description').setValue(role.description);
             }
           });
         }
@@ -65,25 +65,25 @@ export class RoleFormComponent implements OnInit {
 
   public submit() {
     if (this.isCreateMode) {
-      this.managerService.addRole(
-        this.roleForm.get('name').value,
-        this.roleForm.get('description').value
+      this.managerService.addGroup(
+        this.groupForm.get('name').value,
+        this.groupForm.get('description').value
       ).subscribe({
         next: () => {
-          this.toastr.success(this.translate.instant('Role created'));
+          this.toastr.success(this.translate.instant('Group created'));
           this.router.navigate(['role']);
         }
       });
     } else {
-      this.managerService.updateRole(this.roleId,
-        this.roleForm.get('name').value,
-        this.roleForm.get('description').value
+      this.managerService.updateGroup(this.groupId,
+        this.groupForm.get('name').value,
+        this.groupForm.get('description').value
       ).subscribe({
         next: () => {
-          this.toastr.success(this.translate.instant('Role updated'));
+          this.toastr.success(this.translate.instant('Group updated'));
           this.router.navigate(['role']);
         },
-        error: err => this.toastr.error(err.statusText, this.translate.instant('Role not updated'))
+        error: err => this.toastr.error(err.statusText, this.translate.instant('Group not updated'))
       });
     }
   }

@@ -6,6 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
+import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged } from 'rxjs';
+import { MemberData } from 'arlas-iam-api';
 
 @Component({
   selector: 'arlas-iam-user-add',
@@ -18,6 +20,8 @@ export class UserAddComponent implements OnInit {
   public isOwner = false;
 
   public pages: Page[] = [];
+
+  public filteredEmails: Observable<string[]>;
 
   public constructor(
     private router: Router,
@@ -33,8 +37,16 @@ export class UserAddComponent implements OnInit {
     });
     this.pages = [
       { label: marker('Users'), route: ['user'] },
-      { label: marker('Invite user to organisation')}
+      { label: marker('Invite user to organisation') }
     ];
+    this.filteredEmails = this.userForm.get('email').valueChanges.pipe(
+      startWith(''),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap(val =>
+        this.filter(val || '')
+      )
+    );
   }
 
   public back() {
@@ -56,6 +68,15 @@ export class UserAddComponent implements OnInit {
         }
       }
     });
+  }
+
+  public filter(val: string): Observable<string[]> {
+    return this.managerService.getOrgEmails()
+      .pipe(
+        map(response => response
+          .filter(option => option.toLowerCase().indexOf(val.toLowerCase()) === 0
+          ))
+      );
   }
 
 }

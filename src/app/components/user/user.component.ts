@@ -11,7 +11,7 @@ import { ManagerService } from '../../services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '../../tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { getState, saveState } from '../../tools/utils';
+import { saveState } from '../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-user',
@@ -30,8 +30,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public currentUser: UserData = null;
 
-  public showTechnicalRoles = false;
-
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
 
@@ -44,7 +42,6 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.showTechnicalRoles = getState('showTechnicalRoles');
     this.currentUser = this.arlasIamService.currentUserValue?.user;
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
@@ -61,11 +58,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.managerService.getOrgUsers().subscribe({
       next: users => {
         this.dataSource = new MatTableDataSource(users.map(user => {
-          let roles = user.member.roles;
-          if (!this.showTechnicalRoles) {
-            roles = roles.filter(r => !r.isTechnical);
-          }
-          (user as any).roles = roles.map(r => r.name);
+          (user as any).roles = user.member.roles.filter(r => r.isGroup).map(r => r.name);
           (user as any).email = user.member.email;
           (user as any).updateDate = user.member.updateDate;
           (user as any).isActive = user.member.isActive;
@@ -93,12 +86,6 @@ export class UserComponent implements OnInit, OnDestroy {
         this.toastr.success(this.translate.instant('User removed'));
       }
     });
-  }
-
-  public toggleTechnicalRoles(show: boolean) {
-    saveState('showTechnicalRoles', show);
-    this.showTechnicalRoles = show;
-    this.showUsers();
   }
 
   public ngOnDestroy(): void {

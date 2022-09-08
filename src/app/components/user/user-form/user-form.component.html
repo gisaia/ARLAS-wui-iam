@@ -5,7 +5,7 @@
     <h4>{{'Information' | translate}}</h4>
 
     <mat-form-field appearance="fill">
-      <mat-label>{{'Roles' | translate}}</mat-label>
+      <mat-label>{{'Groups' | translate}}</mat-label>
       <mat-select formControlName="roles" multiple>
         <mat-option *ngFor="let role of orgRoles" [value]="role.id">{{role.name}}</mat-option>
       </mat-select>

@@ -1,6 +1,6 @@
 <arlas-iam-top-menu [pages]="pages"></arlas-iam-top-menu>
 
-<form [formGroup]="roleForm" class="create-role">
+<form [formGroup]="groupForm" class="create-role">
   <div class="form-content">
     <h4>{{'Information' | translate}}</h4>
     <mat-form-field appearance="outline" class="name">
@@ -13,7 +13,7 @@
     </mat-form-field>
   </div>
   <div>
-    <button mat-flat-button color="accent" [disabled]="!roleForm.valid" (click)="submit()" tabindex="-1">
+    <button mat-flat-button color="accent" [disabled]="!groupForm.valid" (click)="submit()" tabindex="-1">
       {{ isCreateMode ? 'Create' : 'Update' | translate}}
     </button>
     <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
