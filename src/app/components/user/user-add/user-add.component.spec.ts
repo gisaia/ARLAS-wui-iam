@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UserAddComponent } from './user-add.component';
 import { MockToastrService } from '../../../tools/mock';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 describe('UserAddComponent', () => {
   let component: UserAddComponent;
@@ -14,6 +15,7 @@ describe('UserAddComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        MatAutocompleteModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
       ],
       declarations: [UserAddComponent],

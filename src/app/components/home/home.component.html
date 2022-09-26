@@ -2,11 +2,12 @@
   <span style="cursor: pointer;" [routerLink]="'/'">ARLAS IAM</span>
   <div class="right">
     <div *ngIf="!domainOrgExist" class="create-org">
-      <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' | translate}}</button>
+      <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
+        translate}}</button>
     </div>
     <div class="orga">
       {{'Organisation'| translate}}
-      <mat-select class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
+      <mat-select #currentOrg class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
         <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
       </mat-select>
     </div>
@@ -22,11 +23,11 @@
         <span class="label">{{'Users' | translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item matTooltip="'Roles' | translate" [routerLink]="'role'" routerLinkActive="active-page">
+      <mat-list-item matTooltip="'Groups' | translate" [routerLink]="'role'" routerLinkActive="active-page">
         <span class="material-symbols-outlined">
           group
         </span>
-        <span class="label">{{'Roles'| translate}}</span>
+        <span class="label">{{'Groups'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item matTooltip="'Permissions' | translate" [routerLink]="'permission'" routerLinkActive="active-page">
@@ -56,31 +57,44 @@
     </mat-nav-list>
   </div>
   <div class="main-view">
-    <div *ngIf="displayDashboard" class="dashboard">
-      <div class="card user" (click)="navigate('user')">
-        <span class="material-symbols-outlined large">
-          face
-        </span>
-        {{'Users' | translate}}
-      </div>
-      <div class="card role" (click)="navigate('role')">
-        <span class="material-symbols-outlined large">
-          group
-        </span>
-        <span class="label">{{'Roles'| translate}}</span>
-      </div>
-      <div class="card permission" (click)="navigate('permission')">
-        <span class="material-symbols-outlined large">
-          verified_user
-        </span>
-        <span class="label">{{'Permissions'| translate}}</span>
+    <div *ngIf="displayDashboard" class="profile">
+      <arlas-iam-top-menu [pages]="pages">
+      </arlas-iam-top-menu>
 
-      </div>
-      <div class="card rule" (click)="navigate('rule')">
-        <span class="material-symbols-outlined large">
-          rule
-        </span>
-        <span class="label">{{'Rules'| translate}}</span>
+      <div class="content">
+        <div class="perso">
+          <span class="material-symbols-outlined x-large">
+            face
+          </span>
+
+          <div class="mail">
+            <span class="material-symbols-outlined">
+              mail
+            </span>
+            {{user?.email}}
+          </div>
+          <div class="locale">
+            <span class="material-symbols-outlined">
+              language
+            </span>
+            {{user?.locale === 'en' ? ('English' | translate) : ('French' | translate)}}
+          </div>
+        </div>
+        <div class="orgs">
+          <h3>{{'Organisations' | translate}}</h3>
+          <div class="list">
+            <mat-card *ngFor="let org of allMyOrgs" class="card">
+              <mat-card-title>{{org.name}}</mat-card-title>
+              <mat-card-content>
+                <div>Role : {{org.isOwner ? ('Owner' | translate) : ('Member' | translate)}}</div>
+                <div>Groups : {{org.groups}}</div>
+              </mat-card-content>
+              <mat-card-actions *ngIf="org.isOwner">
+                <button mat-flat-button (click)="manage(org);currentOrg.value= org">Manage</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
       </div>
     </div>
     <router-outlet></router-outlet>

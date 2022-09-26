@@ -37,6 +37,8 @@ import { RulesItemComponent } from './components/rules-item/rules-item.component
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -69,9 +71,11 @@ export function createTranslateLoader(http: HttpClient) {
     ArlasToolkitSharedModule,
     FormsModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatToolbarModule,

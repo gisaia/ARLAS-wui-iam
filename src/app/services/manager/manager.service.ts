@@ -40,6 +40,10 @@ export class ManagerService {
     return from(this.arlasIamApi.createOrganisation(this.options));
   }
 
+  public getOrgEmails(): Observable<string[]> {
+    return from(this.arlasIamApi.getEmails(this.currentOrga.getValue().id, this.options));
+  }
+
   /** USERS **/
   public getOrgUsers(): Observable<MemberData[]> {
     return from(this.arlasIamApi.getUsers(this.currentOrga.getValue().id, this.options));
@@ -100,6 +104,25 @@ export class ManagerService {
 
   public getRole(roleId: string): Observable<RoleData> {
     return from(this.arlasIamApi.getRolesOfOrganisation(this.currentOrga.getValue().id, this.options)
+      .then(roles => roles.find(r => r.id === roleId))
+    );
+  }
+
+  /** GROUPS **/
+  public getOrgGroups(): Observable<RoleData[]> {
+    return from(this.arlasIamApi.getGroupsOfOrganisation(this.currentOrga.getValue().id, this.options));
+  }
+
+  public addGroup(name: string, description: string): Observable<RoleData> {
+    return from(this.arlasIamApi.addGroupToOrganisation(this.currentOrga.getValue().id, { name, description }, this.options));
+  }
+
+  public updateGroup(roleId: string, name: string, description: string): Observable<RoleData> {
+    return from(this.arlasIamApi.updateGroupInOrganisation(this.currentOrga.getValue().id, roleId, { name, description }, this.options));
+  }
+
+  public getGroup(roleId: string): Observable<RoleData> {
+    return from(this.arlasIamApi.getGroupsOfOrganisation(this.currentOrga.getValue().id, this.options)
       .then(roles => roles.find(r => r.id === roleId))
     );
   }
