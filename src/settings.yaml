@@ -1,5 +1,6 @@
 authentication:
-  use_authent: iam
+  use_authent: true
+  auth_mode: 'iam'
   force_connect: false
   use_discovery: false
   threshold: 60000

@@ -46,5 +46,13 @@
 	"User removed": "User removed",
 	"Create": "Create",
 	"Me": "Me",
-	"Creation": "Creation"
+	"Creation": "Creation",
+  "It’s quick and easy !": "It’s quick and easy !",
+	"Just enter your email": "Just enter your email",
+	"Email must be a valid email address": "Email must be a valid email address",
+	"User already exists": "User already exists",
+	"Already have an account?": "Already have an account?",
+	"Log In": "Log In",
+  "No Account?": "Don't have an Account?",
+	"Sign up": "Sign up"
 }

@@ -19,6 +19,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
 import { ToastrService } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -30,6 +31,7 @@ describe('HomeComponent', () => {
         RouterTestingModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
         MatTableModule,
+        MatDialogModule,
         MatInputModule,
         MatFormFieldModule,
         MatSelectModule,
