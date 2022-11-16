@@ -134,8 +134,8 @@ export class IamStartupService {
   public enrichHeaders(settings: ArlasSettings): Promise<ArlasSettings> {
     return new Promise<ArlasSettings>((resolve, reject) => {
       const useAuthent = !!settings && !!settings.authentication
-        && !!settings.authentication.use_authent && settings.authentication.use_authent !== 'false';
-      const useAuthentIam = useAuthent && settings.authentication.use_authent === 'iam';
+        && !!settings.authentication.use_authent;
+      const useAuthentIam = useAuthent && settings.authentication.auth_mode === 'iam';
       if (useAuthentIam) {
         this.arlasIamService.currentUserSubject.subscribe({
           next: response => {

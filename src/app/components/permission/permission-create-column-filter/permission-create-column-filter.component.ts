@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
-import { Page } from '../../../tools/model';
+import { Page } from 'src/app/tools/model';
 
 @Component({
-  selector: 'arlas-iam-permission-create',
-  templateUrl: './permission-create.component.html',
-  styleUrls: ['./permission-create.component.scss']
+  selector: 'arlas-iam-permission-create-column-filter',
+  templateUrl: './permission-create-column-filter.component.html',
+  styleUrls: ['./permission-create-column-filter.component.scss']
 })
-export class PermissionCreateComponent implements OnInit {
+export class PermissionCreateColumnFilterComponent implements OnInit, OnDestroy {
 
   public permForm: FormGroup;
   public pages: Page[];
+  public collections: string[];
 
   public isCreateMode = true;
   public permId: string = null;
+
+  public collectionsSubscription: Subscription = null;
 
   public constructor(
     private router: Router,
@@ -29,9 +33,14 @@ export class PermissionCreateComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.collectionsSubscription = this.managerService.currentOrga.subscribe(org => {
+      if (!!org) {
+        this.getCollections();
+      }
+    });
+
     this.permForm = new FormGroup({
-      value: new FormControl('', [Validators.required]),
-      description: new FormControl('')
+      collections: new FormControl('', [Validators.required])
     });
     this.pages = [
       { label: marker('Permissions'), route: ['permission'] },
@@ -47,13 +56,26 @@ export class PermissionCreateComponent implements OnInit {
             { label: marker('Permissions'), route: ['permission'] },
             { label: marker('Update a permission') }
           ];
-          this.managerService.getPermission(this.permId).subscribe({
-            next: role => {
-              this.permForm.get('value').setValue(role.value);
-              this.permForm.get('description').setValue(role.description);
+          this.managerService.getColumnFilterPermision(this.permId).subscribe({
+            next: collections => {
+              this.permForm.get('collections').setValue(collections);
             }
           });
         }
+      }
+    });
+  }
+
+  public ngOnDestroy(): void {
+    if (!!this.collectionsSubscription) {
+      this.collectionsSubscription.unsubscribe();
+    }
+  }
+
+  public getCollections() {
+    this.managerService.getCollections().subscribe({
+      next: (cls) => {
+        this.collections = cls;
       }
     });
   }
@@ -64,9 +86,8 @@ export class PermissionCreateComponent implements OnInit {
 
   public submit() {
     if (this.isCreateMode) {
-      this.managerService.addPermission(
-        this.permForm.get('value').value,
-        this.permForm.get('description').value
+      this.managerService.createColumnFilterPermission(
+        this.permForm.get('collections').value
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Permission created'));
@@ -77,9 +98,8 @@ export class PermissionCreateComponent implements OnInit {
         }
       });
     } else {
-      this.managerService.updatePermission(this.permId,
-        this.permForm.get('value').value,
-        this.permForm.get('description').value
+      this.managerService.updateColumnFilterPermission(this.permId,
+        this.permForm.get('collections').value
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Permission updated'));

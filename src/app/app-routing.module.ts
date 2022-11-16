@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardIamService, LoginComponent } from 'arlas-wui-toolkit';
+import { AuthGuardIamService, ForgotComponent, LoginComponent, RegisterComponent, ResetComponent, VerifyComponent } from 'arlas-wui-toolkit';
 import { HomeComponent } from './components/home/home.component';
-import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
 import { PermissionComponent } from './components/permission/permission.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
 import { RoleComponent } from './components/role/role.component';
@@ -10,6 +9,9 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 import { UserComponent } from './components/user/user.component';
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { RulesComponent } from './components/rules/rules.component';
+import {
+  PermissionCreateColumnFilterComponent
+} from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
 
 
 const routes: Routes = [
@@ -36,8 +38,8 @@ const routes: Routes = [
         path: 'permission', canActivate: [AuthGuardIamService],
         children: [
           { path: '', component: PermissionComponent },
-          { path: 'create', component: PermissionCreateComponent },
-          { path: 'edit/:id', component: PermissionCreateComponent }
+          { path: 'create', component: PermissionCreateColumnFilterComponent },
+          { path: 'edit/:id', component: PermissionCreateColumnFilterComponent }
         ]
       },
       {
@@ -46,6 +48,10 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'verify/:id/user/:token', component: VerifyComponent },
+  { path: 'password_forgot', component: ForgotComponent },
+  { path: 'reset/:id/user/:token', component: ResetComponent },
   // otherwise redirect to login
   { path: '**', redirectTo: '' }
 ];

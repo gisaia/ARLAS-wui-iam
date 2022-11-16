@@ -46,5 +46,13 @@
 	"User removed": "Utilisateur supprimé",
 	"Create": "Créer",
 	"Me": "Moi",
-	"Creation": "Créé le"
+	"Creation": "Créé le",
+  "It’s quick and easy !": "C'est rapide et facile !",
+	"Just enter your email": "Saisissez juste votre email",
+	"Email must be a valid email address": "L'email doit être une adresse email valide",
+	"User already exists": "L'utilisateur existe déjà",
+	"Already have an account?": "Vous avez déjà un compte ?",
+	"Log In": "Se connecter",
+  "No Account?": "Vous n'avez pas de compte ?",
+	"Sign up": "Inscrivez vous"
 }

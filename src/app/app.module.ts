@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { ArlasIamService, ArlasSettingsService, ArlasToolkitSharedModule, IamInterceptor, LoginModule } from 'arlas-wui-toolkit';
+import { ArlasIamService, ArlasSettingsService, AuthentificationService, IamInterceptor, LoginModule } from 'arlas-wui-toolkit';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -39,10 +39,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import {
+  PermissionCreateColumnFilterComponent
+} from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
   return load;
+}
+
+export function auhtentServiceFactory(service: AuthentificationService) {
+  return service;
 }
 
 export function createTranslateLoader(http: HttpClient) {
@@ -52,6 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    ConfirmModalComponent,
     UserComponent,
     HomeComponent,
     RoleComponent,
@@ -62,13 +72,13 @@ export function createTranslateLoader(http: HttpClient) {
     UserFormComponent,
     UserAddComponent,
     RulesComponent,
-    RulesItemComponent
+    RulesItemComponent,
+    PermissionCreateColumnFilterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ArlasToolkitSharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
@@ -78,6 +88,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatDialogModule,
     MatToolbarModule,
     MatTableModule,
     MatSortModule,
@@ -109,6 +120,12 @@ export function createTranslateLoader(http: HttpClient) {
       provide: APP_INITIALIZER,
       useFactory: startupServiceFactory,
       deps: [IamStartupService],
+      multi: true
+    },
+    {
+      provide: 'AuthentificationService',
+      useFactory: auhtentServiceFactory,
+      deps: [AuthentificationService],
       multi: true
     },
     {

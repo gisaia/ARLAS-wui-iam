@@ -1,0 +1,22 @@
+<arlas-iam-top-menu [pages]="pages"></arlas-iam-top-menu>
+
+<form [formGroup]="permForm" class="create-perm">
+  <div class="form-content">
+    <h4>{{'Information' | translate}}</h4>
+    <mat-form-field appearance="outline" class="name">
+      <mat-label>{{'Collections' | translate}}</mat-label>
+      <mat-select [multiple]="true" formControlName="collections" required>
+        <mat-option [value]="collect" *ngFor="let collect of collections">
+          {{collect}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-flat-button color="accent" [disabled]="!permForm.valid" (click)="submit()" tabindex="-1">
+      {{ isCreateMode ? 'Create' : 'Update' | translate}}
+    </button>
+    <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
+    </button>
+  </div>
+</form>

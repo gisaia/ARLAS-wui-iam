@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { NavigationEnd, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
@@ -9,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
 import { Page } from '../../tools/model';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'arlas-iam-home',
@@ -31,7 +33,8 @@ export class HomeComponent implements OnInit {
     private managerService: ManagerService,
     private translate: TranslateService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog,
   ) { }
 
   public ngOnInit(): void {
@@ -55,13 +58,29 @@ export class HomeComponent implements OnInit {
   }
 
   public addOrg() {
-    this.managerService.createOrganisation().subscribe({
-      next: () => {
-        this.toastr.success(this.translate.instant('Organisation created'));
-        this.getOrganisations();
-        this.checkOrga();
+    this.dialog.open(
+      ConfirmModalComponent,
+      {
+        data: {
+          title: marker('Create organisation'),
+          message: marker('You will create an organisation named:'),
+          param: this.user.email.substring(this.user.email.indexOf('@') + 1)
+        }
+      }
+    ).afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.managerService.createOrganisation().subscribe({
+            next: () => {
+              this.toastr.success(this.translate.instant('Organisation created'));
+              this.getOrganisations();
+              this.checkOrga();
+            }
+          });
+        }
       }
     });
+
   }
 
   public getOrganisations(): void {
@@ -84,7 +103,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public manage(org: OrgData){
+  public manage(org: OrgData) {
     this.managerService.currentOrga.next({ id: org.id, name: org.name });
     this.router.navigate(['user']);
   }

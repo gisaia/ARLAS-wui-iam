@@ -37,7 +37,7 @@ export class ManagerService {
   }
 
   public createOrganisation(): Observable<OrgData> {
-    return from(this.arlasIamApi.createOrganisation(this.options));
+    return from(this.arlasIamApi.createOrganisation1(this.options));
   }
 
   public getOrgEmails(): Observable<string[]> {
@@ -152,5 +152,22 @@ export class ManagerService {
 
   public removePermissionFromRole(roleId: string, permId: string): Observable<RoleData> {
     return from(this.arlasIamApi.removePermissionFromRole(this.currentOrga.getValue().id, roleId, permId, this.options));
+  }
+
+  /** PERMISSION COLUMN FILTER **/
+  public createColumnFilterPermission(collections: string[]): Observable<PermissionData> {
+    return from(this.arlasIamApi.addColumnFilterPermission(this.currentOrga.getValue().id, collections, this.options));
+  }
+
+  public updateColumnFilterPermission(permId: string, collections: string[]): Observable<PermissionData> {
+    return from(this.arlasIamApi.updateColumnFilterPermission(this.currentOrga.getValue().id, permId, collections, this.options));
+  }
+
+  public getColumnFilterPermision(permId: string){
+    return from(this.arlasIamApi.getCollectionsOfColumnFiltersInOrganisation(this.currentOrga.getValue().id, permId, this.options));
+  }
+
+  public getCollections(): Observable<string[]> {
+    return from(this.arlasIamApi.getOrganisationCollections(this.currentOrga.getValue().id, this.options));
   }
 }

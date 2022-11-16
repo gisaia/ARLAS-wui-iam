@@ -42,7 +42,7 @@ export class UserFormComponent implements OnInit {
     this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         forkJoin([
-          this.managerService.getOrgRoles(),
+          this.managerService.getOrgGroups(),
           this.managerService.getUserRoles(this.userId),
           this.managerService.getOrgUser(org.id, this.userId)
         ]).subscribe({
