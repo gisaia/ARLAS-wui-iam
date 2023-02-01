@@ -8,7 +8,7 @@
     <div class="orga">
       {{'Organisation'| translate}}
       <mat-select #currentOrg class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
-        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
+        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.displayName}}</mat-option>
       </mat-select>
     </div>
   </div>

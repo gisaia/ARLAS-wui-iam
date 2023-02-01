@@ -39,7 +39,18 @@ export class IamStartupService {
     private injector: Injector,
     private translateService: TranslateService,
     private managerService: ManagerService
-  ) { }
+  ) {
+    this.managerService.currentOrga.subscribe(org => {
+      if (!!this.arlasIamService.currentUserValue) {
+        this.managerService.setOptions({
+          headers: {
+            Authorization: 'Bearer ' + this.arlasIamService.currentUserValue.accessToken,
+            'arlas-org-filter': org.name,
+          }
+        });
+      }
+    });
+  }
 
   public validateSettings(settings: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -147,7 +158,9 @@ export class IamStartupService {
               });
               this.managerService.setOptions({
                 headers: {
-                  Authorization: 'Bearer ' + response.accessToken
+                  Authorization: 'Bearer ' + response.accessToken,
+                  'arlas-org-filter': !!this.managerService.currentOrga.value ?
+                    this.managerService.currentOrga.value.name : response.user.organisations[0].name,
                 }
               });
             } else {

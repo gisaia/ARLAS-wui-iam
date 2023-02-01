@@ -14,7 +14,7 @@ export class ManagerService {
   private options = {};
   private arlasIamApi: ArlasIamApi;
 
-  public currentOrga = new BehaviorSubject<{ id: string; name: string; }>(null);
+  public currentOrga = new BehaviorSubject<{ id: string; name: string; displayName: string; }>(null);
   public currentUser: UserData = null;
 
   public constructor() { }

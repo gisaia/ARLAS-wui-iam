@@ -46,7 +46,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showUsers();
-        this.isMyOrganisation = org.name === this.currentUser.email.split('@')[0];
+        this.isMyOrganisation = org.displayName === this.currentUser.email.split('@')[0];
       }
     });
     this.pages = [
