@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   public updateCurrentOrga(event: MatSelectChange) {
-    this.managerService.currentOrga.next({ id: event.value.id, name: event.value.name });
+    this.managerService.currentOrga.next({ id: event.value.id, name: event.value.name, displayName: event.value.displayName });
   }
 
   public addOrg() {
@@ -91,8 +91,10 @@ export class HomeComponent implements OnInit {
           return org;
         });
         this.organisations = orgs.filter(o => (o as any).isOwner);
-        this.organisations.map(org => org.name === this.user.id ? org.name = this.user.email.split('@')[0] : '');
-        this.managerService.currentOrga.next({ id: this.organisations[0].id, name: this.organisations[0].name });
+        this.organisations.map(org => org.name === this.user.id ? org.displayName = this.user.email.split('@')[0] : '');
+        this.managerService.currentOrga.next(
+          { id: this.organisations[0].id, name: this.organisations[0].name, displayName: this.organisations[0].displayName }
+        );
       }
     });
   }
@@ -104,12 +106,13 @@ export class HomeComponent implements OnInit {
   }
 
   public manage(org: OrgData) {
-    this.managerService.currentOrga.next({ id: org.id, name: org.name });
+    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.router.navigate(['user']);
   }
 
   public logout() {
     this.arlasIamService.logout();
+    this.managerService.currentOrga.next(null);
   }
 
   public navigate(route: string) {
