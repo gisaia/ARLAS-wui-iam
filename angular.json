@@ -64,6 +64,15 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "assets": [
+                {
+                  "input": "src/environments/prod/",
+                  "output": "/",
+                  "glob": "*.yaml"
+                },
+                "src/assets",
+                "src/favicon.ico"
+              ],
               "outputHashing": "all"
             },
             "development": {
