@@ -1,13 +1,13 @@
 <mat-toolbar class="header" [color]="'primary'">
   <span style="cursor: pointer;" [routerLink]="'/'">ARLAS IAM</span>
   <div class="right">
-    <div *ngIf="!domainOrgExist" class="create-org">
+    <div *ngIf="!domainOrgExist || isSuperAdmin" class="create-org">
       <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
         translate}}</button>
     </div>
     <div class="orga">
       {{'Organisation'| translate}}
-      <mat-select #currentOrg class="current-orga" [value]="organisations[0]" (selectionChange)="updateCurrentOrga($event)">
+      <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg" (selectionChange)="updateCurrentOrga(currentOrg.value)">
         <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.displayName}}</mat-option>
       </mat-select>
     </div>
@@ -90,7 +90,7 @@
                 <div>Groups : {{org.groups}}</div>
               </mat-card-content>
               <mat-card-actions *ngIf="org.isOwner">
-                <button mat-flat-button (click)="manage(org);currentOrg.value= org">Manage</button>
+                <button mat-flat-button (click)="manage(org)">Manage</button>
               </mat-card-actions>
             </mat-card>
           </div>
