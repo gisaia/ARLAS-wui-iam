@@ -160,7 +160,7 @@ export class IamStartupService {
                 headers: {
                   Authorization: 'Bearer ' + response.accessToken,
                   'arlas-org-filter': !!this.managerService.currentOrga.value ?
-                    this.managerService.currentOrga.value.name : response.user.organisations[0].name,
+                    this.managerService.currentOrga.value.name : response.user.organisations[0]?.name,
                 }
               });
             } else {

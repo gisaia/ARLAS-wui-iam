@@ -44,6 +44,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import {
   PermissionCreateColumnFilterComponent
 } from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
+import { CreateOrgModalComponent } from './components/home/create-org-modal/create-org-modal.component';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -73,7 +74,8 @@ export function createTranslateLoader(http: HttpClient) {
     UserAddComponent,
     RulesComponent,
     RulesItemComponent,
-    PermissionCreateColumnFilterComponent
+    PermissionCreateColumnFilterComponent,
+    CreateOrgModalComponent
   ],
   imports: [
     BrowserModule,

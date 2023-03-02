@@ -36,8 +36,12 @@ export class ManagerService {
     return from(this.arlasIamApi.checkOrganisation(this.options));
   }
 
-  public createOrganisation(): Observable<OrgData> {
-    return from(this.arlasIamApi.createOrganisation1(this.options));
+  public createOrganisation(name?: string): Observable<OrgData> {
+    if(!!name){
+      return from(this.arlasIamApi.createOrganisation(name, this.options));
+    } else {
+      return from(this.arlasIamApi.createOrganisation1(this.options));
+    }
   }
 
   public getOrgEmails(): Observable<string[]> {

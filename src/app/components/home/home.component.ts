@@ -11,6 +11,7 @@ import { filter } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
 import { Page } from '../../tools/model';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 
 @Component({
   selector: 'arlas-iam-home',
@@ -21,8 +22,10 @@ export class HomeComponent implements OnInit {
 
   public organisations: OrgData[] = [];
   public allMyOrgs: OrgData[] = [];
+  public currentSelectedOrg: OrgData = null;
 
   public domainOrgExist = true;
+  public isSuperAdmin = false;
 
   public displayDashboard = false;
   public pages: Page[] = [];
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
 
     this.user = this.arlasIamService.currentUserValue?.user;
+    this.isSuperAdmin = !!this.user?.roles.find(r => r.name === 'role/iam/admin');
     this.getOrganisations();
     this.checkOrga();
     if (this.router.url === '/') {
@@ -53,37 +57,57 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  public updateCurrentOrga(event: MatSelectChange) {
-    this.managerService.currentOrga.next({ id: event.value.id, name: event.value.name, displayName: event.value.displayName });
+  public updateCurrentOrga(event: OrgData) {
+    this.managerService.currentOrga.next({ id: event.id, name: event.name, displayName: event.displayName });
   }
 
   public addOrg() {
-    this.dialog.open(
-      ConfirmModalComponent,
-      {
-        data: {
-          title: marker('Create organisation'),
-          message: marker('You will create an organisation named:'),
-          param: this.user.email.substring(this.user.email.indexOf('@') + 1)
+    if (this.isSuperAdmin) {
+      this.dialog.open(
+        CreateOrgModalComponent
+      ).afterClosed().subscribe({
+        next: (name) => {
+          if (name) {
+            this.managerService.createOrganisation(name).subscribe({
+              next: (org) => {
+                this.toastr.success(this.translate.instant('Organisation created'));
+                this.getOrganisations(org);
+              },
+              error: () => {
+                this.toastr.error(this.translate.instant('An organisation with this name already exists'));
+              }
+            });
+          }
         }
-      }
-    ).afterClosed().subscribe({
-      next: (result) => {
-        if (result) {
-          this.managerService.createOrganisation().subscribe({
-            next: () => {
-              this.toastr.success(this.translate.instant('Organisation created'));
-              this.getOrganisations();
-              this.checkOrga();
-            }
-          });
+      });
+    } else {
+      this.dialog.open(
+        ConfirmModalComponent,
+        {
+          data: {
+            title: marker('Create organisation'),
+            message: marker('You will create an organisation named:'),
+            param: this.user.email.substring(this.user.email.indexOf('@') + 1)
+          }
         }
-      }
-    });
+      ).afterClosed().subscribe({
+        next: (result) => {
+          if (result) {
+            this.managerService.createOrganisation().subscribe({
+              next: (org) => {
+                this.toastr.success(this.translate.instant('Organisation created'));
+                this.getOrganisations(org);
+                this.checkOrga();
+              }
+            });
+          }
+        }
+      });
+    }
 
   }
 
-  public getOrganisations(): void {
+  public getOrganisations(currentOrg?: OrgData): void {
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
         this.allMyOrgs = orgs.map(org => {
@@ -92,9 +116,20 @@ export class HomeComponent implements OnInit {
         });
         this.organisations = orgs.filter(o => (o as any).isOwner);
         this.organisations.map(org => org.name === this.user.id ? org.displayName = this.user.email.split('@')[0] : '');
-        this.managerService.currentOrga.next(
-          { id: this.organisations[0].id, name: this.organisations[0].name, displayName: this.organisations[0].displayName }
-        );
+        if (!!currentOrg) {
+          this.managerService.currentOrga.next(
+            { id: currentOrg.id, name: currentOrg.name, displayName: currentOrg.displayName }
+          );
+        } else {
+          this.managerService.currentOrga.next(
+            { id: this.organisations[0]?.id, name: this.organisations[0]?.name, displayName: this.organisations[0]?.displayName }
+          );
+        }
+
+        this.currentSelectedOrg = !!currentOrg ?
+          this.organisations.find(o => o.name === currentOrg.name) :
+          (!!this.organisations[0] ? this.organisations[0] : null);
+
       }
     });
   }
@@ -107,6 +142,7 @@ export class HomeComponent implements OnInit {
 
   public manage(org: OrgData) {
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
+    this.currentSelectedOrg = org;
     this.router.navigate(['user']);
   }
 

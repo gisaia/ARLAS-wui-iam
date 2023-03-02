@@ -54,5 +54,6 @@
 	"Already have an account?": "Already have an account?",
 	"Log In": "Log In",
   "No Account?": "Don't have an Account?",
-	"Sign up": "Sign up"
+	"Sign up": "Sign up",
+  "An organisation with this name already exists": "An organisation with this name already exists"
 }
