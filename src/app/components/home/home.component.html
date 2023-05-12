@@ -7,7 +7,8 @@
     </div>
     <div class="orga">
       {{'Organisation'| translate}}
-      <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg" (selectionChange)="updateCurrentOrga(currentOrg.value)">
+      <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
+        (selectionChange)="updateCurrentOrga(currentOrg.value)">
         <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.displayName}}</mat-option>
       </mat-select>
     </div>
@@ -81,18 +82,16 @@
           </div>
         </div>
         <div class="orgs">
-          <h3>{{'Organisations' | translate}}</h3>
+          <h3>{{'My organisations' | translate}}</h3>
           <div class="list">
-            <mat-card *ngFor="let org of allMyOrgs" class="card">
-              <mat-card-title>{{org.name}}</mat-card-title>
-              <mat-card-content>
-                <div>Role : {{org.isOwner ? ('Owner' | translate) : ('Member' | translate)}}</div>
-                <div>Groups : {{org.groups}}</div>
-              </mat-card-content>
-              <mat-card-actions *ngIf="org.isOwner">
-                <button mat-flat-button (click)="manage(org)">Manage</button>
-              </mat-card-actions>
-            </mat-card>
+            <div *ngFor="let org of allMyOrgs" class="card">
+              <div class="info">
+                <div class="title">{{org.displayName}}</div>
+                <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
+                  translate)}}</div>
+              </div>
+              <button mat-flat-button (click)="manage(org)">{{'Manage' | translate}}</button>
+            </div>
           </div>
         </div>
       </div>

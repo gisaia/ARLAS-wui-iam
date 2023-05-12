@@ -4,7 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserFormComponent } from './user-form.component';
-import { MockToastrService } from '../../../tools/mock';
+import { MockManagerService, MockToastrService } from '../../../tools/mock';
+import { ManagerService } from 'src/app/services/manager/manager.service';
 
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
@@ -21,7 +22,11 @@ describe('UserFormComponent', () => {
         {
           provide: ToastrService,
           useClass: MockToastrService
-        }
+        },
+        {
+          provide: ManagerService,
+          useClass: MockManagerService
+        },
       ]
     })
       .compileComponents();

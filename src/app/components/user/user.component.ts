@@ -11,7 +11,7 @@ import { ManagerService } from '../../services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '../../tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { saveState } from '../../tools/utils';
+import { getPrivateOrgDisplayName, saveState } from '../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-user',
@@ -46,7 +46,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showUsers();
-        this.isMyOrganisation = org.displayName === this.currentUser.email.split('@')[0];
+        this.isMyOrganisation = org.displayName === getPrivateOrgDisplayName(this.currentUser.email);
       }
     });
     this.pages = [

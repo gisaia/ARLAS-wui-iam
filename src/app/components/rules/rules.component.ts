@@ -13,7 +13,7 @@ import { getState, saveState } from '../../tools/utils';
 })
 export class RulesComponent implements OnInit, OnDestroy {
 
-  public roles: RoleData[] = [];
+  public groups: RoleData[] = [];
   public perms: PermissionData[] = [];
   public pages: Page[] = [];
 
@@ -39,8 +39,8 @@ export class RulesComponent implements OnInit, OnDestroy {
   }
 
   public showRules() {
-    this.managerService.getOrgRoles().subscribe({
-      next: roles => this.roles = roles.filter(r => (!this.showTechnicalRoles && (!r.isTechnical || r.isGroup)) || this.showTechnicalRoles)
+    this.managerService.getOrgGroups().subscribe({
+      next: roles => this.groups = roles.filter(r => (!this.showTechnicalRoles && (!r.isTechnical || r.isGroup)) || this.showTechnicalRoles)
     });
     this.managerService.getOrgPermissions().subscribe({
       next: perms => {

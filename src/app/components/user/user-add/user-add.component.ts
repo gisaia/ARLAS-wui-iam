@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
 import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged } from 'rxjs';
-import { MemberData } from 'arlas-iam-api';
+import { RoleData } from 'arlas-iam-api';
 
 @Component({
   selector: 'arlas-iam-user-add',
@@ -17,9 +17,9 @@ import { MemberData } from 'arlas-iam-api';
 export class UserAddComponent implements OnInit {
 
   public userForm: FormGroup;
-  public isOwner = false;
 
   public pages: Page[] = [];
+  public orgRoles: RoleData[] = [];
 
   public filteredEmails: Observable<string[]>;
 
@@ -33,7 +33,7 @@ export class UserAddComponent implements OnInit {
   public ngOnInit(): void {
     this.userForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      isOwner: new FormControl(false)
+      roles: new FormControl([], [Validators.required])
     });
     this.pages = [
       { label: marker('Users'), route: ['user'] },
@@ -47,6 +47,7 @@ export class UserAddComponent implements OnInit {
         this.filter(val || '')
       )
     );
+    this.managerService.getOrgRoles().subscribe(roles => this.orgRoles = roles);
   }
 
   public back() {
@@ -56,7 +57,7 @@ export class UserAddComponent implements OnInit {
   public submit() {
     this.managerService.addUserToOrg({
       email: this.userForm.get('email').value,
-      isOwner: this.userForm.get('isOwner').value
+      rids: this.userForm.get('roles').value
     }).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User added'));
