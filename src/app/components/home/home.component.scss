@@ -95,22 +95,38 @@
           flex-direction: column;
           align-items: center;
 
-          .mail, .locale {
+          .mail,
+          .locale {
             display: flex;
             align-items: center;
             gap: 0 7px;
           }
         }
 
-        .orgs{
-          .list{
+        .orgs {
+          width: 100%;
+          padding: 0px 5px;
+          .list {
             display: flex;
+            flex-direction: column;
             gap: 10px;
-            flex-wrap: wrap;
 
-            .card{
+            .card {
               background: #f2f6fc;
               box-shadow: inset 1px -1px 0 0 rgb(100 121 143 / 12%), inset -1px 1px 0 0 rgb(100 121 143 / 12%);
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 20px;
+              align-items: center;
+
+              .info {
+                display: flex;
+                flex-direction: column;
+                .title {
+                  font-size: 24px;
+                  font-weight: 500;
+                }
+              }
             }
           }
         }

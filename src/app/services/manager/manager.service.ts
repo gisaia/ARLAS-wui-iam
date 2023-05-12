@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   MemberData, OrgData, RoleData, PermissionData, OrgExists,
-  UserData, OrgUserDef, UpdateUserDef, UpdateOrgUserDef
+  UserData, OrgUserDef, UpdateUserDef, UpdateListDef
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
 import { BehaviorSubject, from, Observable, filter, map } from 'rxjs';
@@ -37,10 +37,10 @@ export class ManagerService {
   }
 
   public createOrganisation(name?: string): Observable<OrgData> {
-    if(!!name){
-      return from(this.arlasIamApi.createOrganisation(name, this.options));
+    if (!!name) {
+      return from(this.arlasIamApi.createOrganisation1(name, this.options));
     } else {
-      return from(this.arlasIamApi.createOrganisation1(this.options));
+      return from(this.arlasIamApi.createOrganisation(this.options));
     }
   }
 
@@ -63,6 +63,10 @@ export class ManagerService {
 
   public getUserRoles(userId: string): Observable<RoleData[]> {
     return from(this.arlasIamApi.getRoles(this.currentOrga.getValue().id, userId, this.options));
+  }
+
+  public getUserGroups(userId: string): Observable<RoleData[]> {
+    return from(this.arlasIamApi.getGroups(this.currentOrga.getValue().id, userId, this.options));
   }
 
   public addRoleToUser(userId: string, roleId: string): Observable<UserData> {
@@ -89,7 +93,7 @@ export class ManagerService {
     return from(this.arlasIamApi.removeUserFromOrganisation(this.currentOrga.getValue().id, userId, this.options));
   }
 
-  public updateUserOwnership(userId: string, userOrgDef: UpdateOrgUserDef) {
+  public updateUserOwnership(userId: string, userOrgDef: UpdateListDef) {
     return from(this.arlasIamApi.updateUserInOrganisation(this.currentOrga.getValue().id, userId, userOrgDef, this.options));
   }
 
@@ -131,6 +135,8 @@ export class ManagerService {
     );
   }
 
+
+
   /** PERMISSIONS **/
   public getOrgPermissions(): Observable<PermissionData[]> {
     return from(this.arlasIamApi.getPermissionsOfOrganisation(this.currentOrga.getValue().id, this.options));
@@ -167,7 +173,7 @@ export class ManagerService {
     return from(this.arlasIamApi.updateColumnFilterPermission(this.currentOrga.getValue().id, permId, collections, this.options));
   }
 
-  public getColumnFilterPermision(permId: string){
+  public getColumnFilterPermision(permId: string) {
     return from(this.arlasIamApi.getCollectionsOfColumnFiltersInOrganisation(this.currentOrga.getValue().id, permId, this.options));
   }
 

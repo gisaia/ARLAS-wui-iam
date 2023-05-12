@@ -13,7 +13,14 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-checkbox class="owner" color="primary" formControlName="isOwner">{{'Is owner ?' | translate}}</mat-checkbox>
+    <mat-form-field appearance="fill">
+      <mat-label>{{'Roles' | translate}}</mat-label>
+      <mat-select [multiple]="true" formControlName="roles" required>
+        <mat-option [value]="role.id" *ngFor="let role of orgRoles">
+          {{role.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div>
     <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
