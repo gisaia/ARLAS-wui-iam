@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
-import { RoleData, MemberData, UserData } from 'arlas-iam-api';
+import { RoleData } from 'arlas-iam-api';
+import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
-import { forkJoin, Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
-import { ArlasIamService } from 'arlas-wui-toolkit';
+import { ARLAS_ROLE_PREFIX } from '../../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-user-form',
@@ -55,7 +56,8 @@ export class UserFormComponent implements OnInit {
             this.userGroups = data[1].map(r => r.id);
             this.userForm.get('groups').setValue(this.userGroups);
             this.orgRoles = data[2];
-            this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith('role/arlas')).map(r => r.id);
+            this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX))
+              .map(r => r.id);
             this.userForm.get('roles').setValue(this.userRoles);
           }
         });

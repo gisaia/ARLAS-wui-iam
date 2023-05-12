@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSelectChange } from '@angular/material/select';
 import { NavigationEnd, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { ManagerService } from '../../services/manager/manager.service';
 import { Page } from '../../tools/model';
+import { getPrivateOrgDisplayName } from '../../tools/utils';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 
@@ -112,10 +112,14 @@ export class HomeComponent implements OnInit {
       next: orgs => {
 
         this.organisations = orgs.filter(o => (o as any).isOwner);
-        this.organisations.map(org => org.name === this.user.id ? org.displayName = this.user.email.split('@')[0] : '');
+        this.organisations.forEach(org => {
+          if (org.name === this.user.id) {
+            org.displayName = getPrivateOrgDisplayName(this.user.email);
+          }
+        });
         this.allMyOrgs = orgs.map(org => {
           if (org.name === this.user.id) {
-            org.displayName = this.user.email.split('@')[0];
+            org.displayName = getPrivateOrgDisplayName(this.user.email);
           }
           (org as any).groups = this.user.roles.filter(r => r.isGroup && r.organisation.id === org.id).map(r => r.name);
           return org;
