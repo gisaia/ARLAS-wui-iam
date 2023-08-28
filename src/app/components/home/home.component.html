@@ -19,7 +19,7 @@
     <mat-nav-list class="route-nav-list">
       <mat-list-item matTooltip="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page">
         <span class="material-symbols-outlined">
-          face
+          person
         </span>
         <span class="label">{{'Users' | translate}}</span>
       </mat-list-item>
@@ -64,10 +64,12 @@
 
       <div class="content">
         <div class="perso">
-          <span class="material-symbols-outlined x-large">
-            face
-          </span>
-
+          <div class="name" *ngIf="!!user?.firstName || !!user?.lastName">
+            <span class="material-symbols-outlined medium">
+              person
+            </span>
+            {{user?.firstName}} {{user?.lastName}}
+          </div>
           <div class="mail">
             <span class="material-symbols-outlined">
               mail
@@ -99,4 +101,4 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-toolbar class="footer">© Gisaïa 2022</mat-toolbar>
+<mat-toolbar class="footer">© Gisaïa 2023</mat-toolbar>
