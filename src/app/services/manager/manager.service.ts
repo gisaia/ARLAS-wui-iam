@@ -38,7 +38,7 @@ export class ManagerService {
 
   public createOrganisation(name?: string): Observable<OrgData> {
     if (!!name) {
-      return from(this.arlasIamApi.createOrganisation1(name, this.options));
+      return from(this.arlasIamApi.createOrganisationWithName(name, this.options));
     } else {
       return from(this.arlasIamApi.createOrganisation(this.options));
     }
@@ -50,7 +50,7 @@ export class ManagerService {
 
   /** USERS **/
   public getOrgUsers(): Observable<MemberData[]> {
-    return from(this.arlasIamApi.getUsers(this.currentOrga.getValue().id, this.options));
+    return from(this.arlasIamApi.getUsers(this.currentOrga.getValue().id, undefined /* rname */, this.options));
   }
 
   public getOrgUser(orgId: string, userId: string): Observable<MemberData> {
