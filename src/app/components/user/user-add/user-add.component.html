@@ -14,6 +14,12 @@
       </mat-autocomplete>
     </mat-form-field>
     <mat-form-field appearance="fill">
+      <mat-label>{{'Groups' | translate}}</mat-label>
+      <mat-select formControlName="groups" multiple required>
+        <mat-option *ngFor="let group of orgGroups" [value]="group.id">{{group.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>{{'Roles' | translate}}</mat-label>
       <mat-select [multiple]="true" formControlName="roles" required>
         <mat-option [value]="role.id" *ngFor="let role of orgRoles">

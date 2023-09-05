@@ -13,7 +13,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>{{'Roles' | translate}}</mat-label>
-      <mat-select [multiple]="true" formControlName="roles" required [disabled]="this.itsMe">
+      <mat-select [multiple]="true" formControlName="roles" required>
         <mat-option [value]="role.id" *ngFor="let role of orgRoles">
           {{role.name}}
         </mat-option>

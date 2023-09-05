@@ -20,6 +20,7 @@ export class UserAddComponent implements OnInit {
 
   public pages: Page[] = [];
   public orgRoles: RoleData[] = [];
+  public orgGroups: RoleData[] = [];
 
   public filteredEmails: Observable<string[]>;
 
@@ -33,7 +34,8 @@ export class UserAddComponent implements OnInit {
   public ngOnInit(): void {
     this.userForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      roles: new FormControl([], [Validators.required])
+      roles: new FormControl([], [Validators.required]),
+      groups: new FormControl([], [Validators.required])
     });
     this.pages = [
       { label: marker('Users'), route: ['user'] },
@@ -48,6 +50,7 @@ export class UserAddComponent implements OnInit {
       )
     );
     this.managerService.getOrgRoles().subscribe(roles => this.orgRoles = roles);
+    this.managerService.getOrgGroups().subscribe( groups => this.orgGroups = groups);
   }
 
   public back() {
@@ -57,7 +60,7 @@ export class UserAddComponent implements OnInit {
   public submit() {
     this.managerService.addUserToOrg({
       email: this.userForm.get('email').value,
-      rids: this.userForm.get('roles').value
+      rids: [...this.userForm.get('roles').value, ...this.userForm.get('groups').value]
     }).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User added'));

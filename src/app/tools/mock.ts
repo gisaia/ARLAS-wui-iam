@@ -21,6 +21,10 @@ export class MockManagerService {
   public checkOrganisation(): Observable<any> {
     return of({});
   }
+
+  public getOrgGroups(): Observable<any> {
+    return of([]);
+  }
 }
 
 export class MockToastrService {
