@@ -23,11 +23,11 @@ export class UserFormComponent implements OnInit {
   public roleSubscription: Subscription = null;
 
   public userId = '';
+  public userEmail = '';
   public orgGroups: RoleData[] = [];
   public orgRoles: RoleData[] = [];
   public userGroups: string[] = [];
   public userRoles: string[] = [];
-  public itsMe = false;
 
   public pages: Page[] = [];
 
@@ -42,7 +42,6 @@ export class UserFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id');
-    this.itsMe = this.arlasIamService.currentUserValue?.user.id === this.userId;
     this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         forkJoin([
@@ -59,6 +58,11 @@ export class UserFormComponent implements OnInit {
             this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX))
               .map(r => r.id);
             this.userForm.get('roles').setValue(this.userRoles);
+            this.userEmail = data[3].member.email;
+            this.pages = [
+              { label: marker('Users'), route: ['user'] },
+              { label: marker('Update user : ' + this.userEmail) }
+            ];
           }
         });
       }
@@ -67,10 +71,7 @@ export class UserFormComponent implements OnInit {
       groups: new FormControl([], [Validators.required]),
       roles: new FormControl([], [Validators.required])
     });
-    this.pages = [
-      { label: marker('Users'), route: ['user'] },
-      { label: marker('Update user') }
-    ];
+
   }
 
   public back() {

@@ -17,6 +17,12 @@
 <div class="app">
   <div class="menu">
     <mat-nav-list class="route-nav-list">
+      <mat-list-item matTooltip="'Home' | translate" [routerLink]="'/'" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-page">
+        <span class="material-symbols-outlined">
+          home
+        </span>
+        <span class="label">{{'Home' | translate}}</span>
+      </mat-list-item>
       <mat-list-item matTooltip="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page">
         <span class="material-symbols-outlined">
           person
@@ -92,7 +98,7 @@
                 <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
                   translate)}}</div>
               </div>
-              <button mat-flat-button (click)="manage(org)">{{'Manage' | translate}}</button>
+              <button *ngIf="org.isOwner" mat-flat-button (click)="manage(org)">{{'Manage' | translate}}</button>
             </div>
           </div>
         </div>
