@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Page } from '../../../tools/model';
-import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged } from 'rxjs';
+import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { RoleData } from 'arlas-iam-api';
 
 @Component({
@@ -23,6 +23,7 @@ export class UserAddComponent implements OnInit {
   public orgGroups: RoleData[] = [];
 
   public filteredEmails: Observable<string[]>;
+  public orgSubscription: Subscription = null;
 
   public constructor(
     private router: Router,
@@ -49,8 +50,12 @@ export class UserAddComponent implements OnInit {
         this.filter(val || '')
       )
     );
-    this.managerService.getOrgRoles().subscribe(roles => this.orgRoles = roles);
-    this.managerService.getOrgGroups().subscribe( groups => this.orgGroups = groups);
+    this.orgSubscription = this.managerService.currentOrga.subscribe(org => {
+      if( !!org){
+        this.managerService.getOrgRoles().subscribe(roles => this.orgRoles = roles);
+        this.managerService.getOrgGroups().subscribe(groups => this.orgGroups = groups);
+      }
+    });
   }
 
   public back() {
@@ -60,7 +65,7 @@ export class UserAddComponent implements OnInit {
   public submit() {
     this.managerService.addUserToOrg({
       email: this.userForm.get('email').value,
-      rids: [...this.userForm.get('roles').value, ...this.userForm.get('groups').value]
+      rids: [...this.userForm.get('roles').value.map((r: RoleData) => r.id), ...this.userForm.get('groups').value.map((g: RoleData) => g.id)]
     }).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User added'));

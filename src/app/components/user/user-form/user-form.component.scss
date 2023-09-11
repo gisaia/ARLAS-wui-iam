@@ -4,5 +4,15 @@
   .form-content {
     display: flex;
     flex-direction: column;
+
+    .trigger-description {
+      opacity: 0.75;
+      font-size: 0.75em;
+    }
   }
+}
+
+.option-description {
+  opacity: 0.75;
+  font-size: 0.75em;
 }

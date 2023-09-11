@@ -26,8 +26,8 @@ export class UserFormComponent implements OnInit {
   public userEmail = '';
   public orgGroups: RoleData[] = [];
   public orgRoles: RoleData[] = [];
-  public userGroups: string[] = [];
-  public userRoles: string[] = [];
+  public userGroups: RoleData[] = [];
+  public userRoles: RoleData[] = [];
 
   public pages: Page[] = [];
 
@@ -52,12 +52,13 @@ export class UserFormComponent implements OnInit {
         ]).subscribe({
           next: data => {
             this.orgGroups = data[0];
-            this.userGroups = data[1].map(r => r.id);
-            this.userForm.get('groups').setValue(this.userGroups);
+            this.userGroups = data[1];
+            this.userForm.get('groups').setValue(this.orgGroups.filter( g => this.userGroups.map(ug => ug.id).includes(g.id)));
+
             this.orgRoles = data[2];
-            this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX))
-              .map(r => r.id);
-            this.userForm.get('roles').setValue(this.userRoles);
+            this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX));
+            this.userForm.get('roles').setValue(this.orgRoles.filter( r => this.userRoles.map(ur => ur.id).includes(r.id)));
+
             this.userEmail = data[3].member.email;
             this.pages = [
               { label: marker('Users'), route: ['user'] },
@@ -82,7 +83,7 @@ export class UserFormComponent implements OnInit {
 
     this.managerService.updateUserRole(
       this.userId,
-      [...this.userForm.get('roles').value, ...this.userForm.get('groups').value]
+      [...this.userForm.get('roles').value.map( (r: RoleData) => r.id), ...this.userForm.get('groups').value.map((g: RoleData) => g.id)]
     ).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User updated'));
