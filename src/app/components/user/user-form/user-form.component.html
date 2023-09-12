@@ -7,15 +7,33 @@
     <mat-form-field appearance="fill">
       <mat-label>{{'Groups' | translate}}</mat-label>
       <mat-select formControlName="groups" multiple required>
-        <mat-option *ngFor="let group of orgGroups" [value]="group.id">{{group.name}}</mat-option>
+        <mat-select-trigger>
+          {{userForm.get('groups').value?.[0]?.name || ''}}
+          <span *ngIf="(userForm.get('groups').value?.length || 0) > 1" class="trigger-description">
+            (+{{(userForm.get('groups').value?.length || 0) - 1}} {{userForm.get('groups').value?.length === 2 ? 'other' :
+            'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let group of orgGroups" [value]="group">
+          {{group.name}} -
+          <span class="option-description">{{group.description}}</span>
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>{{'Roles' | translate}}</mat-label>
       <mat-select [multiple]="true" formControlName="roles" required>
-        <mat-option [value]="role.id" *ngFor="let role of orgRoles">
-          {{role.name}}
+        <mat-select-trigger>
+          {{userForm.get('roles').value?.[0]?.name || ''}}
+          <span *ngIf="(userForm.get('roles').value?.length || 0) > 1" class="trigger-description">
+            (+{{(userForm.get('roles').value?.length || 0) - 1}} {{userForm.get('roles').value?.length === 2 ? 'other' :
+            'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option [value]="role" *ngFor="let role of orgRoles">
+          {{role.name}} -
+          <span class="option-description">{{role.description}}</span>
         </mat-option>
       </mat-select>
     </mat-form-field>
