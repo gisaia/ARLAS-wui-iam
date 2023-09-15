@@ -148,6 +148,9 @@ export class IamStartupService {
         && !!settings.authentication.use_authent;
       const useAuthentIam = useAuthent && settings.authentication.auth_mode === 'iam';
       if (useAuthentIam) {
+        const url = new URL(window.location.href);
+        const org = url.searchParams.get('org');
+
         this.arlasIamService.currentUserSubject.subscribe({
           next: response => {
             if (!!response?.accessToken) {
@@ -159,8 +162,7 @@ export class IamStartupService {
               this.managerService.setOptions({
                 headers: {
                   Authorization: 'Bearer ' + response.accessToken,
-                  'arlas-org-filter': !!this.managerService.currentOrga.value ?
-                    this.managerService.currentOrga.value.name : response.user.organisations[0]?.name,
+                  'arlas-org-filter': !!org ? org : response.user.organisations[0]?.name,
                 }
               });
             } else {

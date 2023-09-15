@@ -17,34 +17,39 @@
 <div class="app">
   <div class="menu">
     <mat-nav-list class="route-nav-list">
-      <mat-list-item matTooltip="'Home' | translate" [routerLink]="'/'" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active-page">
+      <mat-list-item [matTooltip]="'Home' | translate" [routerLink]="'/'" [routerLinkActiveOptions]="{ exact: true }"
+        [queryParamsHandling]="'preserve'" routerLinkActive="active-page" [matTooltipPosition]="'right'">
         <span class="material-symbols-outlined">
           home
         </span>
         <span class="label">{{'Home' | translate}}</span>
       </mat-list-item>
-      <mat-list-item matTooltip="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page">
+      <mat-list-item [matTooltip]="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+        [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           person
         </span>
         <span class="label">{{'Users' | translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item matTooltip="'Groups' | translate" [routerLink]="'role'" routerLinkActive="active-page">
+      <mat-list-item [matTooltip]="'Groups' | translate" [routerLink]="'role'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+        [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           group
         </span>
         <span class="label">{{'Groups'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item matTooltip="'Permissions' | translate" [routerLink]="'permission'" routerLinkActive="active-page">
+      <mat-list-item [matTooltip]="'Permissions' | translate" [routerLink]="'permission'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+        [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           verified_user
         </span>
         <span class="label">{{'Permissions'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item matTooltip="'Rules' | translate" [routerLink]="'rule'" routerLinkActive="active-page">
+      <mat-list-item [matTooltip]="'Rules' | translate" [routerLink]="'rule'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+        [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           rule
         </span>
@@ -55,7 +60,13 @@
 
     </mat-nav-list>
     <mat-nav-list class="route-nav-list login">
-      <mat-list-item matTooltip="Logout" (click)="logout()">
+      <mat-list-item [matTooltip]="this.user?.email" [matTooltipPosition]="'above'" class="username">
+        <span class="material-symbols-outlined">
+          person
+        </span>
+        <span class="label">{{this.user?.email}}</span>
+      </mat-list-item>
+      <mat-list-item [matTooltip]="'Logout' | translate" (click)="logout()" [matTooltipPosition]="'right'">
         <span class="material-symbols-outlined">
           logout
         </span>
@@ -92,13 +103,14 @@
         <div class="orgs">
           <h3>{{'My organisations' | translate}}</h3>
           <div class="list">
-            <div *ngFor="let org of allMyOrgs" class="card">
+            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg.id">
               <div class="info">
                 <div class="title">{{org.displayName}}</div>
                 <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
                   translate)}}</div>
               </div>
-              <button *ngIf="org.isOwner" mat-flat-button (click)="manage(org)">{{'Manage' | translate}}</button>
+              <button [class.selected-btn]="org.id == currentSelectedOrg.id" *ngIf="org.isOwner" mat-stroked-button
+                (click)="manage(org)">{{'Manage' | translate}}</button>
             </div>
           </div>
         </div>

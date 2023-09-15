@@ -45,6 +45,7 @@ import { UserAddComponent } from './components/user/user-add/user-add.component'
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
 import { IamStartupService } from './services/startup/startup.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -92,6 +93,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatChipsModule,
     MatDialogModule,
     MatToolbarModule,
+    MatTooltipModule,
     MatTableModule,
     MatSortModule,
     MatListModule,
