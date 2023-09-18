@@ -93,10 +93,6 @@ export class ManagerService {
     return from(this.arlasIamApi.removeUserFromOrganisation(this.currentOrga.getValue().id, userId, this.options));
   }
 
-  public updateUserOwnership(userId: string, userOrgDef: UpdateListDef) {
-    return from(this.arlasIamApi.updateUserInOrganisation(this.currentOrga.getValue().id, userId, userOrgDef, this.options));
-  }
-
   /** ROLES **/
   public getOrgRoles(): Observable<RoleData[]> {
     return from(this.arlasIamApi.getRolesOfOrganisation(this.currentOrga.getValue().id, this.options));

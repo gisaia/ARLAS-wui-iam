@@ -61,11 +61,12 @@
 
     .login {
       max-height: 130px;
-      .user-name {
+      .username {
         .label {
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
+          display: block;
         }
       }
     }
@@ -120,19 +121,40 @@
 
             .card {
               background: #f2f6fc;
-              box-shadow: inset 1px -1px 0 0 rgb(100 121 143 / 12%), inset -1px 1px 0 0 rgb(100 121 143 / 12%);
+              box-shadow:
+                inset 1px -1px 0 0 rgb(100 121 143 / 12%),
+                inset -1px 1px 0 0 rgb(100 121 143 / 12%);
               display: flex;
               justify-content: space-between;
               padding: 10px 20px;
               align-items: center;
+
+              button{
+                background-color: white;
+                color: rgba(0, 0, 0, 0.7);
+              }
+
+              &.selected {
+                color: #00bcd4;
+                border: 2px solid #00bcd4;
+
+                .title {
+                  font-weight: 500;
+                }
+              }
 
               .info {
                 display: flex;
                 flex-direction: column;
                 .title {
                   font-size: 24px;
-                  font-weight: 500;
                 }
+              }
+
+              .selected-btn{
+                background-color: white;
+                color: #00bcd4;
+                border-color: #00bcd4;
               }
             }
           }
