@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit(): void {
 
-    this.user = this.arlasIamService.currentUserValue?.user;
+    this.user = this.arlasIamService.user;
     this.isSuperAdmin = !!this.user?.roles.find(r => r.name === 'role/iam/admin');
     this.getOrganisations();
     this.checkOrga();
@@ -58,11 +58,11 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  public updateCurrentOrga(event: OrgData) {
-    this.managerService.currentOrga.next({ id: event.id, name: event.name, displayName: event.displayName });
-    this.currentSelectedOrg = event;
-    const queryParams = this.addOrgInUrl(this.currentSelectedOrg.name);
-    this.router.navigate(['/'], { replaceUrl: true, queryParams: queryParams });
+  public updateCurrentOrga(org: OrgData) {
+    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
+    this.currentSelectedOrg = org;
+    this.arlasIamService.storeOrganisation(org.name);
+    this.router.navigate(['/']);
   }
 
   public addOrg() {
@@ -128,8 +128,7 @@ export class HomeComponent implements OnInit {
           (org as any).groups = this.user.roles.filter(r => r.isGroup && r.organisation.id === org.id).map(r => r.name);
           return org;
         });
-        const url = new URL(window.location.href);
-        const org = url.searchParams.get('org');
+        const org = this.arlasIamService.getOrganisation();
         if (!!org && !currentOrg) {
           currentOrg = this.organisations.find(o => o.name === org);
         }
@@ -160,22 +159,12 @@ export class HomeComponent implements OnInit {
   public manage(org: OrgData) {
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.currentSelectedOrg = this.organisations.find(o => o.id === org.id);
-    const queryParams = this.addOrgInUrl(this.currentSelectedOrg.name);
-    this.router.navigate(['user'], { replaceUrl: true, queryParams: queryParams });
+    this.arlasIamService.storeOrganisation(org.name);
+    this.router.navigate(['user']);
   }
 
   public logout() {
     this.arlasIamService.logout();
     this.managerService.currentOrga.next(null);
-  }
-
-  public navigate(route: string) {
-    this.router.navigate([route]);
-  }
-
-  public addOrgInUrl(orgName: string): Params {
-    const queryParams = Object.assign({}, this.activatedRoute.snapshot.queryParams);
-    queryParams['org'] = orgName;
-    return queryParams;
   }
 }

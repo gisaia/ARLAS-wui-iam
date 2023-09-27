@@ -1,16 +1,10 @@
-import { LOCATION_INITIALIZED } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Injector } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import Ajv from 'ajv';
-import ajvKeywords from 'ajv-keywords';
-import * as draftSchema from 'ajv/lib/refs/json-schema-draft-06.json';
+import { Inject, Injectable } from '@angular/core';
 import { Configuration, DefaultApi } from 'arlas-iam-api';
-import { ArlasIamService, ArlasSettings, ArlasSettingsService } from 'arlas-wui-toolkit';
+import { ArlasIamService, ArlasSettings, ArlasSettingsService, ArlasStartupService } from 'arlas-wui-toolkit';
 import * as YAML from 'js-yaml';
 import { Subject } from 'rxjs/internal/Subject';
 import { ManagerService } from '../manager/manager.service';
-import * as arlasSettingsSchema from './settings.schema.json';
 
 export const SETTINGS_FILE_NAME = 'settings.yaml';
 
@@ -36,42 +30,9 @@ export class IamStartupService {
     private http: HttpClient,
     private settingsService: ArlasSettingsService,
     private arlasIamService: ArlasIamService,
-    private injector: Injector,
-    private translateService: TranslateService,
-    private managerService: ManagerService
-  ) {
-    this.managerService.currentOrga.subscribe(org => {
-      if (!!this.arlasIamService.currentUserValue) {
-        this.managerService.setOptions({
-          headers: {
-            Authorization: 'Bearer ' + this.arlasIamService.currentUserValue.accessToken,
-            'arlas-org-filter': org.name,
-          }
-        });
-      }
-    });
-  }
-
-  public validateSettings(settings: any): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      const ajvObj = new Ajv();
-      ajvKeywords(ajvObj, 'uniqueItemProperties');
-      const validateConfig = ajvObj
-        .addMetaSchema(draftSchema.default)
-        .compile((arlasSettingsSchema as any).default);
-      if (settings && validateConfig(settings) === false) {
-        const errorMessagesList = new Array<string>();
-        errorMessagesList.push(
-          validateConfig.errors[0].data + ' ' +
-          validateConfig.errors[0].message
-        );
-        console.error(validateConfig.errors);
-        reject(new Error(errorMessagesList.join(' ')));
-      } else {
-        resolve(settings);
-      }
-    });
-  }
+    private managerService: ManagerService,
+    private arlasStartupService: ArlasStartupService
+  ) { }
 
   /**
    * - Fetches and parses the `settings.yaml`.
@@ -95,7 +56,7 @@ export class IamStartupService {
       })
       .then(s => {
         const settings: ArlasSettings = YAML.load(s as string);
-        return this.validateSettings(settings);
+        return this.arlasStartupService.validateSettings(settings);
       }) // Validates settings against the correponding schema
       .catch((err: any) => {
         // application should not run if the settings.yaml file is not valid
@@ -117,71 +78,32 @@ export class IamStartupService {
       });
   }
 
-  public translationLoaded(data: any) {
-    return new Promise<any>((resolve: any) => {
-      const url = window.location.href;
-      const paramLangage = 'lg';
-      // Set default language to current browser language
-      let langToSet = navigator.language.slice(0, 2);
-      const regex = new RegExp('[?&]' + paramLangage + '(=([^&#]*)|&|#|$)');
-      const results = regex.exec(url);
-      if (results && results[2]) {
-        langToSet = decodeURIComponent(results[2].replace(/\+/g, ' '));
-      }
-      const locationInitialized = this.injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
-      locationInitialized.then(() => {
-        this.translateService.setDefaultLang('en');
-        this.translateService.use(langToSet).subscribe(() => {
-          console.log(`Successfully initialized '${langToSet}' language.`);
-        }, err => {
-          console.error(`Problem with '${langToSet}' language initialization.'`);
-        }, () => {
-          resolve([data, langToSet]);
-        });
-      });
-    });
-  }
-
-  public enrichHeaders(settings: ArlasSettings): Promise<ArlasSettings> {
-    return new Promise<ArlasSettings>((resolve, reject) => {
-      const useAuthent = !!settings && !!settings.authentication
-        && !!settings.authentication.use_authent;
-      const useAuthentIam = useAuthent && settings.authentication.auth_mode === 'iam';
-      if (useAuthentIam) {
-        this.arlasIamService.currentUserSubject.subscribe({
-          next: response => {
-            if (!!response?.accessToken) {
-              this.arlasIamService.setOptions({
-                headers: {
-                  Authorization: 'Bearer ' + response.accessToken
-                }
-              });
-
-              this.managerService.setOptions({
-                headers: {
-                  Authorization: 'Bearer ' + response.accessToken,
-                  'arlas-org-filter': !!this.managerService.currentOrga.value
-                    ? this.managerService.currentOrga.value.name : response.user.organisations[0]?.name,
-                }
-              });
-            } else {
-              this.managerService.setOptions({});
-              this.arlasIamService.setOptions({});
-            }
-            resolve(settings);
-          }
-        });
-      } else {
-        resolve(settings);
-      }
-
-    });
-  }
-
   public load(): Promise<any> {
     return this.applyAppSettings()
-      .then((data) => this.enrichHeaders(data))
-      .then((data) => this.translationLoaded(data))
+      .then((data) => this.arlasStartupService.authenticate(data))
+      .then((data) => this.arlasStartupService.enrichHeaders(data))
+      .then((data) => {
+        this.arlasIamService.tokenRefreshed$.subscribe({
+          next: loginData => {
+            if (!!loginData) {
+              const storedArlasOrganisation = this.arlasIamService.getOrganisation();
+              const org = !!storedArlasOrganisation ? storedArlasOrganisation : loginData.user?.organisations[0]?.name;
+
+              this.arlasIamService.setHeaders(org, loginData.accessToken);
+              console.log(org);
+              this.managerService.setOptions({
+                headers: {
+                  Authorization: 'Bearer ' + loginData.accessToken,
+                  'arlas-org-filter': org
+                }
+              });
+            }
+            return Promise.resolve(data);
+          }
+        });
+
+      })
+      .then((data) => this.arlasStartupService.translationLoaded(data))
       .catch((err: any) => {
         this.shouldRunApp = false;
         console.error(err);

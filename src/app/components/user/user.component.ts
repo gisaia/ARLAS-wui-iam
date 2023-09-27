@@ -42,7 +42,7 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.currentUser = this.arlasIamService.currentUserValue?.user;
+    this.currentUser = this.arlasIamService.user;
     this.userSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         this.showUsers();
