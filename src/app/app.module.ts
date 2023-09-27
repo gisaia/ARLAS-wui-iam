@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, forwardRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AuthentificationService, LoginModule } from 'arlas-wui-toolkit';
+import {
+  ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService, ArlasStartupService, AuthentificationService,
+  CONFIG_UPDATER,
+  FETCH_OPTIONS, GET_OPTIONS, LoginModule, configUpdaterFactory, getOptionsFactory
+} from 'arlas-wui-toolkit';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +50,7 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 import { UserComponent } from './components/user/user.component';
 import { IamStartupService } from './services/startup/startup.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -118,8 +123,22 @@ export function createTranslateLoader(http: HttpClient) {
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
+    OAuthModule.forRoot()
   ],
   providers: [
+    forwardRef(() => ArlasConfigurationDescriptor),
+    forwardRef(() => ArlasCollaborativesearchService),
+    forwardRef(() => ArlasStartupService),
+    { provide: FETCH_OPTIONS, useValue: {} },
+    {
+      provide: GET_OPTIONS,
+      useFactory: getOptionsFactory,
+      deps: [AuthentificationService, ArlasIamService]
+    },
+    {
+      provide: CONFIG_UPDATER,
+      useValue: configUpdaterFactory
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: startupServiceFactory,
