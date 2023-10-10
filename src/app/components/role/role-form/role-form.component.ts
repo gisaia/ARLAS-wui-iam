@@ -60,7 +60,7 @@ export class RoleFormComponent implements OnInit {
   }
 
   public back() {
-    this.router.navigate(['role']);
+    this.router.navigate(['role'], { queryParamsHandling: 'preserve' });
   }
 
   public submit() {
@@ -71,7 +71,7 @@ export class RoleFormComponent implements OnInit {
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Group created'));
-          this.router.navigate(['role']);
+          this.router.navigate(['role'], { queryParamsHandling: 'preserve' });
         }
       });
     } else {
@@ -81,7 +81,7 @@ export class RoleFormComponent implements OnInit {
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Group updated'));
-          this.router.navigate(['role']);
+          this.router.navigate(['role'], { queryParamsHandling: 'preserve' });
         },
         error: err => this.toastr.error(err.statusText, this.translate.instant('Group not updated'))
       });

@@ -54,12 +54,12 @@ export class RoleComponent implements OnInit {
   }
 
   public add() {
-    this.router.navigate(['role', 'create']);
+    this.router.navigate(['role', 'create'], { queryParamsHandling: 'preserve' });
   }
 
 
   public editRole(roleId: string): void {
-    this.router.navigate(['role', 'edit', roleId]);
+    this.router.navigate(['role', 'edit', roleId], { queryParamsHandling: 'preserve' });
   }
 
   public ngOnDestroy(): void {

@@ -76,7 +76,7 @@ export class UserFormComponent implements OnInit {
   }
 
   public back() {
-    this.router.navigate(['user']);
+    this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
   }
 
   public submit() {
@@ -87,7 +87,7 @@ export class UserFormComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User updated'));
-        this.router.navigate(['user']);
+        this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
       },
       error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
     });

@@ -62,7 +62,12 @@ export class HomeComponent implements OnInit {
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.currentSelectedOrg = org;
     this.arlasIamService.storeOrganisation(org.name);
-    this.router.navigate(['/']);
+    this.router.navigate(
+      ['/'],
+      {
+        queryParams: { org: org.name }
+      }
+    );
   }
 
   public addOrg() {
@@ -160,7 +165,7 @@ export class HomeComponent implements OnInit {
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.currentSelectedOrg = this.organisations.find(o => o.id === org.id);
     this.arlasIamService.storeOrganisation(org.name);
-    this.router.navigate(['user']);
+    this.router.navigate(['user'], { queryParams: { org: org.name } });
   }
 
   public logout() {

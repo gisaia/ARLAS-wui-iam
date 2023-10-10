@@ -65,7 +65,7 @@ export class UserAddComponent implements OnInit, OnDestroy {
   }
 
   public back() {
-    this.router.navigate(['user']);
+    this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
   }
 
   public submit() {
@@ -75,7 +75,7 @@ export class UserAddComponent implements OnInit, OnDestroy {
     }).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User added'));
-        this.router.navigate(['user']);
+        this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
       },
       error: (err) => {
         if (err.status === 404) {
