@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-  MemberData, OrgData, RoleData, PermissionData, OrgExists,
-  UserData, OrgUserDef, UpdateUserDef, UpdateListDef
+  MemberData, OrgData,
+  OrgExists,
+  OrgUserDef,
+  PermissionData,
+  RoleData,
+  UpdateUserDef,
+  UserData
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
-import { BehaviorSubject, from, Observable, filter, map } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

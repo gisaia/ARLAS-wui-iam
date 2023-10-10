@@ -81,7 +81,7 @@ export class PermissionCreateColumnFilterComponent implements OnInit, OnDestroy 
   }
 
   public back() {
-    this.router.navigate(['permission']);
+    this.router.navigate(['permission'], { queryParamsHandling: 'preserve' });
   }
 
   public submit() {
@@ -91,7 +91,7 @@ export class PermissionCreateColumnFilterComponent implements OnInit, OnDestroy 
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Permission created'));
-          this.router.navigate(['permission']);
+          this.router.navigate(['permission'], { queryParamsHandling: 'preserve' });
         },
         error: err => {
           this.toastr.error(err.statusText, this.translate.instant('Permission not created'));
@@ -103,7 +103,7 @@ export class PermissionCreateColumnFilterComponent implements OnInit, OnDestroy 
       ).subscribe({
         next: () => {
           this.toastr.success(this.translate.instant('Permission updated'));
-          this.router.navigate(['permission']);
+          this.router.navigate(['permission'], { queryParamsHandling: 'preserve' });
         },
         error: err => this.toastr.error(err.statusText, this.translate.instant('Permission not updated'))
       });

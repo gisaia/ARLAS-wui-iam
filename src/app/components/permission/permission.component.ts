@@ -52,11 +52,11 @@ export class PermissionComponent implements OnInit {
   }
 
   public add() {
-    this.router.navigate(['permission', 'create']);
+    this.router.navigate(['permission', 'create'], { queryParamsHandling: 'preserve' });
   }
 
   public edit(permId: string){
-    this.router.navigate(['permission', 'edit', permId]);
+    this.router.navigate(['permission', 'edit', permId], { queryParamsHandling: 'preserve' });
   }
 
   public ngOnDestroy(): void {

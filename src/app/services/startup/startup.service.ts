@@ -90,7 +90,7 @@ export class IamStartupService {
               const org = !!storedArlasOrganisation ? storedArlasOrganisation : loginData.user?.organisations[0]?.name;
 
               this.arlasIamService.setHeaders(org, loginData.accessToken);
-              console.log(org);
+
               this.managerService.setOptions({
                 headers: {
                   Authorization: 'Bearer ' + loginData.accessToken,

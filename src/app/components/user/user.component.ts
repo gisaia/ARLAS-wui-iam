@@ -72,11 +72,11 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   public add() {
-    this.router.navigate(['user', 'create']);
+    this.router.navigate(['user', 'create'], { queryParamsHandling: 'preserve' });
   }
 
   public editUser(userId: string): void {
-    this.router.navigate(['user', 'edit', userId]);
+    this.router.navigate(['user', 'edit', userId], { queryParamsHandling: 'preserve' });
   }
 
   public removeUser(userId: string): void {

@@ -38,7 +38,7 @@ export class TopMenuComponent implements OnInit {
   }
 
   public navigateTo(route: string[]) {
-    this.router.navigate(route);
+    this.router.navigate(route, { queryParamsHandling: 'preserve' });
   }
 
 }
