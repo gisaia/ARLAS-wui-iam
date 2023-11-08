@@ -53,16 +53,16 @@ export class UserFormComponent implements OnInit {
           next: data => {
             this.orgGroups = data[0];
             this.userGroups = data[1];
-            this.userForm.get('groups').setValue(this.orgGroups.filter( g => this.userGroups.map(ug => ug.id).includes(g.id)));
+            this.userForm.get('groups').setValue(this.orgGroups.filter(g => this.userGroups.map(ug => ug.id).includes(g.id)));
 
             this.orgRoles = data[2];
             this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX));
-            this.userForm.get('roles').setValue(this.orgRoles.filter( r => this.userRoles.map(ur => ur.id).includes(r.id)));
+            this.userForm.get('roles').setValue(this.orgRoles.filter(r => this.userRoles.map(ur => ur.id).includes(r.id)));
 
             this.userEmail = data[3].member.email;
             this.pages = [
               { label: marker('Users'), route: ['user'] },
-              { label: marker('Update user : ' + this.userEmail) }
+              { label: this.translate.instant('Update user') + ' : ' + this.userEmail }
             ];
           }
         });
@@ -83,7 +83,7 @@ export class UserFormComponent implements OnInit {
 
     this.managerService.updateUserRole(
       this.userId,
-      [...this.userForm.get('roles').value.map( (r: RoleData) => r.id), ...this.userForm.get('groups').value.map((g: RoleData) => g.id)]
+      [...this.userForm.get('roles').value.map((r: RoleData) => r.id), ...this.userForm.get('groups').value.map((g: RoleData) => g.id)]
     ).subscribe({
       next: () => {
         this.toastr.success(this.translate.instant('User updated'));
