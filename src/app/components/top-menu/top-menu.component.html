@@ -1,4 +1,4 @@
-<div class="top-menu">
+<div class="inner-menu">
   <div class="title">
     <ng-container *ngFor="let page of pages">
       <span class="link" *ngIf="!!page.route" (click)="navigateTo(page.route)">{{page.label | translate}}</span>

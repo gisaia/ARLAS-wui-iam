@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { ManagerService } from '../../services/manager/manager.service';
-import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerService } from '@services/manager/manager.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'arlas-iam-rules-item',

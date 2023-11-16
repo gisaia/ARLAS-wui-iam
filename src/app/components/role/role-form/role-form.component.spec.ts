@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RoleFormComponent } from './role-form.component';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { MockToastrService } from '../../../tools/mock';
+import { MockToastrService } from '@tools/mock';
 
 describe('RoleCreateComponent', () => {
   let component: RoleFormComponent;

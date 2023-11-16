@@ -17,7 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrService } from 'ngx-toastr';
-import { MockToastrService } from 'src/app/tools/mock';
+import { MockToastrService } from '@tools/mock';
 
 describe('UserComponent', () => {
   let component: UserComponent;

@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ManagerService } from '../../../services/manager/manager.service';
-import { Page } from '../../../tools/model';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
 
 @Component({
   selector: 'arlas-iam-role-create',
