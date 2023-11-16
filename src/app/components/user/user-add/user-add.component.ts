@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { ManagerService } from 'src/app/services/manager/manager.service';
-import { Page } from '../../../tools/model';
 import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { RoleData } from 'arlas-iam-api';
+import { Page } from '@tools/model';
+import { ManagerService } from '@services/manager/manager.service';
 
 @Component({
   selector: 'arlas-iam-user-add',

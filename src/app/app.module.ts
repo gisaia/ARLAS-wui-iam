@@ -25,7 +25,8 @@ import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
-  ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService, ArlasStartupService, AuthentificationService,
+  ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService,
+  ArlasStartupService, ArlasToolkitSharedModule, AuthentificationService,
   CONFIG_UPDATER,
   FETCH_OPTIONS, GET_OPTIONS, LoginModule, configUpdaterFactory, getOptionsFactory
 } from 'arlas-wui-toolkit';
@@ -39,6 +40,9 @@ import {
   PermissionCreateColumnFilterComponent
 } from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
 import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
+
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { PermissionComponent } from './components/permission/permission.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
 import { RoleComponent } from './components/role/role.component';
@@ -49,8 +53,6 @@ import { UserAddComponent } from './components/user/user-add/user-add.component'
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
 import { IamStartupService } from './services/startup/startup.service';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { OAuthModule } from 'angular-oauth2-oidc';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -87,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ArlasToolkitSharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,

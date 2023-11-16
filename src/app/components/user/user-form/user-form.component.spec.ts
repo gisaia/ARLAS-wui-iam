@@ -4,9 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserFormComponent } from './user-form.component';
-import { MockManagerService, MockToastrService } from '../../../tools/mock';
-import { ManagerService } from 'src/app/services/manager/manager.service';
-
+import { MockManagerService, MockToastrService } from '@tools/mock';
+import { ManagerService } from '@services/manager/manager.service';
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;

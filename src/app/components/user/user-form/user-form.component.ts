@@ -3,13 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { ARLAS_ROLE_PREFIX } from '@tools/utils';
 import { RoleData } from 'arlas-iam-api';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, forkJoin } from 'rxjs';
-import { ManagerService } from 'src/app/services/manager/manager.service';
-import { Page } from '../../../tools/model';
-import { ARLAS_ROLE_PREFIX } from '../../../tools/utils';
 
 @Component({
   selector: 'arlas-iam-user-form',
