@@ -7,9 +7,9 @@ import { OrgData, UserData } from 'arlas-iam-api';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
-import { ManagerService } from '../../services/manager/manager.service';
-import { Page } from '../../tools/model';
-import { getPrivateOrgDisplayName } from '../../tools/utils';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { getPrivateOrgDisplayName } from '@tools/utils';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 

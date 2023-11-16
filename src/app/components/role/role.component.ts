@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
-import { ManagerService } from '../../services/manager/manager.service';
-import { Page } from '../../tools/model';
-import { getState, saveState } from '../../tools/utils';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { getState, saveState } from '@tools/utils';
 
 @Component({
   selector: 'arlas-iam-role',

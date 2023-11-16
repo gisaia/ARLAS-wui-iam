@@ -16,7 +16,7 @@ import { TopMenuComponent } from '../top-menu/top-menu.component';
 import { RoleComponent } from './role.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockToastrService } from '../../tools/mock';
+import { MockToastrService } from '@tools/mock';
 import { ToastrService } from 'ngx-toastr';
 
 describe('RoleComponent', () => {

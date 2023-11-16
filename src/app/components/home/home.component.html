@@ -1,6 +1,6 @@
-<mat-toolbar class="header" [color]="'primary'">
-  <span style="cursor: pointer;" [routerLink]="'/'">ARLAS IAM</span>
-  <div class="right">
+<arlas-top-menu [showAboutButton]="false">
+  <div left-menu>{{'ARLAS IAM' | translate}}</div>
+  <div right-menu>
     <div *ngIf="!domainOrgExist || isSuperAdmin" class="create-org">
       <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
         translate}}</button>
@@ -13,7 +13,7 @@
       </mat-select>
     </div>
   </div>
-</mat-toolbar>
+</arlas-top-menu>
 <div class="app">
   <div class="menu">
     <mat-nav-list class="route-nav-list">
@@ -58,20 +58,6 @@
 
 
 
-    </mat-nav-list>
-    <mat-nav-list class="route-nav-list login">
-      <mat-list-item [matTooltip]="this.user?.email" [matTooltipPosition]="'above'" class="username">
-        <span class="material-symbols-outlined">
-          person
-        </span>
-        <span class="label">{{this.user?.email}}</span>
-      </mat-list-item>
-      <mat-list-item [matTooltip]="'Logout' | translate" (click)="logout()" [matTooltipPosition]="'right'">
-        <span class="material-symbols-outlined">
-          logout
-        </span>
-        <span class="label">{{'Logout' | translate}}</span>
-      </mat-list-item>
     </mat-nav-list>
   </div>
   <div class="main-view">

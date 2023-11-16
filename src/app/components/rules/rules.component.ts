@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ManagerService } from '../../services/manager/manager.service';
-import { RoleData, PermissionData } from 'arlas-iam-api';
-import { Subscription } from 'rxjs';
-import { Page } from '../../tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { getState, saveState } from '../../tools/utils';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { getState, saveState } from '@tools/utils';
+import { PermissionData, RoleData } from 'arlas-iam-api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'arlas-iam-rules',

@@ -4,9 +4,9 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-tran
 import { ToastrService } from 'ngx-toastr';
 
 import { UserAddComponent } from './user-add.component';
-import { MockManagerService, MockToastrService } from '../../../tools/mock';
+import { MockManagerService, MockToastrService } from '@tools/mock';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { ManagerService } from 'src/app/services/manager/manager.service';
+import { ManagerService } from '@services/manager/manager.service';
 
 describe('UserAddComponent', () => {
   let component: UserAddComponent;

@@ -4,10 +4,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
-import { ManagerService } from 'src/app/services/manager/manager.service';
 import { Router } from '@angular/router';
-import { Page } from '../../tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { Page } from '@tools/model';
+import { ManagerService } from '@services/manager/manager.service';
 
 @Component({
   selector: 'arlas-iam-permission',

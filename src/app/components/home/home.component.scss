@@ -1,33 +1,25 @@
-.header {
-  color: #fff;
-  height: 48px;
-  display: flex;
-  justify-content: space-between;
+@import "colors.scss";
 
-  .right {
-    display: flex;
-    gap: 0 15px;
+::ng-deep .top-menu {
+  background-color: $primaryColor !important;
+  padding: 0 10px !important;
+  color: white;
+  .orga {
+    font-size: medium;
+    font-weight: 300;
+    padding-right: 15px;
 
-    .create-org {
-    }
-
-    .orga {
-      font-size: medium;
-      font-weight: 300;
-      margin: auto;
-
-      .current-orga {
-        width: 150px;
-        background-color: white;
-        color: black;
-        padding: 0 5px;
-      }
+    .current-orga {
+      width: 150px;
+      background-color: white;
+      color: black;
+      padding: 0 5px;
     }
   }
 }
 
 .app {
-  height: calc(100% - 84px);
+  height: calc(100% - 76px);
   display: flex;
   flex-direction: row;
 
@@ -129,7 +121,7 @@
               padding: 10px 20px;
               align-items: center;
 
-              button{
+              button {
                 background-color: white;
                 color: rgba(0, 0, 0, 0.7);
               }
@@ -151,7 +143,7 @@
                 }
               }
 
-              .selected-btn{
+              .selected-btn {
                 background-color: white;
                 color: #00bcd4;
                 border-color: #00bcd4;

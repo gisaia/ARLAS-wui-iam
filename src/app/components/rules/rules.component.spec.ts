@@ -3,7 +3,7 @@ import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-tran
 import { ToastrService } from 'ngx-toastr';
 
 import { RulesComponent } from './rules.component';
-import { MockToastrService } from '../../tools/mock';
+import { MockToastrService } from '@tools/mock';
 
 describe('RulesComponent', () => {
   let component: RulesComponent;
