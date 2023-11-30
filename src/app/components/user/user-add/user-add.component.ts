@@ -81,6 +81,9 @@ export class UserAddComponent implements OnInit, OnDestroy {
         if (err.status === 404) {
           this.toastr.error(this.translate.instant('User not found'));
         }
+        if (err.status === 400) {
+          this.toastr.error(this.translate.instant('User is already in organisation'));
+        }
       }
     });
   }

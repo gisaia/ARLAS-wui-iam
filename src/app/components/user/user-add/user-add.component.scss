@@ -5,6 +5,11 @@
     display: flex;
     flex-direction: column;
 
+    mat-form-field {
+      width: fit-content;
+      min-width: 400px;
+    }
+
     .owner{
       padding: 0 0 15px 10px;
     }

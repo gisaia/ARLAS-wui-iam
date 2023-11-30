@@ -1,11 +1,11 @@
 <arlas-top-menu [showAboutButton]="false">
   <div left-menu>{{'ARLAS IAM' | translate}}</div>
-  <div right-menu>
+  <div right-menu class="right-menu">
     <div *ngIf="!domainOrgExist || isSuperAdmin" class="create-org">
       <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
         translate}}</button>
     </div>
-    <div class="orga">
+    <div class="orga" *ngIf="organisations.length > 0">
       {{'Organisation'| translate}}
       <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
         (selectionChange)="updateCurrentOrga(currentOrg.value)">
@@ -24,7 +24,7 @@
         </span>
         <span class="label">{{'Home' | translate}}</span>
       </mat-list-item>
-      <mat-list-item [matTooltip]="'User' | translate" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+      <mat-list-item [matTooltip]="'User' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           person
@@ -32,7 +32,7 @@
         <span class="label">{{'Users' | translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [matTooltip]="'Groups' | translate" [routerLink]="'role'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+      <mat-list-item [matTooltip]="'Groups' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'role'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           group
@@ -40,7 +40,7 @@
         <span class="label">{{'Groups'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [matTooltip]="'Permissions' | translate" [routerLink]="'permission'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+      <mat-list-item [matTooltip]="'Permissions' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'permission'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           verified_user
@@ -48,7 +48,7 @@
         <span class="label">{{'Permissions'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [matTooltip]="'Rules' | translate" [routerLink]="'rule'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
+      <mat-list-item [matTooltip]="'Rules' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'rule'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
           rule
@@ -58,20 +58,6 @@
 
 
 
-    </mat-nav-list>
-    <mat-nav-list class="route-nav-list login">
-      <mat-list-item [matTooltip]="this.user?.email" [matTooltipPosition]="'above'" class="username">
-        <span class="material-symbols-outlined">
-          person
-        </span>
-        <span class="label">{{this.user?.email}}</span>
-      </mat-list-item>
-      <mat-list-item [matTooltip]="'Logout' | translate" (click)="logout()" [matTooltipPosition]="'right'">
-        <span class="material-symbols-outlined">
-          logout
-        </span>
-        <span class="label">{{'Logout' | translate}}</span>
-      </mat-list-item>
     </mat-nav-list>
   </div>
   <div class="main-view">

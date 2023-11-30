@@ -4,16 +4,28 @@
   background-color: $primaryColor !important;
   padding: 0 10px !important;
   color: white;
-  .orga {
-    font-size: medium;
-    font-weight: 300;
-    padding-right: 15px;
+  .right-menu {
+    display: flex;
+    align-items: baseline;
+    gap: 0 5px;
+    .create-org {
+      padding-right: 15px;
+      .add-org {
+        line-height: 32px;
+        vertical-align: bottom;
+      }
+    }
+    .orga {
+      font-size: medium;
+      font-weight: 300;
+      padding-right: 15px;
 
-    .current-orga {
-      width: 150px;
-      background-color: white;
-      color: black;
-      padding: 0 5px;
+      .current-orga {
+        width: 150px;
+        background-color: white;
+        color: black;
+        padding: 0 5px;
+      }
     }
   }
 }
@@ -45,6 +57,9 @@
     }
     .mat-list-item {
       color: #28292b;
+      &.mat-list-item-disabled {
+        cursor: not-allowed !important;
+      }
     }
     .mat-list-item-content {
       margin: 15px !important;
