@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "ajv-keywords": "5.1.0",
-    "arlas-wui-toolkit": "24.3.0-beta.14",
+    "arlas-wui-toolkit": "24.3.0-rc.1",
     "eslint": "^8.2.0",
     "js-yaml": "4.1.0",
     "patch-package": "^6.4.7",
@@ -63,5 +63,10 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "puppeteer": "^1.13.0",
     "typescript": "~4.6.0"
+  },
+  "overrides": {
+    "portable-fetch": {
+      "node-fetch": "3.3.0"
+    }
   }
 }
