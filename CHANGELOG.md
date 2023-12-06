@@ -1,5 +1,9 @@
 # Change Log
 
+## [v24.3.0-rc.2](https://github.com/gisaia/ARLAS-wui-iam/tree/v24.3.0-rc.2) (2023-12-06)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v24.3.0-rc.1...v24.3.0-rc.2)
+
 ## [v24.3.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v24.3.0-rc.1) (2023-12-01)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v1.0.0-beta.10...v24.3.0-rc.1)
