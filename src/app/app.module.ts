@@ -134,7 +134,7 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     {
       provide: GET_OPTIONS,
       useFactory: getOptionsFactory,
-      deps: [AuthentificationService, ArlasIamService]
+      deps: [ArlasSettingsService, AuthentificationService, ArlasIamService]
     },
     {
       provide: CONFIG_UPDATER,
