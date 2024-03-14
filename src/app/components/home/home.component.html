@@ -89,13 +89,13 @@
         <div class="orgs">
           <h3>{{'My organisations' | translate}}</h3>
           <div class="list">
-            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg.id">
+            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg?.id">
               <div class="info">
                 <div class="title">{{org.displayName}}</div>
                 <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
                   translate)}}</div>
               </div>
-              <button [class.selected-btn]="org.id == currentSelectedOrg.id" *ngIf="org.isOwner" mat-stroked-button
+              <button [class.selected-btn]="org.id == currentSelectedOrg?.id" *ngIf="org.isOwner" mat-stroked-button
                 (click)="manage(org)">{{'Manage' | translate}}</button>
             </div>
           </div>
