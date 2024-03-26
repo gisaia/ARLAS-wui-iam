@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   public updateCurrentOrga(org: OrgData) {
-    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
+    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.display_name });
     this.currentSelectedOrg = org;
     this.arlasIamService.storeOrganisation(org.name);
     this.router.navigate(
@@ -119,18 +119,18 @@ export class HomeComponent implements OnInit {
   public getOrganisations(currentOrg?: OrgData): void {
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
-
-        this.organisations = orgs.filter(o => (o as any).isOwner);
+        /** why is_owner is not part of OrgData */
+        this.organisations = orgs.filter(o => (o as any).is_owner);
         this.organisations.forEach(org => {
           if (org.name === this.user.id) {
-            org.displayName = getPrivateOrgDisplayName(this.user.email);
+            org.display_name = getPrivateOrgDisplayName(this.user.email);
           }
         });
         this.allMyOrgs = orgs.map(org => {
           if (org.name === this.user.id) {
-            org.displayName = getPrivateOrgDisplayName(this.user.email);
+            org.display_name = getPrivateOrgDisplayName(this.user.email);
           }
-          (org as any).groups = this.user.roles.filter(r => r.isGroup && r.organisation.id === org.id).map(r => r.name);
+          (org as any).groups = this.user.roles.filter(r => r.is_group && r.organisation.id === org.id).map(r => r.name);
           return org;
         });
         const org = this.arlasIamService.getOrganisation();
@@ -140,11 +140,11 @@ export class HomeComponent implements OnInit {
 
         if (!!currentOrg) {
           this.managerService.currentOrga.next(
-            { id: currentOrg.id, name: currentOrg.name, displayName: currentOrg.displayName }
+            { id: currentOrg.id, name: currentOrg.name, displayName: currentOrg.display_name }
           );
         } else {
           this.managerService.currentOrga.next(
-            { id: this.organisations[0]?.id, name: this.organisations[0]?.name, displayName: this.organisations[0]?.displayName }
+            { id: this.organisations[0]?.id, name: this.organisations[0]?.name, displayName: this.organisations[0]?.display_name }
           );
         }
 
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit {
   }
 
   public manage(org: OrgData) {
-    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
+    this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.display_name });
     this.currentSelectedOrg = this.organisations.find(o => o.id === org.id);
     this.arlasIamService.storeOrganisation(org.name);
     this.router.navigate(['user'], { queryParams: { org: org.name } });
