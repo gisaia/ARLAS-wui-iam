@@ -16,7 +16,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> {{'Actions' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-        <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu" *ngIf="!row.isTechnical">
+        <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu" *ngIf="!row.is_technical">
           more_vert
         </span>
         <mat-menu #menu="matMenu">

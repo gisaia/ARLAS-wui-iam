@@ -83,15 +83,15 @@ export class ManagerService {
   }
 
   public updateUser(userId: string, userDef: UpdateUserDef): Observable<UserData> {
-    return from(this.arlasIamApi.updateUser(userId, userDef, this.options));
+    return from(this.arlasIamApi.updateUser(userDef, userId, this.options));
   }
 
   public updateUserRole(userId: string, roleList: string[]) {
-    return from(this.arlasIamApi.putRoles(this.currentOrga.getValue().id, userId, { ids: roleList }, this.options));
+    return from(this.arlasIamApi.putRoles({ ids: roleList }, this.currentOrga.getValue().id, userId, this.options));
   }
 
   public addUserToOrg(user: OrgUserDef): Observable<OrgData> {
-    return from(this.arlasIamApi.addUserToOrganisation(this.currentOrga.getValue().id, user, this.options));
+    return from(this.arlasIamApi.addUserToOrganisation(user, this.currentOrga.getValue().id , this.options));
   }
 
   public removeUserFromOrg(userId: string): Observable<OrgData> {
@@ -104,11 +104,11 @@ export class ManagerService {
   }
 
   public addRole(name: string, description: string): Observable<RoleData> {
-    return from(this.arlasIamApi.addRoleToOrganisation(this.currentOrga.getValue().id, { name, description }, this.options));
+    return from(this.arlasIamApi.addRoleToOrganisation({ name, description }, this.currentOrga.getValue().id, this.options));
   }
 
   public updateRole(roleId: string, name: string, description: string): Observable<RoleData> {
-    return from(this.arlasIamApi.updateRoleInOrganisation(this.currentOrga.getValue().id, roleId, { name, description }, this.options));
+    return from(this.arlasIamApi.updateRoleInOrganisation( { name, description }, this.currentOrga.getValue().id, roleId, this.options));
   }
 
   public getRole(roleId: string): Observable<RoleData> {
@@ -123,11 +123,11 @@ export class ManagerService {
   }
 
   public addGroup(name: string, description: string): Observable<RoleData> {
-    return from(this.arlasIamApi.addGroupToOrganisation(this.currentOrga.getValue().id, { name, description }, this.options));
+    return from(this.arlasIamApi.addGroupToOrganisation({ name, description }, this.currentOrga.getValue().id, this.options));
   }
 
   public updateGroup(roleId: string, name: string, description: string): Observable<RoleData> {
-    return from(this.arlasIamApi.updateGroupInOrganisation(this.currentOrga.getValue().id, roleId, { name, description }, this.options));
+    return from(this.arlasIamApi.updateGroupInOrganisation({ name, description }, this.currentOrga.getValue().id, roleId, this.options));
   }
 
   public getGroup(roleId: string): Observable<RoleData> {
@@ -144,11 +144,11 @@ export class ManagerService {
   }
 
   public addPermission(value: string, description: string): Observable<PermissionData> {
-    return from(this.arlasIamApi.addPermission(this.currentOrga.getValue().id, { value, description }, this.options));
+    return from(this.arlasIamApi.addPermission({ value, description }, this.currentOrga.getValue().id, this.options));
   }
 
   public updatePermission(permId: string, value: string, description: string): Observable<PermissionData> {
-    return from(this.arlasIamApi.updatePermission(this.currentOrga.getValue().id, permId, { value, description }, this.options));
+    return from(this.arlasIamApi.updatePermission( { value, description }, this.currentOrga.getValue().id, permId, this.options));
   }
 
   public getPermission(permId: string): Observable<PermissionData> {
@@ -167,11 +167,11 @@ export class ManagerService {
 
   /** PERMISSION COLUMN FILTER **/
   public createColumnFilterPermission(collections: string[]): Observable<PermissionData> {
-    return from(this.arlasIamApi.addColumnFilterPermission(this.currentOrga.getValue().id, collections, this.options));
+    return from(this.arlasIamApi.addColumnFilterPermission(collections, this.currentOrga.getValue().id, this.options));
   }
 
   public updateColumnFilterPermission(permId: string, collections: string[]): Observable<PermissionData> {
-    return from(this.arlasIamApi.updateColumnFilterPermission(this.currentOrga.getValue().id, permId, collections, this.options));
+    return from(this.arlasIamApi.updateColumnFilterPermission(collections, this.currentOrga.getValue().id, permId, this.options));
   }
 
   public getColumnFilterPermision(permId: string) {
