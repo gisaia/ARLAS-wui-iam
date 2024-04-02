@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "ajv-keywords": "5.1.0",
-    "arlas-wui-toolkit": "25.0.0-beta.8",
+    "arlas-wui-toolkit": "25.0.0-beta.10",
     "eslint": "^8.2.0",
     "js-yaml": "4.1.0",
     "patch-package": "^6.4.7",
