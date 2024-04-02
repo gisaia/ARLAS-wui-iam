@@ -40,7 +40,7 @@ export class RulesComponent implements OnInit, OnDestroy {
 
   public showRules() {
     this.managerService.getOrgGroups().subscribe({
-      next: roles => this.groups = roles.filter(r => (!this.showTechnicalRoles && (!r.is_technical || r.is_group)) || this.showTechnicalRoles)
+      next: roles => this.groups = roles.filter(r => (!this.showTechnicalRoles && (!r.isTechnical || r.isGroup)) || this.showTechnicalRoles)
     });
     this.managerService.getOrgPermissions().subscribe({
       next: perms => {

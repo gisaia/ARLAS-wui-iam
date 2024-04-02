@@ -21,7 +21,7 @@ import { getPrivateOrgDisplayName, saveState } from '@tools/utils';
 export class UserComponent implements OnInit, OnDestroy {
 
   public dataSource: MatTableDataSource<MemberData>;
-  public displayedColumns: string[] = ['email', 'roles', 'updateDate', 'is_owner', 'verified', 'active', 'actions'];
+  public displayedColumns: string[] = ['email', 'roles', 'updateDate', 'isOwner', 'verified', 'active', 'actions'];
 
   public isMyOrganisation = false;
   public pages: Page[] = [];
@@ -58,11 +58,11 @@ export class UserComponent implements OnInit, OnDestroy {
     this.managerService.getOrgUsers().subscribe({
       next: users => {
         this.dataSource = new MatTableDataSource(users.map(user => {
-          (user as any).roles = user.member.roles.filter(r => r.is_group).map(r => r.name);
+          (user as any).roles = user.member.roles.filter(r => r.isGroup).map(r => r.name);
           (user as any).email = user.member.email;
-          (user as any).updateDate = user.member.update_date;
-          (user as any).isActive = user.member.is_active;
-          (user as any).isVerified = user.member.is_verified;
+          (user as any).updateDate = user.member.updateDate;
+          (user as any).isActive = user.member.isActive;
+          (user as any).isVerified = user.member.isVerified;
           return user;
         }));
         this.dataSource.paginator = this.paginator;

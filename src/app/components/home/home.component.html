@@ -9,7 +9,7 @@
       {{'Organisation'| translate}}
       <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
         (selectionChange)="updateCurrentOrga(currentOrg.value)">
-        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.display_name}}</mat-option>
+        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.displayName}}</mat-option>
       </mat-select>
     </div>
   </div>
@@ -67,11 +67,11 @@
 
       <div class="content">
         <div class="perso">
-          <div class="name" *ngIf="!!user?.first_name || !!user?.last_name">
+          <div class="name" *ngIf="!!user?.firstName || !!user?.lastName">
             <span class="material-symbols-outlined medium">
               person
             </span>
-            {{user?.first_name}} {{user?.last_name}}
+            {{user?.firstName}} {{user?.lastName}}
           </div>
           <div class="mail">
             <span class="material-symbols-outlined">
@@ -91,11 +91,11 @@
           <div class="list">
             <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg?.id">
               <div class="info">
-                <div class="title">{{org.display_name}}</div>
-                <div class="role">{{'Role' | translate}} : {{org.is_owner ? ('Owner' | translate) : ('Member' |
+                <div class="title">{{org.displayName}}</div>
+                <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
                   translate)}}</div>
               </div>
-              <button [class.selected-btn]="org.id == currentSelectedOrg.id" *ngIf="org.is_owner" mat-stroked-button
+              <button [class.selected-btn]="org.id == currentSelectedOrg.id" *ngIf="org.isOwner" mat-stroked-button
                 (click)="manage(org)">{{'Manage' | translate}}</button>
             </div>
           </div>
