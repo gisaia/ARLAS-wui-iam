@@ -10,7 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ArlasIamService } from 'arlas-wui-toolkit';
+import { ArlasCollaborativesearchService, ArlasConfigService,
+  ArlasConfigurationUpdaterService, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
 
 import { HomeComponent } from './home.component';
 import { ManagerService } from '@services/manager/manager.service';
@@ -55,7 +56,17 @@ describe('HomeComponent', () => {
           provide: ToastrService,
           useClass: MockToastrService
         },
-        ArlasIamService
+        ArlasIamService,
+        ArlasConfigService, ArlasCollaborativesearchService,
+        {
+          provide: ArlasStartupService,
+          useClass: ArlasStartupService,
+          deps: [ArlasConfigurationUpdaterService]
+        },
+        {
+          provide: ArlasConfigurationUpdaterService,
+          useClass: ArlasConfigurationUpdaterService
+        }
       ]
     })
       .compileComponents();
