@@ -87,20 +87,18 @@ export class IamStartupService {
           next: loginData => {
             if (!!loginData) {
               const storedArlasOrganisation = this.arlasIamService.getOrganisation();
-              const org = !!storedArlasOrganisation ? storedArlasOrganisation
-                : (!!loginData.user?.organisations[0] ? loginData.user?.organisations[0].name : null);
-
-              this.arlasIamService.setHeaders(org, loginData.access_token);
-
               const iamHeader = {
                 Authorization: 'Bearer ' + loginData.access_token,
               };
-              // Set the org filter only if the organisation is defined
-              if (!!org) {
-                // @ts-ignore
-                iamHeader['arlas-org-filter'] = org;
+              if(!!storedArlasOrganisation) {
+                const org = storedArlasOrganisation;
+                this.arlasIamService.setHeaders(org, loginData.access_token);
+                // Set the org filter only if the organisation is defined
+                if (!!org) {
+                  // @ts-ignore
+                  iamHeader['arlas-org-filter'] = org;
+                }
               }
-
               this.managerService.setOptions({
                 headers: iamHeader
               });
