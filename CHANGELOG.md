@@ -1,8 +1,8 @@
 # Change Log
 
-## [v25.0.0-beta.11](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.11) (2024-04-26)
+## [v25.0.0-beta.12](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.12) (2024-04-26)
 
-[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.10...v25.0.0-beta.11)
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.10...v25.0.0-beta.12)
 
 **Miscellaneous:**
 
