@@ -1,5 +1,13 @@
 # Change Log
 
+## [v25.0.0-beta.11](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.11) (2024-04-26)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.10...v25.0.0-beta.11)
+
+**Miscellaneous:**
+
+- I can't switch to an organisation where I am only a member in the organisations switcher [\#62](https://github.com/gisaia/ARLAS-wui-iam/issues/62)
+
 ## [v25.0.0-beta.10](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.10) (2024-04-22)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.9...v25.0.0-beta.10)
