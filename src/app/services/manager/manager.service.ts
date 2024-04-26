@@ -9,7 +9,6 @@ import {
   UserData
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
-import { pid } from 'process';
 import { BehaviorSubject, Observable, from, map } from 'rxjs';
 
 @Injectable({
