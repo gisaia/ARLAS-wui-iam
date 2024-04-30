@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { OrgData, UserData } from 'arlas-iam-api';
-import { ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { ManagerService } from '@services/manager/manager.service';
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
     };
     if (!!org) {
       // @ts-ignore
-      iamHeader['arlas-org-filter'] = org.name;
+      iamHeader[ARLAS_ORG_FILTER] = org.name;
     }
     this.managerService.setOptions({
       headers: iamHeader
