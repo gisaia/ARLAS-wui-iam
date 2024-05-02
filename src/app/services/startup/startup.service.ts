@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Configuration, DefaultApi } from 'arlas-iam-api';
-import { ArlasIamService, ArlasSettings, ArlasSettingsService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { ArlasIamService, ArlasSettings, ArlasSettingsService, ArlasStartupService, ARLAS_ORG_FILTER } from 'arlas-wui-toolkit';
 import * as YAML from 'js-yaml';
 import { Subject } from 'rxjs/internal/Subject';
 import { ManagerService } from '../manager/manager.service';
