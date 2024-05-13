@@ -1,5 +1,5 @@
 <arlas-iam-top-menu [pages]="pages" [showCreate]="!isMyOrganisation" [createText]="'Invite user' | translate"
-  (createEvent)="add()" ></arlas-iam-top-menu>
+  (createEvent)="add()"></arlas-iam-top-menu>
 
 <div class="content">
   <table mat-table class="table" [dataSource]="dataSource" matSort>
@@ -60,12 +60,11 @@
             </span>
             {{'Edit' | translate}}
           </button>
-          <button mat-menu-item (click)="removeUser(row.member.id)"
-            [disabled]="row.member.id === this.currentUser.id">
+          <button mat-menu-item (click)="removeUser(row.member.id)" [disabled]="row.member.id === this.currentUser.id">
             <span class="material-symbols-outlined button-actions">
               delete
             </span>
-            {{'Remove' | translate}}
+            {{'Remove' | translate:{ org: this.arlasIamService.getOrganisation()} }}
           </button>
         </mat-menu>
 
