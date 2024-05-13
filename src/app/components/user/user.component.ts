@@ -11,7 +11,7 @@ import { ManagerService } from '@services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '@tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { getPrivateOrgDisplayName, saveState } from '@tools/utils';
+import { getPrivateOrgDisplayName } from '@tools/utils';
 
 @Component({
   selector: 'arlas-iam-user',

@@ -39,7 +39,7 @@
 	"Last update": "Last update",
 	"Active": "Active",
 	"Verified": "Verified",
-	"Remove": "Remove",
+	"Remove": "Remove from {{org}}",
 	"Organisation created": "Organisation created",
 	"An organisation with this name already exists": "An organisation with this name already exists",
 	"Profile": "Profile",
