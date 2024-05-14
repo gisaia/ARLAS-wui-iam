@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PermissionCreateComponent } from '@components/permission/permission-create/permission-create.component';
 import { AuthGuardIamService, ForgotComponent, LoginComponent, RegisterComponent, ResetComponent, VerifyComponent } from 'arlas-wui-toolkit';
 import { HomeComponent } from './components/home/home.component';
 import { PermissionComponent } from './components/permission/permission.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
 import { RoleComponent } from './components/role/role.component';
+import { RulesComponent } from './components/rules/rules.component';
+import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
-import { UserAddComponent } from './components/user/user-add/user-add.component';
-import { RulesComponent } from './components/rules/rules.component';
-import {
-  PermissionCreateColumnFilterComponent
-} from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
 
 
 const routes: Routes = [
@@ -38,8 +36,8 @@ const routes: Routes = [
         path: 'permission', canActivate: [AuthGuardIamService],
         children: [
           { path: '', component: PermissionComponent },
-          { path: 'create', component: PermissionCreateColumnFilterComponent },
-          { path: 'edit/:id', component: PermissionCreateColumnFilterComponent }
+          { path: 'create', component: PermissionCreateComponent },
+          { path: 'edit/:id', component: PermissionCreateComponent }
         ]
       },
       {

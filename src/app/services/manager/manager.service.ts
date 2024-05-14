@@ -6,10 +6,11 @@ import {
   PermissionData,
   RoleData,
   UpdateUserDef,
-  UserData
+  UserData,
+  ArlasMessage
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
-import { BehaviorSubject, Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -91,11 +92,23 @@ export class ManagerService {
   }
 
   public addUserToOrg(user: OrgUserDef): Observable<OrgData> {
-    return from(this.arlasIamApi.addUserToOrganisation(user, this.currentOrga.getValue().id , this.options));
+    return from(this.arlasIamApi.addUserToOrganisation(user, this.currentOrga.getValue().id, this.options));
   }
 
   public removeUserFromOrg(userId: string): Observable<OrgData> {
     return from(this.arlasIamApi.removeUserFromOrganisation(this.currentOrga.getValue().id, userId, this.options));
+  }
+
+  public deleteUser(userId: string): Observable<ArlasMessage> {
+    return from(this.arlasIamApi.deleteUser(userId, this.options));
+  }
+
+  public activateUser(userId: string): Observable<ArlasMessage> {
+    return from(this.arlasIamApi.activateUser(userId, this.options));
+  }
+
+  public deactivateUser(userId: string): Observable<ArlasMessage> {
+    return from(this.arlasIamApi.deactivateUser(userId, this.options));
   }
 
   /** ROLES **/
@@ -108,7 +121,7 @@ export class ManagerService {
   }
 
   public updateRole(roleId: string, name: string, description: string): Observable<RoleData> {
-    return from(this.arlasIamApi.updateRoleInOrganisation( { name, description }, this.currentOrga.getValue().id, roleId, this.options));
+    return from(this.arlasIamApi.updateRoleInOrganisation({ name, description }, this.currentOrga.getValue().id, roleId, this.options));
   }
 
   public getRole(roleId: string): Observable<RoleData> {
@@ -116,6 +129,8 @@ export class ManagerService {
       .then(roles => roles.find(r => r.id === roleId))
     );
   }
+
+
 
   /** GROUPS **/
   public getOrgGroups(): Observable<RoleData[]> {
@@ -136,7 +151,9 @@ export class ManagerService {
     );
   }
 
-
+  public deleteGroup(groupId: string): Observable<ArlasMessage> {
+    return from(this.arlasIamApi.deleteGroupInOrganisation(this.currentOrga.getValue().id, groupId, this.options));
+  }
 
   /** PERMISSIONS **/
   public getOrgPermissions(): Observable<PermissionData[]> {
@@ -148,7 +165,7 @@ export class ManagerService {
   }
 
   public updatePermission(permId: string, value: string, description: string): Observable<PermissionData> {
-    return from(this.arlasIamApi.updatePermission( { value, description }, this.currentOrga.getValue().id, permId, this.options));
+    return from(this.arlasIamApi.updatePermission({ value, description }, this.currentOrga.getValue().id, permId, this.options));
   }
 
   public getPermission(permId: string): Observable<PermissionData> {
@@ -163,6 +180,10 @@ export class ManagerService {
 
   public removePermissionFromRole(roleId: string, permId: string): Observable<RoleData> {
     return from(this.arlasIamApi.removePermissionFromRole(this.currentOrga.getValue().id, roleId, permId, this.options));
+  }
+
+  public deletePermission(permId: string): Observable<ArlasMessage> {
+    return from(this.arlasIamApi.deletePermission(this.currentOrga.getValue().id, permId, this.options));
   }
 
   /** PERMISSION COLUMN FILTER **/
