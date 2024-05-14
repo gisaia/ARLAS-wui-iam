@@ -84,7 +84,7 @@ export class PermissionComponent implements OnInit {
         if (result) {
           this.managerService.deletePermission(permId).subscribe({
             next: () => {
-              this.toastr.success('Permission deleted');
+              this.toastr.success(this.translate.instant('Permission deleted'));
               this.showPerms();
             },
             error: () => {

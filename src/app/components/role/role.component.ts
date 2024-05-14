@@ -83,7 +83,7 @@ export class RoleComponent implements OnInit {
         if (result) {
           this.managerService.deleteGroup(roleId).subscribe({
             next: () => {
-              this.toastr.success('Group deleted');
+              this.toastr.success(this.translate.instant('Group deleted'));
               this.showGroups();
             },
             error: () => {
