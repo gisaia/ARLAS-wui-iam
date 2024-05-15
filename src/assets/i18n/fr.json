@@ -97,5 +97,13 @@
 	"Already have an account?": "Vous avez déjà un compte ?",
 	"Log In": "Se connecter",
 	"No Account?": "Vous n'avez pas de compte ?",
-	"Sign up": "Inscrivez vous"
+	"Sign up": "Inscrivez vous",
+  "Default group for dashboard sharing.": "Groupe par défaut pour partager les dashboards",
+  "Building dashboards in ARLAS": "Créer des dashboards dans ARLAS",
+  "Managing data (ingest, update) in ARLAS": "Gérer les données (ingestion, mise à jour) dans ARLAS",
+  "Download data from ARLAS": "Télécharger des données depuis ARLAS",
+  "Managing users and permissions of ARLAS": "Gérer les utilisateurs et permissions d'ARLAS",
+  "Tagging data in ARLAS": "Tagger des données dans ARLAS",
+  "Viewing data in ARLAS": "Voir les données dans ARLAS",
+  "View all collections": "Accéder à toutes les collections"
 }
