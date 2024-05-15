@@ -25,7 +25,7 @@
         </mat-select-trigger>
         <mat-option *ngFor="let group of orgGroups" [value]="group">
           {{group.name}} -
-          <span class="option-description">{{group.description}}</span>
+          <span class="option-description">{{group.description | translate}}</span>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -40,8 +40,8 @@
           </span>
         </mat-select-trigger>
         <mat-option [value]="role" *ngFor="let role of orgRoles">
-          {{role.name}} -
-          <span class="option-description">{{role.description}}</span>
+          {{role.name | roleName}} -
+          <span class="option-description">{{role.description | translate}}</span>
         </mat-option>
       </mat-select>
     </mat-form-field>
