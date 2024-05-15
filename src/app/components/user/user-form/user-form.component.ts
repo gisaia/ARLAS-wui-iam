@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { ARLAS_ROLE_PREFIX } from '@tools/utils';
-import { RoleData } from 'arlas-iam-api';
+import { RoleData, MemberData } from 'arlas-iam-api';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, forkJoin } from 'rxjs';
@@ -21,9 +23,13 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
 
   public roleSubscription: Subscription = null;
+  public isSuperAdmin = false;
 
   public userId = '';
   public userEmail = '';
+
+  public user: MemberData;
+
   public orgGroups: RoleData[] = [];
   public orgRoles: RoleData[] = [];
   public userGroups: RoleData[] = [];
@@ -37,11 +43,13 @@ export class UserFormComponent implements OnInit {
     private managerService: ManagerService,
     private translate: TranslateService,
     private toastr: ToastrService,
-    private arlasIamService: ArlasIamService
+    private arlasIamService: ArlasIamService,
+    private dialog: MatDialog
   ) { }
 
   public ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id');
+    this.isSuperAdmin = !!this.arlasIamService.user?.roles.find(r => r.name === 'role/iam/admin');
     this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
       if (!!org) {
         forkJoin([
@@ -56,10 +64,12 @@ export class UserFormComponent implements OnInit {
             this.userForm.get('groups').setValue(this.orgGroups.filter(g => this.userGroups.map(ug => ug.id).includes(g.id)));
 
             this.orgRoles = data[2];
-            this.userRoles = data[3].member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX));
+            this.user = data[3];
+            this.userRoles = this.user.member.roles.filter(r => r.organisation?.id === org.id && r.name.startsWith(ARLAS_ROLE_PREFIX));
             this.userForm.get('roles').setValue(this.orgRoles.filter(r => this.userRoles.map(ur => ur.id).includes(r.id)));
 
-            this.userEmail = data[3].member.email;
+            this.userEmail = this.user.member.email;
+            this.userForm.get('active').setValue(data[3].member.isActive);
             this.pages = [
               { label: marker('Users'), route: ['user'] },
               { label: this.translate.instant('Update user') + ' : ' + this.userEmail }
@@ -70,7 +80,8 @@ export class UserFormComponent implements OnInit {
     });
     this.userForm = new FormGroup({
       groups: new FormControl([], [Validators.required]),
-      roles: new FormControl([], [Validators.required])
+      roles: new FormControl([], [Validators.required]),
+      active: new FormControl()
     });
 
   }
@@ -86,10 +97,54 @@ export class UserFormComponent implements OnInit {
       [...this.userForm.get('roles').value.map((r: RoleData) => r.id), ...this.userForm.get('groups').value.map((g: RoleData) => g.id)]
     ).subscribe({
       next: () => {
-        this.toastr.success(this.translate.instant('User updated'));
-        this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
+        const newActiveStatus = this.userForm.get('active').value;
+        if (newActiveStatus !== this.user.member.isActive) {
+          let userStatus$ = null;
+          if (newActiveStatus) {
+            userStatus$ = this.managerService.activateUser(this.userId);
+          } else {
+            userStatus$ = this.managerService.deactivateUser(this.userId);
+          }
+          userStatus$.subscribe({
+            next: () => {
+              this.toastr.success(this.translate.instant('User updated'));
+              this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
+            },
+            error: (err) => this.toastr.error(err.statusText, this.translate.instant('User status not updated'))
+          });
+        } else {
+          this.toastr.success(this.translate.instant('User updated'));
+          this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
+        }
       },
       error: (err) => this.toastr.error(err.statusText, this.translate.instant('User not updated'))
+    });
+  }
+
+  public deleteAccount() {
+    this.dialog.open(
+      ConfirmModalComponent,
+      {
+        data: {
+          title: marker('Delete account'),
+          message: marker('You will delete the account linked to this email:'),
+          param: this.userEmail
+        }
+      }
+    ).afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.managerService.deleteUser(this.userId).subscribe({
+            next: (response) => {
+              this.toastr.success(this.translate.instant(response.message));
+              this.router.navigate(['user'], { queryParamsHandling: 'preserve' });
+            },
+            error: () => {
+              this.toastr.error(this.translate.instant('User not deleted'));
+            }
+          });
+        }
+      }
     });
   }
 

@@ -23,7 +23,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
   ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService,
   ArlasSettingsService,
@@ -43,6 +42,7 @@ import {
 import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ArlasTranslateLoader } from '@tools/customLoader';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { PermissionComponent } from './components/permission/permission.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
@@ -53,8 +53,8 @@ import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
+import { RoleNamePipe } from './pipe/role-name.pipe';
 import { IamStartupService } from './services/startup/startup.service';
-import { ArlasTranslateLoader } from '@tools/customLoader';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -81,7 +81,8 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     RulesComponent,
     RulesItemComponent,
     PermissionCreateColumnFilterComponent,
-    CreateOrgModalComponent
+    CreateOrgModalComponent,
+    RoleNamePipe
   ],
   imports: [
     BrowserModule,

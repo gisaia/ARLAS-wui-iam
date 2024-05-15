@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MockToastrService } from '@tools/mock';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('RoleComponent', () => {
   let component: RoleComponent;
@@ -40,7 +41,8 @@ describe('RoleComponent', () => {
         MatToolbarModule,
         MatDividerModule,
         MatPaginatorModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MatDialogModule
       ],
       declarations: [RoleComponent, TopMenuComponent],
       providers: [

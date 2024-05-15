@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { getPrivateOrgDisplayName } from '@tools/utils';
 import { OrgData, UserData } from 'arlas-iam-api';
 import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
-import { ManagerService } from '@services/manager/manager.service';
-import { Page } from '@tools/model';
-import { getPrivateOrgDisplayName } from '@tools/utils';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 
@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
     private arlasStartupService: ArlasStartupService,
     private translate: TranslateService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private dialog: MatDialog,
   ) { }
@@ -153,7 +152,10 @@ export class HomeComponent implements OnInit {
         this.currentSelectedOrg = !!currentOrg ?
           this.organisations.find(o => o.name === currentOrg.name) :
           (!!this.organisations[0] ? this.organisations[0] : null);
-        this.updateCurrentOrga(this.currentSelectedOrg);
+        if (!!this.currentSelectedOrg) {
+          this.updateCurrentOrga(this.currentSelectedOrg);
+        }
+
       }
     });
   }

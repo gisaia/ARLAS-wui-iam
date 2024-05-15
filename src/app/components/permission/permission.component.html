@@ -16,7 +16,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> {{'Actions' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-        <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu">
+        <span [matMenuTriggerFor]="menu" *ngIf="row.value !== DEFAULT_PERM_VALUE" class="material-symbols-outlined actions-menu">
           more_vert
         </span>
         <mat-menu #menu="matMenu">
@@ -25,6 +25,12 @@
               edit
             </span>
             {{'Edit' | translate}}
+          </button>
+          <button mat-menu-item (click)="deletePerm(row.id, row.value)">
+            <span class="material-symbols-outlined button-actions">
+              delete
+            </span>
+            {{'Delete' | translate}}
           </button>
         </mat-menu>
 

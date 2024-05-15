@@ -6,16 +6,19 @@ import { ToastrService } from 'ngx-toastr';
 import { UserFormComponent } from './user-form.component';
 import { MockManagerService, MockToastrService } from '@tools/mock';
 import { ManagerService } from '@services/manager/manager.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RoleNamePipe } from '@app/pipe/role-name.pipe';
 describe('UserFormComponent', () => {
   let component: UserFormComponent;
   let fixture: ComponentFixture<UserFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserFormComponent],
+      declarations: [UserFormComponent, RoleNamePipe],
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        MatDialogModule,
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
       ],
       providers: [
         {

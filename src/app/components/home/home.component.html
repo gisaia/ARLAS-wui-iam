@@ -24,6 +24,7 @@
         </span>
         <span class="label">{{'Home' | translate}}</span>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'User' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
@@ -105,4 +106,4 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-toolbar class="footer">© Gisaïa 2023</mat-toolbar>
+<mat-toolbar class="footer">© Gisaïa 2024</mat-toolbar>

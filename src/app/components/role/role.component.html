@@ -26,6 +26,12 @@
             </span>
             {{'Edit' | translate}}
           </button>
+          <button mat-menu-item (click)="deleteRole(row.id, row.name)">
+            <span class="material-symbols-outlined button-actions">
+              delete
+            </span>
+            {{'Delete' | translate}}
+          </button>
         </mat-menu>
 
       </td>

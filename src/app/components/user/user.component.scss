@@ -4,6 +4,12 @@
   .table {
     width: 100%;
 
+    .mat-column-email {
+      &.inactive {
+        color: lightgray;
+      }
+    }
+
     .mat-column-actions {
       .actions-menu {
         cursor: pointer;
@@ -20,7 +26,7 @@
     .mat-cell.mat-column-isOwner,
     .mat-cell.mat-column-actions,
     .mat-cell.mat-column-active,
-    .mat-cell.mat-column-verified{
+    .mat-cell.mat-column-verified {
       padding-left: 10px;
     }
   }
