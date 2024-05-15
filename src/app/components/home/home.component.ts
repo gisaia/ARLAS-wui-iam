@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
-import { OrgData, UserData } from 'arlas-iam-api';
-import { ArlasIamService } from 'arlas-wui-toolkit';
-import { ToastrService } from 'ngx-toastr';
-import { filter } from 'rxjs';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getPrivateOrgDisplayName } from '@tools/utils';
+import { OrgData, UserData } from 'arlas-iam-api';
+import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 
@@ -34,9 +34,9 @@ export class HomeComponent implements OnInit {
   public constructor(
     private arlasIamService: ArlasIamService,
     private managerService: ManagerService,
+    private arlasStartupService: ArlasStartupService,
     private translate: TranslateService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     private dialog: MatDialog,
   ) { }
@@ -59,6 +59,18 @@ export class HomeComponent implements OnInit {
   }
 
   public updateCurrentOrga(org: OrgData) {
+    const accessToken = this.arlasIamService.getAccessToken();
+    this.arlasStartupService.changeOrgHeader(org.name, accessToken);
+    const iamHeader = {
+      Authorization: 'Bearer ' + accessToken,
+    };
+    if (!!org) {
+      // @ts-ignore
+      iamHeader[ARLAS_ORG_FILTER] = org.name;
+    }
+    this.managerService.setOptions({
+      headers: iamHeader
+    });
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.currentSelectedOrg = org;
     this.arlasIamService.storeOrganisation(org.name);
@@ -119,7 +131,7 @@ export class HomeComponent implements OnInit {
   public getOrganisations(currentOrg?: OrgData): void {
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
-
+        /** why is_owner is not part of OrgData */
         this.organisations = orgs.filter(o => (o as any).isOwner);
         this.organisations.forEach(org => {
           if (org.name === this.user.id) {
@@ -137,20 +149,13 @@ export class HomeComponent implements OnInit {
         if (!!org && !currentOrg) {
           currentOrg = this.organisations.find(o => o.name === org);
         }
-
-        if (!!currentOrg) {
-          this.managerService.currentOrga.next(
-            { id: currentOrg.id, name: currentOrg.name, displayName: currentOrg.displayName }
-          );
-        } else {
-          this.managerService.currentOrga.next(
-            { id: this.organisations[0]?.id, name: this.organisations[0]?.name, displayName: this.organisations[0]?.displayName }
-          );
-        }
-
         this.currentSelectedOrg = !!currentOrg ?
           this.organisations.find(o => o.name === currentOrg.name) :
           (!!this.organisations[0] ? this.organisations[0] : null);
+        if (!!this.currentSelectedOrg) {
+          this.updateCurrentOrga(this.currentSelectedOrg);
+        }
+
       }
     });
   }

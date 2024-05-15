@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Configuration, DefaultApi } from 'arlas-iam-api';
-import { ArlasIamService, ArlasSettings, ArlasSettingsService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { ArlasIamService, ArlasSettings, ArlasSettingsService, ArlasStartupService, ARLAS_ORG_FILTER } from 'arlas-wui-toolkit';
 import * as YAML from 'js-yaml';
 import { Subject } from 'rxjs/internal/Subject';
 import { ManagerService } from '../manager/manager.service';
@@ -87,20 +87,18 @@ export class IamStartupService {
           next: loginData => {
             if (!!loginData) {
               const storedArlasOrganisation = this.arlasIamService.getOrganisation();
-              const org = !!storedArlasOrganisation ? storedArlasOrganisation
-                : (!!loginData.user?.organisations[0] ? loginData.user?.organisations[0].name : null);
-
-              this.arlasIamService.setHeaders(org, loginData.accessToken);
-
               const iamHeader = {
-                Authorization: 'Bearer ' + loginData.accessToken,
+                Authorization: 'Bearer ' + loginData.access_token,
               };
-              // Set the org filter only if the organisation is defined
-              if (!!org) {
-                // @ts-ignore
-                iamHeader['arlas-org-filter'] = org;
+              if (!!storedArlasOrganisation) {
+                const org = storedArlasOrganisation;
+                this.arlasIamService.setHeaders(org, loginData.access_token);
+                // Set the org filter only if the organisation is defined
+                if (!!org) {
+                  // @ts-ignore
+                  iamHeader[ARLAS_ORG_FILTER] = org;
+                }
               }
-
               this.managerService.setOptions({
                 headers: iamHeader
               });

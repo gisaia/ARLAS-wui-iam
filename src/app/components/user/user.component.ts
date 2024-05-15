@@ -11,7 +11,7 @@ import { ManagerService } from '@services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '@tools/model';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { getPrivateOrgDisplayName, saveState } from '@tools/utils';
+import { getPrivateOrgDisplayName } from '@tools/utils';
 
 @Component({
   selector: 'arlas-iam-user',
@@ -21,7 +21,7 @@ import { getPrivateOrgDisplayName, saveState } from '@tools/utils';
 export class UserComponent implements OnInit, OnDestroy {
 
   public dataSource: MatTableDataSource<MemberData>;
-  public displayedColumns: string[] = ['email', 'roles', 'updateDate', 'isOwner', 'verified', 'active', 'actions'];
+  public displayedColumns: string[] = ['email', 'groups', 'roles', 'updateDate', 'isOwner', 'verified', 'active', 'actions'];
 
   public isMyOrganisation = false;
   public pages: Page[] = [];
@@ -58,7 +58,8 @@ export class UserComponent implements OnInit, OnDestroy {
     this.managerService.getOrgUsers().subscribe({
       next: users => {
         this.dataSource = new MatTableDataSource(users.map(user => {
-          (user as any).roles = user.member.roles.filter(r => r.isGroup).map(r => r.name);
+          (user as any).groups = user.member.roles.filter(r => r.isGroup).map(r => r.name);
+          (user as any).roles = user.member.roles.filter(r => !r.isGroup).map(r => r.name);
           (user as any).email = user.member.email;
           (user as any).updateDate = user.member.updateDate;
           (user as any).isActive = user.member.isActive;

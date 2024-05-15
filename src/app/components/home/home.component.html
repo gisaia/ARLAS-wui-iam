@@ -9,7 +9,7 @@
       {{'Organisation'| translate}}
       <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
         (selectionChange)="updateCurrentOrga(currentOrg.value)">
-        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.displayName}}</mat-option>
+        <mat-option *ngFor="let org of this.organisations" [value]="org">{{org.name}}</mat-option>
       </mat-select>
     </div>
   </div>
@@ -24,6 +24,7 @@
         </span>
         <span class="label">{{'Home' | translate}}</span>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'User' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
         <span class="material-symbols-outlined">
@@ -89,7 +90,7 @@
         <div class="orgs">
           <h3>{{'My organisations' | translate}}</h3>
           <div class="list">
-            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg.id">
+            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg?.id">
               <div class="info">
                 <div class="title">{{org.displayName}}</div>
                 <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
@@ -105,4 +106,4 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-toolbar class="footer">© Gisaïa 2023</mat-toolbar>
+<mat-toolbar class="footer">© Gisaïa 2024</mat-toolbar>

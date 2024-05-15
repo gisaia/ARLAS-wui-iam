@@ -1,5 +1,53 @@
 # Change Log
 
+## [v25.0.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-rc.1) (2024-05-14)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.14...v25.0.0-rc.1)
+
+## [v25.0.0-beta.14](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.14) (2024-05-02)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.13...v25.0.0-beta.14)
+
+## [v25.0.0-beta.13](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.13) (2024-05-02)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.12...v25.0.0-beta.13)
+
+## [v25.0.0-beta.12](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.12) (2024-04-26)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.10...v25.0.0-beta.12)
+
+**Miscellaneous:**
+
+- I can't switch to an organisation where I am only a member in the organisations switcher [\#62](https://github.com/gisaia/ARLAS-wui-iam/issues/62)
+
+## [v25.0.0-beta.10](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.10) (2024-04-22)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.9...v25.0.0-beta.10)
+
+## [v25.0.0-beta.9](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.9) (2024-04-02)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.8...v25.0.0-beta.9)
+
+## [v25.0.0-beta.8](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.8) (2024-03-29)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.4...v25.0.0-beta.8)
+
+## [v25.0.0-beta.4](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.4) (2024-03-27)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.3...v25.0.0-beta.4)
+
+## [v25.0.0-beta.3](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.3) (2024-03-26)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.2...v25.0.0-beta.3)
+
+## [v25.0.0-beta.2](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.2) (2024-02-20)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-beta.1...v25.0.0-beta.2)
+
+## [v25.0.0-beta.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-beta.1) (2024-02-15)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v24.3.0...v25.0.0-beta.1)
+
 ## [v24.3.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v24.3.0) (2023-12-20)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v24.3.0-rc.2...v24.3.0)

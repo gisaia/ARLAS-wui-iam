@@ -16,6 +16,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockToastrService } from '@tools/mock';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('PermissionComponent', () => {
   let component: PermissionComponent;
@@ -38,9 +41,16 @@ describe('PermissionComponent', () => {
         MatSortModule,
         MatToolbarModule,
         MatDividerModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatDialogModule
       ],
-      declarations: [PermissionComponent, TopMenuComponent]
+      declarations: [PermissionComponent, TopMenuComponent],
+      providers: [
+        {
+          provide: ToastrService,
+          useClass: MockToastrService
+        },
+      ]
     })
       .compileComponents();
   });

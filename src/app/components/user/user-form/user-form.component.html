@@ -2,7 +2,7 @@
 
 <form [formGroup]="userForm" class="form-user">
   <div class="form-content">
-    <h4>{{'Information' | translate}}</h4>
+    <h3>{{'Information' | translate}}</h3>
 
     <mat-form-field appearance="fill">
       <mat-label>{{'Groups' | translate}}</mat-label>
@@ -10,13 +10,14 @@
         <mat-select-trigger>
           {{userForm.get('groups').value?.[0]?.name || ''}}
           <span *ngIf="(userForm.get('groups').value?.length || 0) > 1" class="trigger-description">
-            (+{{(userForm.get('groups').value?.length || 0) - 1}} {{userForm.get('groups').value?.length === 2 ? 'other' :
+            (+{{(userForm.get('groups').value?.length || 0) - 1}} {{userForm.get('groups').value?.length === 2 ? 'other'
+            :
             'others'}})
           </span>
         </mat-select-trigger>
         <mat-option *ngFor="let group of orgGroups" [value]="group">
           {{group.name}} -
-          <span class="option-description">{{group.description}}</span>
+          <span class="option-description">{{group.description | translate}}</span>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -25,18 +26,19 @@
       <mat-label>{{'Roles' | translate}}</mat-label>
       <mat-select [multiple]="true" formControlName="roles" required>
         <mat-select-trigger>
-          {{userForm.get('roles').value?.[0]?.name || ''}}
+          {{(userForm.get('roles').value?.[0]?.name | roleName) || ''}}
           <span *ngIf="(userForm.get('roles').value?.length || 0) > 1" class="trigger-description">
             (+{{(userForm.get('roles').value?.length || 0) - 1}} {{userForm.get('roles').value?.length === 2 ? 'other' :
             'others'}})
           </span>
         </mat-select-trigger>
         <mat-option [value]="role" *ngFor="let role of orgRoles">
-          {{role.name}} -
-          <span class="option-description">{{role.description}}</span>
+          {{role.name | roleName}} -
+          <span class="option-description">{{role.description | translate}}</span>
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-checkbox class="active" formControlName="active">{{'Active' | translate}}</mat-checkbox>
   </div>
   <div>
     <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
@@ -44,5 +46,10 @@
     </button>
     <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
     </button>
+  </div>
+  <div class="advanced" *ngIf="isSuperAdmin">
+    <h3>{{'Danger zone' | translate}}</h3>
+    <div>{{'Once you delete an account, there is no going back. Please be certain.' | translate}}</div>
+    <button mat-stroked-button [color]="'warn'" (click)="deleteAccount()">{{'Delete user account' | translate}}</button>
   </div>
 </form>

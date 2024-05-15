@@ -2,6 +2,8 @@
 
 $arlas-app-primary: mat-palette($mat-cyan);
 $arlas-app-accent:  mat-palette($mat-deep-orange);
+$arlas-app-warn:    mat-palette($mat-red);
 
 $primaryColor: mat-color($arlas-app-primary);
 $accentColor: mat-color($arlas-app-accent);
+$warnColor: mat-color($arlas-app-warn);
