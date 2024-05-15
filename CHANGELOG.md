@@ -1,8 +1,25 @@
 # Change Log
 
+## [v25.0.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0) (2024-05-15)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-rc.2...v25.0.0)
+
 ## [v25.0.0-rc.2](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-rc.2) (2024-05-15)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-rc.1...v25.0.0-rc.2)
+
+**Miscellaneous:**
+
+- Add delete action for groups and permissions [\#76](https://github.com/gisaia/ARLAS-wui-iam/issues/76)
+- \[USERS FORM view\] add a Delete User action [\#73](https://github.com/gisaia/ARLAS-wui-iam/issues/73)
+- \[USERS view\] rename 'Delete/Supprimer' by : [\#72](https://github.com/gisaia/ARLAS-wui-iam/issues/72)
+- Add a checkbox to activate/deactivate a user in the user creation/update view [\#71](https://github.com/gisaia/ARLAS-wui-iam/issues/71)
+- Update copy right date to 2024 [\#70](https://github.com/gisaia/ARLAS-wui-iam/issues/70)
+- Rename technical roles by replacing /role/arlas/xxx by Xxx [\#69](https://github.com/gisaia/ARLAS-wui-iam/issues/69)
+- Add a column to display roles of a user in the user view [\#68](https://github.com/gisaia/ARLAS-wui-iam/issues/68)
+- Allow to modify all permissions using a text area instead of choosing collections [\#67](https://github.com/gisaia/ARLAS-wui-iam/issues/67)
+- When switching to 'User' tab, the chosen organisation is not set correctly and I'm not authorized [\#63](https://github.com/gisaia/ARLAS-wui-iam/issues/63)
+- ARLAS IAM: can not logout [\#58](https://github.com/gisaia/ARLAS-wui-iam/issues/58)
 
 ## [v25.0.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0-rc.1) (2024-05-14)
 
