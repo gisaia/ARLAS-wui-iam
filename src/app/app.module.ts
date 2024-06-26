@@ -55,6 +55,7 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 import { UserComponent } from './components/user/user.component';
 import { RoleNamePipe } from './pipe/role-name.pipe';
 import { IamStartupService } from './services/startup/startup.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -106,6 +107,7 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatPaginatorModule,
     MatSelectModule,
     MatInputModule,

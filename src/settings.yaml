@@ -4,4 +4,4 @@ authentication:
   force_connect: false
   use_discovery: false
   threshold: 60000
-  url: http://localhost:9997/arlas_iam_server
+  url: http://localhost:9998/arlas_iam_server
