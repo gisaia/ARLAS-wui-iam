@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   public constructor(
     private arlasIamService: ArlasIamService,
-    private managerService: ManagerService,
+    public managerService: ManagerService,
     private arlasStartupService: ArlasStartupService,
     private translate: TranslateService,
     private router: Router,

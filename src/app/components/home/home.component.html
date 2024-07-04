@@ -106,4 +106,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-toolbar class="footer">© Gisaïa 2024</mat-toolbar>
+<mat-toolbar class="footer">© Gisaïa 2024
+  <mat-progress-bar *ngIf="managerService.managerLoading"
+    class="loading-progress" color="primary" mode="indeterminate"></mat-progress-bar>
+</mat-toolbar>
