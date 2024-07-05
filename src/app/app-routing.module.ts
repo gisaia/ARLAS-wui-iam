@@ -10,6 +10,7 @@ import { RulesComponent } from './components/rules/rules.component';
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
+import { AuthGuardOwnerService } from '@tools/auth-guard-owner.service';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
     path: '', component: HomeComponent, canActivate: [AuthGuardIamService],
     children: [
       {
-        path: 'user', canActivate: [AuthGuardIamService],
+        path: 'user', canActivate: [AuthGuardOwnerService],
         children: [
           { path: '', component: UserComponent },
           { path: 'create', component: UserAddComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'role', canActivate: [AuthGuardIamService],
+        path: 'role', canActivate: [AuthGuardOwnerService],
         children: [
           { path: '', component: RoleComponent },
           { path: 'create', component: RoleFormComponent },
@@ -33,7 +34,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'permission', canActivate: [AuthGuardIamService],
+        path: 'permission', canActivate: [AuthGuardOwnerService],
         children: [
           { path: '', component: PermissionComponent },
           { path: 'create', component: PermissionCreateComponent },
@@ -41,7 +42,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'rule', component: RulesComponent, canActivate: [AuthGuardIamService]
+        path: 'rule', component: RulesComponent, canActivate: [AuthGuardOwnerService]
       }
     ]
   },
