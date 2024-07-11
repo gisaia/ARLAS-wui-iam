@@ -15,7 +15,7 @@
   </div>
 </arlas-top-menu>
 <div class="app">
-  <div class="menu">
+  <div *ngIf="isNotHome"  class="menu">
     <mat-nav-list class="route-nav-list">
       <mat-list-item [matTooltip]="'Home' | translate" [routerLink]="'/'" [routerLinkActiveOptions]="{ exact: true }"
         [queryParamsHandling]="'preserve'" routerLinkActive="active-page" [matTooltipPosition]="'right'">

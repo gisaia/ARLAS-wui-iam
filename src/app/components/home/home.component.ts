@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   public isSuperAdmin = false;
 
   public displayDashboard = false;
+  public isNotHome = false;
   public pages: Page[] = [];
   public user: UserData;
 
@@ -47,11 +48,17 @@ export class HomeComponent implements OnInit {
     this.isSuperAdmin = !!this.user?.roles.find(r => r.name === 'role/iam/admin');
     this.getOrganisations();
     this.checkOrga();
+    if(this.router.url !== '/' && !this.router.url.startsWith('/?')){
+      this.isNotHome = true;
+    }
     if (this.router.url === '/' || this.router.url.startsWith('/?')) {
       this.displayDashboard = true;
     }
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(
-      (data) => this.displayDashboard = ((data as NavigationEnd).url === '/' || (data as NavigationEnd).url.startsWith('/?'))
+      (data) => {
+        this.isNotHome = (data as NavigationEnd).url !== '/' && !(data as NavigationEnd).url.startsWith('/?');
+        this.displayDashboard = ((data as NavigationEnd).url === '/' || (data as NavigationEnd).url.startsWith('/?'));
+      }
     );
     this.pages = [
       { label: marker('Profile') },
