@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule, forwardRef } from '@angular/core';
+import { APP_INITIALIZER, forwardRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,11 +24,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {
-  ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService,
+  ArlasCollaborativesearchService,
+  ArlasConfigurationDescriptor,
+  ArlasIamService,
   ArlasSettingsService,
-  ArlasStartupService, ArlasToolkitSharedModule, AuthentificationService,
+  ArlasStartupService,
+  ArlasToolkitSharedModule,
+  AuthentificationService,
   CONFIG_UPDATER,
-  FETCH_OPTIONS, GET_OPTIONS, LoginModule, PersistenceService, configUpdaterFactory, getOptionsFactory
+  configUpdaterFactory,
+  FETCH_OPTIONS,
+  GET_OPTIONS,
+  getOptionsFactory,
+  LoginModule,
+  PersistenceService
 } from 'arlas-wui-toolkit';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
@@ -56,6 +65,8 @@ import { UserComponent } from './components/user/user.component';
 import { RoleNamePipe } from './pipe/role-name.pipe';
 import { IamStartupService } from './services/startup/startup.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { PermissionBulletComponent } from './components/shared/permission-bullet/permission-bullet.component';
+import { PermissionLegendComponent } from './components/shared/permission-legend/permission-legend.component';
 
 export function startupServiceFactory(startup: IamStartupService) {
   const load = () => startup.load();
@@ -83,7 +94,9 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     RulesItemComponent,
     PermissionCreateColumnFilterComponent,
     CreateOrgModalComponent,
-    RoleNamePipe
+    RoleNamePipe,
+    PermissionBulletComponent,
+    PermissionLegendComponent
   ],
   imports: [
     BrowserModule,

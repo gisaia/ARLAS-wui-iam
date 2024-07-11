@@ -105,5 +105,8 @@
   "Managing users and permissions of ARLAS": "Managing users and permissions of ARLAS",
   "Tagging data in ARLAS": "Tagging data in ARLAS",
   "Viewing data in ARLAS": "Viewing data in ARLAS",
-  "View all collections": "View all collections"
+  "View all collections": "View all collections",
+  "Permission giving the right to access one or more data collections": "Permission giving the right to access one or more data collections",
+  "A permission that limits visibility of the data in a collection, based on a filter": "A permission that limits visibility of the data in a collection, based on a filter",
+  "Other type of permission": "Other type of permission"
 }
