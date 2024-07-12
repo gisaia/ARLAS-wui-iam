@@ -20,7 +20,15 @@
     .mat-column-active,
     .mat-column-verified,
     .mat-column-isOwner {
-      width: 80px;
+      width: 40px;
+      text-align: center;
+    }
+
+    .mat-column-groups,
+    .mat-column-roles {
+      width: 250px;
+      text-align: start;
+      padding: 5px;
     }
 
     .mat-cell.mat-column-isOwner,
@@ -42,36 +50,77 @@
   vertical-align: middle;
 }
 
-td {
-  padding: 4px;
-}
-
 .group {
   &-container {
-    width: 200px;
-    text-align: start;
+    padding: 5px;
+  }
+  &-item {
+    &:after {
+      content: '\2022';
+      display: inline-block;
+      margin: 2px 4px;
+    }
+
+    &:last-of-type:after {
+      content: ''
+    }
   }
 }
-.group-item {
-  margin: 2px 0;
-}
-.group-item:after {
-  content: '\2022';
-  display: inline-block;
-  margin: 2px 4px;
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .content .table{
+    .mat-column-actions,
+    .mat-column-active,
+    .mat-column-verified,
+    .mat-column-isOwner {
+      width: 40px;
+      text-align: center;
+    }
+
+    .mat-column-groups,
+    .mat-column-roles {
+      width: 175px;
+      text-align: start;
+    }
+  }
 }
 
-.group-item:last-of-type:after {
-  content: ''
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .content .table{
+    .mat-column-actions,
+    .mat-column-active,
+    .mat-column-verified,
+    .mat-column-isOwner {
+      width: 40px;
+      text-align: center;
+    }
+
+    .mat-column-groups,
+    .mat-column-roles {
+      width: 350px;
+      text-align: start;
+    }
+  }
+
 }
 
-.test {
-  background: #6d676714;
-  border-radius: 20px;
-  padding: 6px;
-  width: 10px;
-  height: 10px;
-  font-size: 10px;
-  display: inline-block;
-  /* margin-top: auto; */
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 2500px) {
+  .content .table{
+    .mat-column-actions,
+    .mat-column-active,
+    .mat-column-verified,
+    .mat-column-isOwner {
+      width: 80px;
+      text-align: center;
+    }
+
+    .mat-column-groups,
+    .mat-column-roles {
+      width: 750px;
+      text-align: start;
+    }
+  }
 }

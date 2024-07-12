@@ -33,8 +33,6 @@ export class UserComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatSort) public sort: MatSort;
 
-  protected  moreGroup  = new Map();
-
   public constructor(
     private managerService: ManagerService,
     private router: Router,
@@ -60,12 +58,14 @@ export class UserComponent implements OnInit, OnDestroy {
     this.managerService.getOrgUsers().subscribe({
       next: users => {
         this.dataSource = new MatTableDataSource(users.map((user, i) => {
-          (user as any).groups = user.member.roles.filter(r => r.isGroup).map(r => r.name);
-          (user as any).groups = ["afiliate", 'toress', 'magik', 'deams', 'always dreaming', 'groupde des thug trop trop trop fort', 'carliot', 'peipito peoita', 'test'].concat((user as any).groups).sort(this.sortAlphabetically);
-          if((user as any).groups.length > 3){
-            this.moreGroup.set(i, ((user as any).groups.slice(3, (user as any).groups.length)));
-          }
-          (user as any).roles = user.member.roles.filter(r => !r.isGroup).map(r => r.name);
+          (user as any).groups = user.member.roles
+            .filter(r => r.isGroup)
+            .map(r => r.name)
+            .sort(this._sortAlphabetically);
+          (user as any).roles = user.member.roles
+            .filter(r => !r.isGroup)
+            .map(r => r.name)
+            .sort(this._sortAlphabetically);
           (user as any).email = user.member.email;
           (user as any).updateDate = user.member.updateDate;
           (user as any).isActive = user.member.isActive;
@@ -78,9 +78,13 @@ export class UserComponent implements OnInit, OnDestroy {
     });
   }
 
-  sortAlphabetically(termaA: string, termB: string){
-    if(termaA < termB) return -1;
-    if(termaA > termB) return 1;
+  private _sortAlphabetically(termaA: string, termB: string){
+    if(termaA < termB) {
+      return -1;
+    }
+    if(termaA > termB) {
+      return 1;
+    }
     return 0;
   }
 
@@ -105,10 +109,5 @@ export class UserComponent implements OnInit, OnDestroy {
     if (!!this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
-  }
-
-  test(el: HTMLSpanElement) {
-    el.dataset['disable'] = (el.dataset['disable'] !== 'true') as unknown as  string;
-
   }
 }
