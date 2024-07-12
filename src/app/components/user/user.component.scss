@@ -41,3 +41,37 @@
 .button-actions {
   vertical-align: middle;
 }
+
+td {
+  padding: 4px;
+}
+
+.group {
+  &-container {
+    width: 200px;
+    text-align: start;
+  }
+}
+.group-item {
+  margin: 2px 0;
+}
+.group-item:after {
+  content: '\2022';
+  display: inline-block;
+  margin: 2px 4px;
+}
+
+.group-item:last-of-type:after {
+  content: ''
+}
+
+.test {
+  background: #6d676714;
+  border-radius: 20px;
+  padding: 6px;
+  width: 10px;
+  height: 10px;
+  font-size: 10px;
+  display: inline-block;
+  /* margin-top: auto; */
+}
