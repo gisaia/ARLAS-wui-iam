@@ -51,7 +51,9 @@ export class HomeComponent implements OnInit {
       this.displayDashboard = true;
     }
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(
-      (data) => this.displayDashboard = ((data as NavigationEnd).url === '/' || (data as NavigationEnd).url.startsWith('/?'))
+      (data) => {
+        this.displayDashboard = ((data as NavigationEnd).url === '/' || (data as NavigationEnd).url.startsWith('/?'));
+      }
     );
     this.pages = [
       { label: marker('Profile') },

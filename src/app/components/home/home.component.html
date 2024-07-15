@@ -67,26 +67,6 @@
       </arlas-iam-top-menu>
 
       <div class="content">
-        <div class="perso">
-          <div class="name" *ngIf="!!user?.firstName || !!user?.lastName">
-            <span class="material-symbols-outlined medium">
-              person
-            </span>
-            {{user?.firstName}} {{user?.lastName}}
-          </div>
-          <div class="mail">
-            <span class="material-symbols-outlined">
-              mail
-            </span>
-            {{user?.email}}
-          </div>
-          <div class="locale">
-            <span class="material-symbols-outlined">
-              language
-            </span>
-            {{user?.locale === 'en' ? ('English' | translate) : ('French' | translate)}}
-          </div>
-        </div>
         <div class="orgs">
           <h3>{{'My organisations' | translate}}</h3>
           <div class="list">
