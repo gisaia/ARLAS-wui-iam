@@ -23,7 +23,7 @@ export const DEFAULT_PERM_VALUE = 'h:column-filter:*:*';
 export class PermissionComponent implements OnInit {
 
   public dataSource: MatTableDataSource<PermissionData>;
-  public displayedColumns: string[] = ['value', 'description', 'actions'];
+  public displayedColumns: string[] = ['bullet', 'description', 'value' , 'actions'];
 
   public permSubscription: Subscription = null;
   public pages: Page[];

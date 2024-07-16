@@ -1,5 +1,5 @@
 .content {
-  height: calc(100% - 50px);
+  height: calc(100% - 98px);
   overflow: auto;
   .table {
     width: 100%;
@@ -25,4 +25,21 @@
 
 .button-actions {
   vertical-align: middle;
+}
+
+.td-bullet {
+  width: 24px;
+  padding-left: 10px!important;
+}
+
+.value-container{
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+}
+
+.permission-legend{
+  padding-left: 10px;
+  padding-top: 24px;
+  display: inline-block;
 }

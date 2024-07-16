@@ -42,6 +42,7 @@
       &.perm {
         padding: 0 5px;
         min-width: 100px;
+        text-align: start;
       }
     }
 
@@ -50,4 +51,10 @@
       background-color: whitesmoke;
     }
   }
+}
+
+.permission-legend{
+  padding-left: 10px;
+  padding-top: 6px;
+  display: inline-block;
 }
