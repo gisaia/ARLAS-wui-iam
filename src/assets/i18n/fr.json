@@ -106,7 +106,7 @@
   "Tagging data in ARLAS": "Tagger des données dans ARLAS",
   "Viewing data in ARLAS": "Voir les données dans ARLAS",
   "View all collections": "Accéder à toutes les collections",
-  "Permission giving the right to access one or more data collections": "Une permission qui donne le droit d'accéder à une ou plusieurs collection de données.",
-  "A permission that limits visibility of the data in a collection, based on a filter": "une permission qui limite la visibilité sur les données d'une collection en s'appuyant sur un filtre",
+  "A Permission giving the right to access one or more data collections": "Une permission qui donne le droit d'accéder à une ou plusieurs collection de données.",
+  "A permission that limits visibility of the data in a collection, based on a filter": "Une permission qui limite la visibilité sur les données d'une collection en s'appuyant sur un filtre.",
   "Other type of permission": "Autre type de permission"
 }

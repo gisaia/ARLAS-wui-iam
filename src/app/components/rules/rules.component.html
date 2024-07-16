@@ -28,7 +28,7 @@
   <tr *ngFor="let perm of perms">
     <th class="perm">
       <arlas-permission-bullet [permissionValue]="perm.value"></arlas-permission-bullet>
-      {{perm.description}}</th>
+      {{perm.description | translate}}</th>
     <td *ngFor="let role of groups">
       <arlas-iam-rules-item [disabled]="updateLock" [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id"
         [permId]="perm.id"></arlas-iam-rules-item>
