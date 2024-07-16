@@ -57,19 +57,35 @@ export class UserComponent implements OnInit, OnDestroy {
   public showUsers() {
     this.managerService.getOrgUsers().subscribe({
       next: users => {
-        this.dataSource = new MatTableDataSource(users.map(user => {
-          (user as any).groups = user.member.roles.filter(r => r.isGroup).map(r => r.name);
-          (user as any).roles = user.member.roles.filter(r => !r.isGroup).map(r => r.name);
+        this.dataSource = new MatTableDataSource(users.map((user, i) => {
+          (user as any).groups = user.member.roles
+            .filter(r => r.isGroup)
+            .map(r => r.name)
+            .sort(this._sortAlphabetically);
+          (user as any).roles = user.member.roles
+            .filter(r => !r.isGroup)
+            .map(r => r.name)
+            .sort(this._sortAlphabetically);
           (user as any).email = user.member.email;
           (user as any).updateDate = user.member.updateDate;
           (user as any).isActive = user.member.isActive;
           (user as any).isVerified = user.member.isVerified;
-          return user;
-        }));
+          return user as MemberData;
+        })) as MatTableDataSource<MemberData>;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
     });
+  }
+
+  private _sortAlphabetically(termaA: string, termB: string){
+    if(termaA < termB) {
+      return -1;
+    }
+    if(termaA > termB) {
+      return 1;
+    }
+    return 0;
   }
 
   public add() {

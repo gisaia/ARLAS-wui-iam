@@ -6,19 +6,19 @@
 
     <ng-container matColumnDef="groups">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Groups' | translate}} </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-chip-list>
-          <mat-chip *ngFor="let group of row.groups">{{group}}</mat-chip>
-        </mat-chip-list>
+      <td mat-cell *matCellDef="let row;  let idx = index">
+        <div class="group-container">
+          <span class="group-item" *ngFor="let groups of row.groups">{{groups}}</span>
+        </div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="roles">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Roles' | translate}} </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-chip-list>
-          <mat-chip *ngFor="let role of row.roles">{{role | roleName}}</mat-chip>
-        </mat-chip-list>
+      <td mat-cell *matCellDef="let row; let idx = index">
+        <div class="group-container">
+          <span class="group-item" *ngFor="let role of row.roles">{{role | roleName}}</span>
+        </div>
       </td>
     </ng-container>
 
