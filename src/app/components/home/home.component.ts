@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
     this.currentSelectedOrg = org;
     this.arlasIamService.storeOrganisation(org.name);
     this.router.navigate(
-      ['/'],
+      [],
       {
         queryParams: { org: org.name }
       }
