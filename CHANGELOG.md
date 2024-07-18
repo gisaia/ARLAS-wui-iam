@@ -1,5 +1,15 @@
 # Change Log
 
+## [v25.1.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.1.0) (2024-07-18)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0...v25.1.0)
+
+**Miscellaneous:**
+
+- Remove panel in the welcome page [\#89](https://github.com/gisaia/ARLAS-wui-iam/issues/89)
+- Remove password form once change validated [\#85](https://github.com/gisaia/ARLAS-wui-iam/issues/85)
+- Trigger a spinner after creating/inviting a user [\#81](https://github.com/gisaia/ARLAS-wui-iam/issues/81)
+
 ## [v25.0.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0) (2024-05-15)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0-rc.2...v25.0.0)
