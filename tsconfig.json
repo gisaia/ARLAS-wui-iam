@@ -5,6 +5,7 @@
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "strictNullChecks": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -14,12 +15,12 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports":true,
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es6",
-    "module": "esnext",
+    "target": "ES2022",
+    "module": "es2020",
     "allowJs": true,
     "lib": [
       "es2015",
@@ -43,11 +44,11 @@
       "@environments/*": [
         "environments/*"
       ],
-
       "@app/*": [
         "app/*"
-      ],
-    }
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

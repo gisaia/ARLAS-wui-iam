@@ -1,6 +1,6 @@
 {
   "name": "arlas-wui-iam",
-  "version": "26.0.3-dev",
+  "version": "25.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,78 +10,67 @@
     "lint": "ng lint",
     "postinstall": "patch-package --patch-dir node_modules/arlas-web-core/patches",
     "i18n:init": "ngx-translate-extract --input ./src --output ./src/assets/i18n/template.json --key-as-default-value --replace --format json",
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,fr}.json --format json",
-    "license-check": "license-check-and-add check -f license-check-and-add.json"
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,fr}.json --format json"
   },
   "private": true,
   "peerDependencies": {
-    "@angular/animations": "^14.2.12",
+    "@angular/animations": "^15.2.10",
     "@angular/cdk": "^14.2.7",
-    "@angular/common": "^14.2.12",
-    "@angular/compiler": "^14.2.12",
-    "@angular/core": "^14.2.12",
-    "@angular/forms": "^14.2.12",
+    "@angular/common": "^15.2.10",
+    "@angular/compiler": "^15.2.10",
+    "@angular/core": "^15.2.10",
+    "@angular/forms": "^15.2.10",
     "@angular/material": "^14.2.7",
-    "@angular/platform-browser": "^14.2.12",
-    "@angular/platform-browser-dynamic": "^14.2.12",
-    "@angular/router": "^14.2.12",
+    "@angular/platform-browser": "^15.2.10",
+    "@angular/platform-browser-dynamic": "^15.2.10",
+    "@angular/router": "^15.2.10",
     "rxjs": "~7.4.0",
     "zone.js": "^0.11.4"
   },
   "dependencies": {
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
     "ajv-keywords": "5.1.0",
-    "arlas-wui-toolkit": "~26.0.11",
-    "eslint": "^8.2.0",
+    "arlas-wui-toolkit": "25.1.2",
+    "eslint": "^8.28.0",
     "js-yaml": "4.1.0",
     "ngx-toastr": "~14.3.0",
     "patch-package": "^6.4.7",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.2.10",
-    "@angular-eslint/builder": "14.4.0",
-    "@angular-eslint/eslint-plugin": "14.4.0",
-    "@angular-eslint/eslint-plugin-template": "14.4.0",
-    "@angular-eslint/schematics": "14.4.0",
-    "@angular-eslint/template-parser": "14.4.0",
-    "@angular/cli": "^14.2.10",
-    "@angular/compiler-cli": "^14.2.12",
-    "@angular/language-service": "^14.2.12",
+    "@angular-devkit/build-angular": "^15.2.11",
+    "@angular-eslint/builder": "15.2.1",
+    "@angular-eslint/eslint-plugin": "15.2.1",
+    "@angular-eslint/eslint-plugin-template": "15.2.1",
+    "@angular-eslint/schematics": "15.2.1",
+    "@angular-eslint/template-parser": "15.2.1",
+    "@angular/cli": "^15.2.11",
+    "@angular/compiler-cli": "^15.2.10",
+    "@angular/language-service": "^15.2.10",
     "@biesbjerg/ngx-translate-extract-marker": "^1.0.0",
     "@gisaia/ngx-translate-extract": "^8.2.0",
     "@types/jasmine": "~3.10.0",
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "16.11.20",
+    "@types/mapbox__mapbox-gl-draw": "^1.4.6",
+    "@types/node": "^18.19.0",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "license-check-and-add": "^4.0.5",
+    "node": "^18.19.0",
     "puppeteer": "^1.13.0",
-    "typescript": "~4.6.0"
+    "typescript": "4.8.2"
   },
   "overrides": {
     "ws": "8.17.1",
+    "braces": "3.0.3",
     "angular-oauth2-oidc-jwks": {
       "jsrsasign": "^11.0.0"
-    },
-    "braces": "3.0.3",
-    "socks": "2.7.3",
-    "@angular-devkit/build-angular": {
-      "webpack-dev-middleware": "~5.3.4"
-    },
-    "http-proxy-middleware": "2.0.7",
-    "shpjs": "4.0.4",
-    "@mapbox/geojson-extent": {
-      "traverse": "0.6.8"
-    },
-    "dompurify": "2.5.6",
-    "mermaid": "10.9.3"
+    }
   }
 }
