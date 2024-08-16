@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UserAddComponent } from './user-add.component';
 import { MockManagerService, MockToastrService } from '@tools/mock';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ManagerService } from '@services/manager/manager.service';
 
 describe('UserAddComponent', () => {

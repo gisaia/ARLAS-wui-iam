@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserFormComponent } from './user-form.component';
 import { MockManagerService, MockToastrService } from '@tools/mock';
 import { ManagerService } from '@services/manager/manager.service';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RoleNamePipe } from '@app/pipe/role-name.pipe';
 describe('UserFormComponent', () => {
   let component: UserFormComponent;

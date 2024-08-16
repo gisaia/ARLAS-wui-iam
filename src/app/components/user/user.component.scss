@@ -31,6 +31,7 @@
     .mat-column-actions {
       .actions-menu {
         cursor: pointer;
+        font-weight: bold;
       }
     }
 
@@ -49,18 +50,12 @@
       padding: 5px;
     }
 
-    .mat-cell.mat-column-isOwner,
+    .mat-mdc-cell.mat-column-isOwner,
     .mat-cell.mat-column-actions,
     .mat-cell.mat-column-active,
     .mat-cell.mat-column-verified {
       padding-left: 10px;
     }
-  }
-
-  .mat-paginator-sticky {
-    bottom: 0px;
-    position: sticky;
-    z-index: 10;
   }
 }
 

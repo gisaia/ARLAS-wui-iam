@@ -21,7 +21,7 @@ import { Subject } from 'rxjs';
 import { Page } from '@tools/model';
 import { Router } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { MatLegacyCheckboxChange as MatCheckboxChange } from '@angular/material/legacy-checkbox';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'arlas-iam-top-menu',

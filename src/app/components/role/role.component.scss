@@ -25,6 +25,7 @@
     .mat-column-actions {
       .actions-menu {
         cursor: pointer;
+        font-weight: bold;
       }
     }
 
@@ -32,12 +33,6 @@
       text-align: center;
       width: 80px;
     }
-  }
-
-  .mat-paginator-sticky {
-    bottom: 0px;
-    position: sticky;
-    z-index: 10;
   }
 }
 

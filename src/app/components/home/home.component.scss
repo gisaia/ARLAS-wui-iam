@@ -71,18 +71,14 @@
     .route-nav-list {
       padding-top: 0;
       .active-page {
-        color: #ff5722;
+        --mdc-list-list-item-label-text-color: #ff5722;
       }
     }
-    .mat-list-item {
+    .mat-mdc-list-item {
       color: #28292b;
-      &.mat-list-item-disabled {
-        cursor: not-allowed !important;
+      &.mdc-list-item--disabled  {
+        cursor: not-allowed;
       }
-    }
-    .mat-list-item-content {
-      margin: 15px !important;
-      padding: unset !important;
     }
 
     .login {

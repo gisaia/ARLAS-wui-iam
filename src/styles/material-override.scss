@@ -1,0 +1,49 @@
+// Avoid whitesmoke background of input
+.mat-mdc-text-field-wrapper {
+  background-color: white !important;
+  padding: 0 !important;
+}
+.mat-mdc-form-field-focus-overlay {
+  opacity: 0 !important;
+}
+
+// Align text and icon in left menu
+.mdc-list-item__primary-text {
+  display: flex;
+}
+
+mat-select {
+  .mat-mdc-select-value {
+    padding-left: 10px;
+  }
+  .mat-mdc-select-arrow-wrapper {
+    padding-right: 10px;
+  }
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mat-mdc-paginator-container {
+  min-height: unset;
+
+  .mat-mdc-icon-button {
+    padding: 0;
+    height: 24px;
+    width: 24px;
+
+    .mat-mdc-button-touch-target {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.mat-mdc-menu-item .mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

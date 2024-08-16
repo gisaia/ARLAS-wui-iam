@@ -17,9 +17,9 @@
  * under the License.
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -27,7 +27,7 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 import { Page } from '@tools/model';
 import { ManagerService } from '@services/manager/manager.service';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
