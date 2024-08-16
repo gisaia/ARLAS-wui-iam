@@ -49,7 +49,7 @@
               "src/settings.yaml"
             ],
             "styles": [
-              "src/arlas-wui-theme.scss",
+              "src/theme.scss",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -131,7 +131,7 @@
               "src/settings.yaml"
             ],
             "styles": [
-              "src/arlas-wui-theme.scss",
+              "src/theme.scss",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
