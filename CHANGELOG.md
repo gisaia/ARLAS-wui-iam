@@ -1,5 +1,15 @@
 # Change Log
 
+## [v26.0.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v26.0.0-rc.1) (2024-09-02)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.1.0...v26.0.0-rc.1)
+
+**Miscellaneous:**
+
+- Improve text in "Verify your email" form [\#90](https://github.com/gisaia/ARLAS-wui-iam/issues/90)
+- Swap the two columns in the permission view and add permission type coloured bullet [\#87](https://github.com/gisaia/ARLAS-wui-iam/issues/87)
+- Revisit the role and group lists for condensed view [\#86](https://github.com/gisaia/ARLAS-wui-iam/issues/86)
+
 ## [v25.1.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.1.0) (2024-07-18)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v25.0.0...v25.1.0)
@@ -9,6 +19,8 @@
 - Remove panel in the welcome page [\#89](https://github.com/gisaia/ARLAS-wui-iam/issues/89)
 - Remove password form once change validated [\#85](https://github.com/gisaia/ARLAS-wui-iam/issues/85)
 - Trigger a spinner after creating/inviting a user [\#81](https://github.com/gisaia/ARLAS-wui-iam/issues/81)
+- Prohibit access to role creation as a member of an organisation,  [\#65](https://github.com/gisaia/ARLAS-wui-iam/issues/65)
+- Too many refresh token requests ? [\#40](https://github.com/gisaia/ARLAS-wui-iam/issues/40)
 
 ## [v25.0.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v25.0.0) (2024-05-15)
 
