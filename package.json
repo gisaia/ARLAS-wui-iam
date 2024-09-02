@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "postinstall": "patch-package --patch-dir node_modules/arlas-web-core/patches",
     "i18n:init": "ngx-translate-extract --input ./src --output ./src/assets/i18n/template.json --key-as-default-value --replace --format json",
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,fr}.json --format json"
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,fr}.json --format json",
+    "license-check": "license-check-and-add check -f license-check-and-add.json"
   },
   "private": true,
   "peerDependencies": {
@@ -33,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "ajv-keywords": "5.1.0",
-    "arlas-wui-toolkit": "25.1.2",
+    "arlas-wui-toolkit": "26.0.0-rc.5",
     "eslint": "^8.2.0",
     "js-yaml": "4.1.0",
     "ngx-toastr": "~14.3.0",
@@ -54,7 +55,6 @@
     "@gisaia/ngx-translate-extract": "^8.2.0",
     "@types/jasmine": "~3.10.0",
     "@types/js-yaml": "^4.0.5",
-    "@types/mapbox__mapbox-gl-draw": "^1.4.6",
     "@types/node": "16.11.20",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
@@ -62,6 +62,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "license-check-and-add": "^4.0.5",
     "puppeteer": "^1.13.0",
     "typescript": "~4.6.0"
   },

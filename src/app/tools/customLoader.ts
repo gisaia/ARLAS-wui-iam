@@ -18,8 +18,6 @@
  */
 import { HttpClient } from '@angular/common/http';
 import { TranslateLoader } from '@ngx-translate/core';
-import enComponents from 'arlas-web-components/assets/i18n/en.json';
-import frComponents from 'arlas-web-components/assets/i18n/fr.json';
 import { ArlasConfigService, ArlasSettingsService, CONFIG_ID_QUERY_PARAM, NOT_CONFIGURED, PersistenceService } from 'arlas-wui-toolkit';
 import enToolkit from 'arlas-wui-toolkit/assets/i18n/en.json';
 import frToolkit from 'arlas-wui-toolkit/assets/i18n/fr.json';
@@ -58,9 +56,9 @@ export class ArlasTranslateLoader implements TranslateLoader {
             let merged = localI18n;
             // Properties in externalI18n will overwrite those in localI18n and frToolkit and frComponents .
             if (lang === 'fr') {
-              merged = { ...frComponents, ...frToolkit, ...localI18n, ...externalI18n as Object };
+              merged = { ...frToolkit, ...localI18n, ...externalI18n as Object };
             } else if (lang === 'en') {
-              merged = { ...enComponents, ...enToolkit, ...localI18n, ...externalI18n as Object };
+              merged = { ...enToolkit, ...localI18n, ...externalI18n as Object };
             }
             observer.next(merged);
             observer.complete();
@@ -98,9 +96,9 @@ export class ArlasTranslateLoader implements TranslateLoader {
         let merged = res;
         // Properties in res will overwrite those in frToolkit and frComponents .
         if (lang === 'fr') {
-          merged = { ...frComponents, ...frToolkit, ...res };
+          merged = { ...frToolkit, ...res };
         } else if (lang === 'en') {
-          merged = { ...enComponents, ...enToolkit, ...res };
+          merged = { ...enToolkit, ...res };
         }
         observer.next(merged);
         observer.complete();
