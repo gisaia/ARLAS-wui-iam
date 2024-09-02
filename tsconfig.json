@@ -5,7 +5,6 @@
     "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "strictNullChecks": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -20,7 +19,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es6",
-    "module": "es2020",
+    "module": "esnext",
     "allowJs": true,
     "lib": [
       "es2015",
