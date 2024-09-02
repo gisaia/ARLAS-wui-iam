@@ -2,7 +2,6 @@
 set -e
 
 if  [ -z "$GITHUB_CHANGELOG_TOKEN"  ] ; then echo "Please set GITHUB_CHANGELOG_TOKEN environment variable"; exit -1; fi
-if  [ -z "$CLOUDSMITH_TOKEN"  ] ; then echo "Please set CLOUDSMITH_TOKEN environment variable"; exit -1; fi
 
 function clean {
     ARG=$?
@@ -13,13 +12,13 @@ trap clean EXIT
 
 usage(){
     echo "Usage: ./release.sh -rel=X [--no-tests]"
-    echo " -rel|--app-release   release arlas-wui-iam X version"
-	echo " -dev|--app-dev       development arlas-wui-hub (-SNAPSHOT qualifier will be automatically added)"
-	echo " --no-tests    Skip running integration tests"
-    echo " --not-latest  Doesn't tag the release version as the latest."
-    echo " -s|--stage    Stage of the release : beta | rc | stable. If --stage is 'rc' or 'beta', there is no merge of develop into master (if -ref_branch=develop)"
-    echo " -i|--stage_iteration=n, the released version will be : [x].[y].[z]-beta.[n] OR  [x].[y].[z]-rc.[n] according to the given --stage"
- 	echo " -ref_branch | --reference_branch  from which branch to start the release."
+    echo " -rel|--app-release               Release arlas-wui-iam X version"
+	echo " -dev|--app-dev                   Development arlas-wui-iam (-SNAPSHOT qualifier will be automatically added)"
+	echo " --no-tests                       Skip running integration tests"
+    echo " --not-latest                     Doesn't tag the release version as the latest."
+    echo " -s|--stage                       Stage of the release : beta | rc | stable. If --stage is 'rc' or 'beta', there is no merge of develop into master (if -ref_branch=develop)"
+    echo " -i|--stage_iteration=n,          The released version will be : [x].[y].[z]-beta.[n] OR  [x].[y].[z]-rc.[n] according to the given --stage"
+ 	echo " -ref_branch | --reference_branch From which branch to start the release."
     echo "    Add -ref_branch=develop for a new official release"
     echo "    Add -ref_branch=x.x.x for a maintenance release"
 	exit 1
@@ -158,13 +157,13 @@ git commit -a -m "Release prod version ${VERSION}"
 
 
 echo "==> Docker"
-docker build --no-cache --build-arg version=${VERSION} --tag docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION} .
+docker build --no-cache --build-arg version=${VERSION} --tag gisaia/arlas-wui-iam:${VERSION} .
 
-docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION}
+docker push gisaia/arlas-wui-iam:${VERSION}
 if [ "${STAGE}" == "stable" ] && [ "${IS_LATEST_VERSION}" == "YES" ];
     then
-    docker tag docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION} docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
-    docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
+    docker tag gisaia/arlas-wui-iam:${VERSION} gisaia/arlas-wui-iam:latest
+    docker push gisaia/arlas-wui-iam:latest
 fi
 
 git tag v${VERSION}
