@@ -17,7 +17,18 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+
+export function createOrganisationValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+    const hasArobase = value.indexOf('@') >= 0;
+    return hasArobase ? { hasArobase: true } : null;
+  };
+}
 
 @Component({
   selector: 'arlas-iam-create-org-modal',
@@ -31,8 +42,9 @@ export class CreateOrgModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createOrgForm = new FormGroup({
-      name: new FormControl('', [Validators.required])
+      name: new FormControl('', [Validators.required, createOrganisationValidator()])
     });
   }
+
 
 }

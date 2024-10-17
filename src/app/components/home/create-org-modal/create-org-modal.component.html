@@ -5,6 +5,7 @@
       <mat-form-field appearance="outline" class="description">
         <mat-label>{{'Email domain name' | translate}}</mat-label>
         <input type="text" formControlName="name" matInput required>
+        <mat-error *ngIf="createOrgForm.get('name').errors && createOrgForm.get('name').errors['hasArobase']">{{'Organisation must not contain @.' | translate}}</mat-error>
       </mat-form-field>
     </div>
   </form>
