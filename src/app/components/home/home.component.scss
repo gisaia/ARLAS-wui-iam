@@ -22,27 +22,38 @@
   background-color: $primaryColor !important;
   padding: 0 10px !important;
   color: white;
+
   .right-menu {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 0 5px;
+
     .create-org {
       padding-right: 15px;
+
       .add-org {
-        line-height: 32px;
-        vertical-align: bottom;
+        font-size: 14px;
+        height: 30px;
       }
     }
+
     .orga {
       font-size: medium;
       font-weight: 300;
       padding-right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
 
       .current-orga {
         width: 150px;
         background-color: white;
         color: black;
         padding: 0 5px;
+
+        .mat-mdc-select-value {
+          padding-left: 0;
+        }
       }
     }
   }

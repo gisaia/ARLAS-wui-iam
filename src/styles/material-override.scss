@@ -13,9 +13,6 @@
 }
 
 mat-select {
-  .mat-mdc-select-value {
-    padding-left: 10px;
-  }
   .mat-mdc-select-arrow-wrapper {
     padding-right: 10px;
   }
@@ -46,4 +43,15 @@ mat-select {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+// Tighten input form
+.mat-mdc-form-field-infix {
+  min-height: unset;
+  padding-bottom: 12px;
+  width: 90%;
+  margin: 0 10px;
+}
+.mdc-text-field--outlined .mdc-floating-label {
+  top: 24px !important;
 }

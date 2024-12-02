@@ -64,9 +64,6 @@
 }
 
 .group {
-  &-container {
-    padding: 5px;
-  }
   &-item {
     &:after {
       content: '\2022';

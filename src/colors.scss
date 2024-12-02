@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-@import "~@angular/material/theming";
+@import "@angular/material/theming";
 
 $arlas-app-primary: mat-palette($mat-cyan);
 $arlas-app-accent:  mat-palette($mat-deep-orange);
