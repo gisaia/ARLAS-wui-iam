@@ -1,8 +1,16 @@
 # Change Log
 
+## [v26.1.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v26.1.0) (2024-12-03)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v26.0.2...v26.1.0)
+
 ## [v26.0.2](https://github.com/gisaia/ARLAS-wui-iam/tree/v26.0.2) (2024-11-13)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v26.0.1...v26.0.2)
+
+**Miscellaneous:**
+
+- Super admin should not name an organisation with @ char [\#103](https://github.com/gisaia/ARLAS-wui-iam/issues/103)
 
 ## [v26.0.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v26.0.1) (2024-09-11)
 
