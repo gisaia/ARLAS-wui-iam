@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "ajv-keywords": "5.1.0",
-    "arlas-wui-toolkit": "~26.0.11",
+    "arlas-wui-toolkit": "~26.1.0",
     "eslint": "^8.2.0",
     "js-yaml": "4.1.0",
     "ngx-toastr": "~14.3.0",
