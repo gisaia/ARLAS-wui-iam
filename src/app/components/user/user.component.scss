@@ -21,6 +21,12 @@
   overflow: auto;
   .table {
     width: 100%;
+    font-size: 14px;
+    th {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 400;
+    }
 
     .mat-column-email {
       &.inactive {
@@ -32,7 +38,7 @@
       .actions-menu {
         cursor: pointer;
         font-weight: bold;
-      }
+    }
     }
 
     .mat-column-actions,
@@ -66,20 +72,20 @@
 .group {
   &-item {
     &:after {
-      content: '\2022';
+      content: "\2022";
       display: inline-block;
       margin: 2px 4px;
     }
 
     &:last-of-type:after {
-      content: ''
+      content: "";
     }
   }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,
@@ -98,7 +104,7 @@
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,
@@ -113,12 +119,11 @@
       text-align: start;
     }
   }
-
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 2500px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,

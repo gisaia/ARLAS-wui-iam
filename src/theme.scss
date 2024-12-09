@@ -29,7 +29,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
 $app-primary: mat.define-palette(mat.$blue-palette, 500);
-$app-accent:  mat.define-palette(mat.$indigo-palette, A200, A100, A400);
+$app-accent:  mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $app-warn:    mat.define-palette(mat.$red-palette);

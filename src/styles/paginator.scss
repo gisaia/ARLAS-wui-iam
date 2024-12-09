@@ -17,8 +17,11 @@
  * under the License.
  */
 
-.mat-paginator-sticky {
+.mat-mdc-paginator {
+  font-size: 12px;
+  &.mat-paginator-sticky {
     bottom: 0;
     position: sticky;
     z-index: 10;
+  }
 }

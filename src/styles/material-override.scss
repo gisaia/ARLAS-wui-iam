@@ -74,3 +74,19 @@ mat-select {
 .mdc-text-field--outlined .mdc-floating-label {
   top: 24px !important;
 }
+
+// set white text for accent buttons
+.mdc-button.mat-accent {
+  color: white !important;
+}
+
+// reduce tooltip size
+.mat-mdc-tooltip {
+  margin: 5px !important;
+  font-size: 12px;
+}
+
+// reduce menu font size
+.mat-mdc-menu-content {
+  font-size: 14px;
+}

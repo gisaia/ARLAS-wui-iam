@@ -12,7 +12,7 @@
       <input type="text" formControlName="description" matInput>
     </mat-form-field>
   </div>
-  <div>
+  <div class="form-actions">
     <button mat-flat-button color="accent" [disabled]="!groupForm.valid" (click)="submit()" tabindex="-1">
       {{ isCreateMode ? 'Create' : 'Update' | translate}}
     </button>

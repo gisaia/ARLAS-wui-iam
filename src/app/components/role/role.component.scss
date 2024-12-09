@@ -21,6 +21,12 @@
   overflow: auto;
   .table {
     width: 100%;
+    font-size: 14px;
+    th {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 400;
+    }
 
     .mat-column-actions {
       .actions-menu {

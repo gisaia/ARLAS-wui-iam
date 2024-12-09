@@ -17,11 +17,16 @@
  * under the License.
  */
 .content {
-  height: calc(100% - /** Permission legend */ 89px
-    - /** Page header */ 48px);
+  height: calc(100% - /** Permission legend */ 89px - /** Page header */ 48px);
   overflow: auto;
   .table {
     width: 100%;
+    font-size: 14px;
+    th {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 400;
+    }
 
     .mat-column-actions {
       .actions-menu {
@@ -43,10 +48,10 @@
 
 .td-bullet {
   width: 24px;
-  padding-left: 10px!important;
+  padding-left: 10px !important;
 }
 
-.value-container{
+.value-container {
   display: flex;
   justify-content: start;
   gap: 5px;

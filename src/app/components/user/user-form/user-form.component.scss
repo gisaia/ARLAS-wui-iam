@@ -40,6 +40,11 @@
     }
   }
 
+  .form-actions{
+    display: flex;
+    gap: 0 10px;
+  }
+
   .advanced {
     border-top: 1px solid #444c56b3;
     margin-top: 50px;

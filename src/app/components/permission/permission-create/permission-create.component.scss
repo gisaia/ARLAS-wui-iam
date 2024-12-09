@@ -23,4 +23,9 @@
     display: flex;
     flex-direction: column;
   }
+
+  .form-actions {
+    display: flex;
+    gap: 0 10px;
+  }
 }
