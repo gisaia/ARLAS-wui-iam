@@ -1,0 +1,92 @@
+/*
+ * Licensed to Gisaïa under one or more contributor
+ * license agreements. See the NOTICE.txt file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Gisaïa licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+// Avoid whitesmoke background of input
+.mat-mdc-text-field-wrapper {
+  background-color: white !important;
+  padding: 0 !important;
+}
+.mat-mdc-form-field-focus-overlay {
+  opacity: 0 !important;
+}
+
+// Align text and icon in left menu
+.mdc-list-item__primary-text {
+  display: flex;
+}
+
+mat-select {
+  .mat-mdc-select-arrow-wrapper {
+    padding-right: 10px;
+  }
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mat-mdc-paginator-container {
+  min-height: unset;
+
+  .mat-mdc-icon-button {
+    padding: 0;
+    height: 24px;
+    width: 24px;
+
+    .mat-mdc-button-touch-target {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.mat-mdc-menu-item .mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+// Tighten input form
+.mat-mdc-form-field-infix {
+  min-height: unset;
+  padding-bottom: 12px;
+  width: 90%;
+  margin: 0 10px;
+}
+.mdc-text-field--outlined .mdc-floating-label {
+  top: 24px !important;
+}
+
+// set white text for accent buttons
+.mdc-button.mat-accent {
+  color: white !important;
+}
+
+// reduce tooltip size
+.mat-mdc-tooltip {
+  margin: 5px !important;
+  font-size: 12px;
+}
+
+// reduce menu font size
+.mat-mdc-menu-content {
+  font-size: 14px;
+}

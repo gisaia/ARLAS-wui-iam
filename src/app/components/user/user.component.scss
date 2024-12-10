@@ -21,6 +21,12 @@
   overflow: auto;
   .table {
     width: 100%;
+    font-size: 14px;
+    th {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 400;
+    }
 
     .mat-column-email {
       &.inactive {
@@ -31,7 +37,8 @@
     .mat-column-actions {
       .actions-menu {
         cursor: pointer;
-      }
+        font-weight: bold;
+    }
     }
 
     .mat-column-actions,
@@ -49,18 +56,12 @@
       padding: 5px;
     }
 
-    .mat-cell.mat-column-isOwner,
+    .mat-mdc-cell.mat-column-isOwner,
     .mat-cell.mat-column-actions,
     .mat-cell.mat-column-active,
     .mat-cell.mat-column-verified {
       padding-left: 10px;
     }
-  }
-
-  .mat-paginator-sticky {
-    bottom: 0px;
-    position: sticky;
-    z-index: 10;
   }
 }
 
@@ -69,25 +70,22 @@
 }
 
 .group {
-  &-container {
-    padding: 5px;
-  }
   &-item {
     &:after {
-      content: '\2022';
+      content: "\2022";
       display: inline-block;
       margin: 2px 4px;
     }
 
     &:last-of-type:after {
-      content: ''
+      content: "";
     }
   }
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,
@@ -106,7 +104,7 @@
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,
@@ -121,12 +119,11 @@
       text-align: start;
     }
   }
-
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 2500px) {
-  .content .table{
+  .content .table {
     .mat-column-actions,
     .mat-column-active,
     .mat-column-verified,

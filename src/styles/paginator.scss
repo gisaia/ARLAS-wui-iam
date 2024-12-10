@@ -16,45 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-.inner-menu {
-  background-color: whitesmoke;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 28px;
 
-  .title {
-    font-weight: 300;
-    font-size: 18px;
-
-    .link {
-      cursor: pointer;
-      &:hover {
-        color: #ff5722;
-      }
-    }
-
-    .divider {
-      padding: 0 10px;
-    }
-  }
-
-  .actions {
-    display: flex;
-    align-items: center;
-
-    .show-technical {
-      font-size: 12px;
-      --mdc-checkbox-state-layer-size: 18px;
-
-      ::ng-deep.mdc-form-field>label {
-        padding-left: 10px;
-      }
-    }
-
-    .add-button {
-      line-height: 28px;
-    }
+.mat-mdc-paginator {
+  font-size: 12px;
+  &.mat-paginator-sticky {
+    bottom: 0;
+    position: sticky;
+    z-index: 10;
   }
 }

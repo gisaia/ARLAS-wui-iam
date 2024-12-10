@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+@import 'styles/material-override.scss';
+@import 'styles/paginator.scss';
+
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: "Material Icons";

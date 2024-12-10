@@ -5,6 +5,12 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "arlas"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   },
   "cli": {
@@ -43,7 +49,7 @@
               "src/settings.yaml"
             ],
             "styles": [
-              "src/arlas-wui-theme.scss",
+              "src/theme.scss",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -54,8 +60,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "6mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -125,7 +131,7 @@
               "src/settings.yaml"
             ],
             "styles": [
-              "src/arlas-wui-theme.scss",
+              "src/theme.scss",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],

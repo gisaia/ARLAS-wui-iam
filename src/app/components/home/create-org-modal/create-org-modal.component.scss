@@ -16,3 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+.content {
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    padding-bottom: 0;
+
+    .description {
+        padding-top: 10px;
+
+        // Leave enough space for email domain name
+        ::ng-deep .mdc-notched-outline--notched .mdc-notched-outline__notch {
+            width: 133px !important;
+        }
+    }
+}
