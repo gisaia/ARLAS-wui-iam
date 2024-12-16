@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   TranslateModule, TranslateService, TranslateLoader,
   TranslateFakeLoader, TranslateStore
@@ -11,16 +11,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('IamStartupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
+    imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        RouterTestingModule],
+    providers: [
         ArlasSettingsService,
         TranslateService, TranslateStore,
-      ],
-      imports: [
-        HttpClientModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
-        RouterTestingModule
-      ]
-    });
+        provideHttpClient(withInterceptorsFromDi()),
+    ]
+});
   });
 
   it('should be created', (() => {

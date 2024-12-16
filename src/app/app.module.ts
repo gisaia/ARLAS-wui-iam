@@ -19,7 +19,7 @@
 import { APP_INITIALIZER, forwardRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -95,98 +95,92 @@ export function auhtentServiceFactory(service: AuthentificationService) {
   return service;
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ConfirmModalComponent,
-    UserComponent,
-    HomeComponent,
-    RoleComponent,
-    PermissionComponent,
-    TopMenuComponent,
-    RoleFormComponent,
-    PermissionCreateComponent,
-    UserFormComponent,
-    UserAddComponent,
-    RulesComponent,
-    RulesItemComponent,
-    PermissionCreateColumnFilterComponent,
-    CreateOrgModalComponent,
-    RoleNamePipe,
-    PermissionBulletComponent,
-    PermissionLegendComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    ArlasToolkitSharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatSortModule,
-    MatListModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
-    MatSelectModule,
-    MatInputModule,
-    FormsModule,
-    LoginModule,
-    RouterModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: ArlasTranslateLoader,
-        deps: [HttpClient, ArlasSettingsService, PersistenceService]
-      }
-    }),
-    ToastrModule.forRoot({
-      timeOut: 5000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
-    }),
-    OAuthModule.forRoot()
-  ],
-  providers: [
-    forwardRef(() => ArlasConfigurationDescriptor),
-    forwardRef(() => ArlasCollaborativesearchService),
-    forwardRef(() => ArlasStartupService),
-    { provide: FETCH_OPTIONS, useValue: {} },
-    {
-      provide: GET_OPTIONS,
-      useFactory: getOptionsFactory,
-      deps: [ArlasSettingsService, AuthentificationService, ArlasIamService]
-    },
-    {
-      provide: CONFIG_UPDATER,
-      useValue: configUpdaterFactory
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: startupServiceFactory,
-      deps: [IamStartupService],
-      multi: true
-    },
-    {
-      provide: 'AuthentificationService',
-      useFactory: auhtentServiceFactory,
-      deps: [AuthentificationService],
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        ConfirmModalComponent,
+        UserComponent,
+        HomeComponent,
+        RoleComponent,
+        PermissionComponent,
+        TopMenuComponent,
+        RoleFormComponent,
+        PermissionCreateComponent,
+        UserFormComponent,
+        UserAddComponent,
+        RulesComponent,
+        RulesItemComponent,
+        PermissionCreateColumnFilterComponent,
+        CreateOrgModalComponent,
+        RoleNamePipe,
+        PermissionBulletComponent,
+        PermissionLegendComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        ArlasToolkitSharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatTableModule,
+        MatSortModule,
+        MatListModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatPaginatorModule,
+        MatSelectModule,
+        MatInputModule,
+        FormsModule,
+        LoginModule,
+        RouterModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: ArlasTranslateLoader,
+                deps: [HttpClient, ArlasSettingsService, PersistenceService]
+            }
+        }),
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: false,
+        }),
+        OAuthModule.forRoot()], providers: [
+        forwardRef(() => ArlasConfigurationDescriptor),
+        forwardRef(() => ArlasCollaborativesearchService),
+        forwardRef(() => ArlasStartupService),
+        { provide: FETCH_OPTIONS, useValue: {} },
+        {
+            provide: GET_OPTIONS,
+            useFactory: getOptionsFactory,
+            deps: [ArlasSettingsService, AuthentificationService, ArlasIamService]
+        },
+        {
+            provide: CONFIG_UPDATER,
+            useValue: configUpdaterFactory
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: startupServiceFactory,
+            deps: [IamStartupService],
+            multi: true
+        },
+        {
+            provide: 'AuthentificationService',
+            useFactory: auhtentServiceFactory,
+            deps: [AuthentificationService],
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
