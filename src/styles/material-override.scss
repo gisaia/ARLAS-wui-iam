@@ -22,6 +22,7 @@
   background-color: white !important;
   padding: 0 !important;
 }
+
 .mat-mdc-form-field-focus-overlay {
   opacity: 0 !important;
 }
@@ -71,6 +72,7 @@ mat-select {
   width: 90%;
   margin: 0 10px;
 }
+
 .mdc-text-field--outlined .mdc-floating-label {
   top: 24px !important;
 }
@@ -89,4 +91,12 @@ mat-select {
 // reduce menu font size
 .mat-mdc-menu-content {
   font-size: 14px;
+}
+
+.mat-mdc-dialog-surface {
+  padding: 20px;
+}
+
+ .change-container {
+  padding: 0 !important;
 }

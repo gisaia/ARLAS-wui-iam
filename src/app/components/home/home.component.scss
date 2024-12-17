@@ -16,12 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-@import "colors.scss";
+
+@use '@angular/material' as mat;
+@use '../../../theme.scss' as *;
+
 
 ::ng-deep .top-menu {
-  background-color: $primaryColor !important;
+  background-color: mat.get-theme-color($app-theme, primary) !important;
   padding: 0 10px !important;
-  color: white;
+  color: white !important;
 
   .right-menu {
     display: flex;
@@ -79,21 +82,26 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
     .route-nav-list {
       padding-top: 0;
+
       .active-page {
         --mdc-list-list-item-label-text-color: #ff5722;
-      }
-    }
-    .mat-mdc-list-item {
-      color: #28292b;
-      &.mdc-list-item--disabled  {
-        cursor: not-allowed;
+        --mdc-list-list-item-focus-label-text-color: #ff5722;
       }
     }
 
+    .mat-mdc-list-item {
+      color: #28292b;
+
+      &.mdc-list-item--disabled {
+        cursor: not-allowed;
+      }
+    }
     .login {
       max-height: 130px;
+
       .username {
         .label {
           text-overflow: ellipsis;
@@ -125,6 +133,7 @@
         .orgs {
           width: 100%;
           padding: 0px 5px;
+
           .list {
             display: flex;
             flex-direction: column;
@@ -157,6 +166,7 @@
               .info {
                 display: flex;
                 flex-direction: column;
+
                 .title {
                   font-size: 24px;
                 }
