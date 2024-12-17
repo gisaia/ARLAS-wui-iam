@@ -11,14 +11,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('IamStartupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+      imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
         RouterTestingModule],
-    providers: [
+      providers: [
         ArlasSettingsService,
         TranslateService, TranslateStore,
         provideHttpClient(withInterceptorsFromDi()),
-    ]
-});
+      ]
+    });
   });
 
   it('should be created', (() => {
