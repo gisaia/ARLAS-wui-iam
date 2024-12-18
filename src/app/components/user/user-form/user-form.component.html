@@ -38,7 +38,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-checkbox class="active" formControlName="active">{{'Active' | translate}}</mat-checkbox>
+    <mat-checkbox *ngIf="isSuperAdmin" class="active" formControlName="active">{{'Active' | translate}}</mat-checkbox>
   </div>
   <div class="form-actions">
     <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
