@@ -18,7 +18,7 @@
  */
 
 .mat-mdc-paginator {
-  font-size: 12px;
+  font-size: 12px !important;
   &.mat-paginator-sticky {
     bottom: 0;
     position: sticky;

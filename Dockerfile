@@ -1,14 +1,14 @@
 ### STAGE 1: Build ###
 
 # We label our stage as 'builder'
-FROM node:16.19.0 as builder
+FROM node:18.20.5 AS builder
 WORKDIR /app
 
 COPY ./package.json  ./
 COPY ./package-lock.json  ./
 
 ## installing necessary libraries
-RUN npm install
+RUN npm install --ignore-scripts && npm run postinstall
 
 COPY ./scripts/start.sh ./
 

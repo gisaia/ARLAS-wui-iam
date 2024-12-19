@@ -20,7 +20,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Page } from '@tools/model';
 import { Router } from '@angular/router';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({

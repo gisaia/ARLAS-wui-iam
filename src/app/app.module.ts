@@ -19,7 +19,7 @@
 import { APP_INITIALIZER, forwardRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -116,8 +116,7 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     PermissionBulletComponent,
     PermissionLegendComponent
   ],
-  imports: [
-    BrowserModule,
+  bootstrap: [AppComponent], imports: [BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ArlasToolkitSharedModule,
@@ -145,7 +144,6 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     FormsModule,
     LoginModule,
     RouterModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -158,9 +156,7 @@ export function auhtentServiceFactory(service: AuthentificationService) {
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
-    OAuthModule.forRoot()
-  ],
-  providers: [
+    OAuthModule.forRoot()], providers: [
     forwardRef(() => ArlasConfigurationDescriptor),
     forwardRef(() => ArlasCollaborativesearchService),
     forwardRef(() => ArlasStartupService),
@@ -185,8 +181,8 @@ export function auhtentServiceFactory(service: AuthentificationService) {
       useFactory: auhtentServiceFactory,
       deps: [AuthentificationService],
       multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    },
+    provideHttpClient(withInterceptorsFromDi())
+  ]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PermissionData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { Page } from '@tools/model';
 import { ManagerService } from '@services/manager/manager.service';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';

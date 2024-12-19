@@ -17,7 +17,7 @@
  * under the License.
  */
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getState, saveState } from '@tools/utils';
