@@ -28,7 +28,7 @@ import { Subscription } from 'rxjs';
 import { ManagerService } from '@services/manager/manager.service';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { Page } from '@tools/model';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { getPrivateOrgDisplayName } from '@tools/utils';
 
 @Component({

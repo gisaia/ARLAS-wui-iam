@@ -20,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { marker } from '@biesbjerg/ngx-translate-extract-marker';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
