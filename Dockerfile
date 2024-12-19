@@ -8,7 +8,7 @@ COPY ./package.json  ./
 COPY ./package-lock.json  ./
 
 ## installing necessary libraries
-RUN npm install
+RUN npm install --ignore-scripts && npm run postinstall
 
 COPY ./scripts/start.sh ./
 
