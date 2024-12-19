@@ -1,7 +1,7 @@
 ### STAGE 1: Build ###
 
 # We label our stage as 'builder'
-FROM node:18.20.5 as builder
+FROM node:18.20.5 AS builder
 WORKDIR /app
 
 COPY ./package.json  ./
