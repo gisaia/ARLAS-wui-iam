@@ -2,7 +2,6 @@
 set -e
 
 if  [ -z "$GITHUB_CHANGELOG_TOKEN"  ] ; then echo "Please set GITHUB_CHANGELOG_TOKEN environment variable"; exit -1; fi
-if  [ -z "$CLOUDSMITH_TOKEN"  ] ; then echo "Please set CLOUDSMITH_TOKEN environment variable"; exit -1; fi
 
 function clean {
     ARG=$?
@@ -157,21 +156,11 @@ docker build --no-cache --build-arg version=${VERSION} --tag gisaia/arlas-wui-ia
 echo "  -- Publishing docker image"
 docker push gisaia/arlas-wui-iam:${VERSION}
 
-## tag and push on cloudsmith
-## TO REMOVE when arlas-cloud will be updated
-docker tag gisaia/arlas-wui-iam:${VERSION} docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION}
-docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION}
-
 if [ "${STAGE}" == "stable" ] && [ "${IS_LATEST_VERSION}" == "YES" ];
     then
     echo "  -- Publishing latest"
     docker tag gisaia/arlas-wui-iam:${VERSION} gisaia/arlas-wui-iam:latest
     docker push gisaia/arlas-wui-iam:latest
-
-    ## tag and push on cloudsmith
-    ## TO REMOVE when arlas-cloud will be updated
-    docker gisaia/arlas-wui-iam:latest docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
-    docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
 fi
 
 git tag v${VERSION}
