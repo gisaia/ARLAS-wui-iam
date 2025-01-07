@@ -2,7 +2,6 @@
 set -e
 
 if  [ -z "$GITHUB_CHANGELOG_TOKEN"  ] ; then echo "Please set GITHUB_CHANGELOG_TOKEN environment variable"; exit -1; fi
-if  [ -z "$CLOUDSMITH_TOKEN"  ] ; then echo "Please set CLOUDSMITH_TOKEN environment variable"; exit -1; fi
 
 function clean {
     ARG=$?
@@ -12,30 +11,27 @@ function clean {
 trap clean EXIT
 
 usage(){
-    echo "Usage: ./release.sh -rel=X [--no-tests]"
-    echo " -rel|--app-release               Release arlas-wui-iam X version"
-	echo " -dev|--app-dev                   Development arlas-wui-iam (-SNAPSHOT qualifier will be automatically added)"
-	echo " --no-tests                       Skip running integration tests"
-    echo " --not-latest                     Doesn't tag the release version as the latest."
-    echo " -s|--stage                       Stage of the release : beta | rc | stable. If --stage is 'rc' or 'beta', there is no merge of develop into master (if -ref_branch=develop)"
-    echo " -i|--stage_iteration=n,          The released version will be : [x].[y].[z]-beta.[n] OR  [x].[y].[z]-rc.[n] according to the given --stage"
- 	echo " -ref_branch | --reference_branch From which branch to start the release."
+	echo "Usage: ./release.sh -version=X [--no-tests]"
+    echo " -version                             Release ARLAS-iam X version"
+	echo " --no-tests                           Skip running integration tests"
+    echo " --not-latest                         Doesn't tag the release version as the latest."
+    echo " -s|--stage                           Stage of the release : beta | rc | stable. If --stage is 'rc' or 'beta', there is no merge of develop into master (if -ref_branch=develop)"
+    echo " -i|--stage_iteration=n               The released version will be : [x].[y].[z]-beta.[n] OR  [x].[y].[z]-rc.[n] according to the given --stage"
+ 	echo " -ref_branch | --reference_branch     From which branch to start the release."
     echo "    Add -ref_branch=develop for a new official release"
     echo "    Add -ref_branch=x.x.x for a maintenance release"
 	exit 1
 }
+
 STAGE="stable"
 TESTS="YES"
 IS_LATEST_VERSION="YES"
+
 for i in "$@"
 do
 case $i in
-    -rel=*|--app-release=*)
-    APP_REL="${i#*=}"
-    shift # past argument=value
-    ;;
-    -dev=*|--app-dev=*)
-    APP_DEV="${i#*=}"
+    -version=*)
+    VERSION="${i#*=}"
     shift # past argument=value
     ;;
     --no-tests)
@@ -113,9 +109,6 @@ if [ "${STAGE}" == "beta" ] || [ "${STAGE}" == "rc" ];
         fi
 fi
 
-VERSION="${APP_REL}"
-DEV="${APP_DEV}"
-
 echo "==> Get ${REF_BRANCH} branch"
 git checkout "${REF_BRANCH}"
 git pull origin "${REF_BRANCH}"
@@ -130,7 +123,7 @@ fi
 
 if [ "${STAGE}" == "rc" ] || [ "${STAGE}" == "beta" ];
     then
-        VERSION="${APP_REL}-${STAGE}.${STAGE_ITERATION}"
+    VERSION="${VERSION}-${STAGE}.${STAGE_ITERATION}"
 fi
 
 echo "==> Set version"
@@ -160,22 +153,14 @@ git commit -a -m "Release prod version ${VERSION}"
 echo "==> Docker"
 docker build --no-cache --build-arg version=${VERSION} --tag gisaia/arlas-wui-iam:${VERSION} .
 
+echo "  -- Publishing docker image"
 docker push gisaia/arlas-wui-iam:${VERSION}
-
-## tag and push on cloudsmith
-## TO REMOVE when arlas-cloud will be updated
-docker tag gisaia/arlas-wui-iam:${VERSION} docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION}
-docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:${VERSION}
 
 if [ "${STAGE}" == "stable" ] && [ "${IS_LATEST_VERSION}" == "YES" ];
     then
+    echo "  -- Publishing latest"
     docker tag gisaia/arlas-wui-iam:${VERSION} gisaia/arlas-wui-iam:latest
     docker push gisaia/arlas-wui-iam:latest
-
-    ## tag and push on cloudsmith
-    ## TO REMOVE when arlas-cloud will be updated
-    docker gisaia/arlas-wui-iam:latest docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
-    docker push docker.cloudsmith.io/gisaia/private/arlas-wui-iam:latest
 fi
 
 git tag v${VERSION}
@@ -195,9 +180,15 @@ if [ "${REF_BRANCH}" == "develop" ] && [ "${STAGE}" == "stable" ];
     git rebase origin/master
 fi
 
-npm --no-git-tag-version version "${DEV}-dev"
+IFS='.' read -ra TAB <<< "$VERSION"
+major=${TAB[0]}
+minor=${TAB[1]}
+newminor=$(( $minor + 1 ))
+newDevVersion=${major}.${newminor}.0
 
-git commit -a -m "Set development version to ${DEV}-dev"
+npm --no-git-tag-version version "${newDevVersion}-dev"
+
+git commit -a -m "Set development version to ${newDevVersion}-dev"
 git push origin ${REF_BRANCH}
 
 echo "==> Well done :)"
