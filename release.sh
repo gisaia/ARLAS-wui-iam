@@ -3,6 +3,9 @@ set -e
 
 if  [ -z "$GITHUB_CHANGELOG_TOKEN"  ] ; then echo "Please set GITHUB_CHANGELOG_TOKEN environment variable"; exit -1; fi
 
+echo "=> Docker login"
+echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
+
 function clean {
     ARG=$?
 	echo "==> Exit status = $ARG"
@@ -21,6 +24,17 @@ usage(){
     echo "    Add -ref_branch=develop for a new official release"
     echo "    Add -ref_branch=x.x.x for a maintenance release"
 	exit 1
+}
+
+send_chat_message(){
+    MESSAGE=$1
+    if [ -z "$GOOGLE_CHAT_RELEASE_CHANEL" ] ; then
+        echo "Environement variable GOOGLE_CHAT_RELEASE_CHANEL is not definied ... skipping message publishing"
+    else
+        DATA='{"text":"'${MESSAGE}'"}'
+        echo $DATA
+        curl -X POST --header "Content-Type:application/json" $GOOGLE_CHAT_RELEASE_CHANEL -d "${DATA}"
+    fi
 }
 
 STAGE="stable"
@@ -192,3 +206,8 @@ git commit -a -m "Set development version to ${newDevVersion}-dev"
 git push origin ${REF_BRANCH}
 
 echo "==> Well done :)"
+
+if [ "$STAGE" == "stable" ] || [ "$STAGE" == "rc" ];
+    then
+    send_chat_message "Release of arlas-wui-iam, version ${VERSION}"
+fi
