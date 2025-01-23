@@ -127,6 +127,9 @@ if [ "${STAGE}" == "rc" ] || [ "${STAGE}" == "beta" ];
     VERSION="${VERSION}-${STAGE}.${STAGE_ITERATION}"
 fi
 
+git config --local user.email "github-actions[bot]@users.noreply.github.com"
+git config --local user.name "github-actions[bot]"
+
 echo "==> Set version"
 npm --no-git-tag-version version ${VERSION}
 git add package.json
