@@ -1,5 +1,13 @@
 # Change Log
 
+## [v27.0.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v27.0.1) (2025-03-20)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v27.0.0...v27.0.1)
+
+**Miscellaneous:**
+
+- Run the application on port 8080 instead of 80 [\#121](https://github.com/gisaia/ARLAS-wui-iam/issues/121)
+
 ## [v27.0.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v27.0.0) (2025-02-11)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v27.0.0-rc.1...v27.0.0)
