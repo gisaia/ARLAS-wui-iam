@@ -1,0 +1,5 @@
+ARLAS-wui-iam
+Copyright 2017-2025 and onwards Gisaïa
+
+ARLAS-wui-iam embeds all the dependencies in the following link:
+https://github.com/gisaia/ARLAS-wui-iam/network/dependencies
