@@ -26,7 +26,7 @@ LABEL io.arlas.wui-iam.version=${version}
 LABEL vendor="Gisaïa"
 LABEL description="This container build and serve the ARLAS-wui-iam app"
 
-RUN apk add --update bash jq netcat-openbsd curl && rm -rf /var/cache/apk/*
+RUN apk add --no-cache --update bash jq netcat-openbsd curl && rm -rf /var/cache/apk/*
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/
