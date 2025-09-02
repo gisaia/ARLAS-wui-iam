@@ -1,6 +1,6 @@
 {
   "name": "arlas-wui-iam",
-  "version": "27.2.0-dev",
+  "version": "27.1.0-rc.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -66,7 +66,7 @@
     "puppeteer": "^1.13.0",
     "typescript": "5.4.5"
   },
-   "overrides": {
+  "overrides": {
     "esbuild": "~0.25.0",
     "webpack-dev-server": "~5.2.2",
     "tmp": "~0.2.5"
