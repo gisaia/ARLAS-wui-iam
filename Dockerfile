@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY ./package.json  ./
 COPY ./package-lock.json  ./
+COPY ./patches/ ./patches/
 
 ## installing necessary libraries
 RUN npm install --ignore-scripts && npm run postinstall
