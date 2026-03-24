@@ -17,7 +17,7 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
@@ -28,7 +28,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'arlas-iam-permission-create',
   templateUrl: './permission-create.component.html',
-  styleUrls: ['./permission-create.component.scss']
+  styleUrls: ['./permission-create.component.scss'],
+  standalone: false
 })
 export class PermissionCreateComponent implements OnInit {
 

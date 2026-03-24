@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
@@ -29,7 +29,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'arlas-iam-permission-create-column-filter',
   templateUrl: './permission-create-column-filter.component.html',
-  styleUrls: ['./permission-create-column-filter.component.scss']
+  styleUrls: ['./permission-create-column-filter.component.scss'],
+  standalone: false
 })
 export class PermissionCreateColumnFilterComponent implements OnInit, OnDestroy {
 

@@ -27,7 +27,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'arlas-iam-rules',
   templateUrl: './rules.component.html',
-  styleUrls: ['./rules.component.scss']
+  styleUrls: ['./rules.component.scss'],
+  standalone: false
 })
 export class RulesComponent implements OnInit, OnDestroy {
 

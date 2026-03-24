@@ -25,7 +25,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'arlas-iam-rules-item',
   templateUrl: './rules-item.component.html',
-  styleUrls: ['./rules-item.component.scss']
+  styleUrls: ['./rules-item.component.scss'],
+  standalone: false
 })
 export class RulesItemComponent implements OnInit {
 

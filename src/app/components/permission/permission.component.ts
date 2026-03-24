@@ -17,26 +17,27 @@
  * under the License.
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { PermissionData } from 'arlas-iam-api';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { Page } from '@tools/model';
-import { ManagerService } from '@services/manager/manager.service';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
-import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { PermissionData } from 'arlas-iam-api';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 export const DEFAULT_PERM_VALUE = 'h:column-filter:*:*';
 
 @Component({
   selector: 'arlas-iam-permission',
   templateUrl: './permission.component.html',
-  styleUrls: ['./permission.component.scss']
+  styleUrls: ['./permission.component.scss'],
+  standalone: false
 })
 export class PermissionComponent implements OnInit {
 

@@ -17,16 +17,17 @@
  * under the License.
  */
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Page } from '@tools/model';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Page } from '@tools/model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'arlas-iam-top-menu',
   templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  styleUrls: ['./top-menu.component.scss'],
+  standalone: false
 })
 export class TopMenuComponent implements OnInit {
 

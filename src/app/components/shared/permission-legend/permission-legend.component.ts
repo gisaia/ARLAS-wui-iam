@@ -22,7 +22,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'arlas-permission-legend',
   templateUrl: './permission-legend.component.html',
   styleUrls: ['./permission-legend.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class PermissionLegendComponent  {
 

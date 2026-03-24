@@ -21,16 +21,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
-import { map, Observable, startWith, switchMap, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
-import { RoleData } from 'arlas-iam-api';
-import { Page } from '@tools/model';
 import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { RoleData } from 'arlas-iam-api';
+import { ToastrService } from 'ngx-toastr';
+import { debounceTime, distinctUntilChanged, map, Observable, startWith, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'arlas-iam-user-add',
   templateUrl: './user-add.component.html',
-  styleUrls: ['./user-add.component.scss']
+  styleUrls: ['./user-add.component.scss'],
+  standalone: false
 })
 export class UserAddComponent implements OnInit, OnDestroy {
 

@@ -26,7 +26,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { ARLAS_ROLE_PREFIX } from '@tools/utils';
-import { RoleData, MemberData } from 'arlas-iam-api';
+import { MemberData, RoleData } from 'arlas-iam-api';
 import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, forkJoin } from 'rxjs';
@@ -34,7 +34,8 @@ import { Subscription, forkJoin } from 'rxjs';
 @Component({
   selector: 'arlas-iam-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  styleUrls: ['./user-form.component.scss'],
+  standalone: false
 })
 export class UserFormComponent implements OnInit {
 

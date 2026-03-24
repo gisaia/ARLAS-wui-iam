@@ -69,11 +69,11 @@
             </span>
             {{'Edit' | translate}}
           </button>
-          <button mat-menu-item (click)="removeUser(row.member.id)" [disabled]="row.member.id === this.currentUser.id">
+          <button mat-menu-item (click)="removeUser(row.member.id)" [disabled]="row.member.id === currentUser.id">
             <span class="material-symbols-outlined button-actions">
               delete
             </span>
-            {{'Remove' | translate:{ org: this.arlasIamService.getOrganisation()} }}
+            {{ 'Remove' | translate:{ org: arlasIamService.getOrganisation() } }}
           </button>
         </mat-menu>
 
