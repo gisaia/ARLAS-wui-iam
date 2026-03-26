@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { RulesItemComponent } from './rules-item.component';
 import { MockToastrService } from '@tools/mock';
+import { RulesItemComponent } from './rules-item.component';
 
 describe('RulesItemComponent', () => {
   let component: RulesItemComponent;
@@ -12,7 +12,7 @@ describe('RulesItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })
       ],
       declarations: [RulesItemComponent],
       providers: [

@@ -50,6 +50,8 @@
     "@angular/compiler-cli": "^20.3.18",
     "@angular/language-service": "^20.3.18",
     "@stylistic/eslint-plugin": "^5.6.1",
+    "@types/jasmine": "~3.10.0",
+    "@types/jasminewd2": "~2.0.2",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
@@ -70,6 +72,7 @@
     "typescript": "5.8.3"
   },
   "overrides": {
-    "underscore": "^1.13.8"
+    "underscore": "^1.13.8",
+    "picomatch": "4.0.4"
   }
 }

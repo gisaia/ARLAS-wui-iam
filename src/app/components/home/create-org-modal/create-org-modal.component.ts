@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { TranslatePipe } from '@ngx-translate/core';
 
 export function createOrganisationValidator(): ValidatorFn {
@@ -41,19 +42,16 @@ export function createOrganisationValidator(): ValidatorFn {
     MatDialogModule,
     TranslatePipe,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
-export class CreateOrgModalComponent implements OnInit {
-
+export class CreateOrgModalComponent {
   public createOrgForm: FormGroup;
-  public constructor() { }
 
-  public ngOnInit(): void {
+  public constructor() {
     this.createOrgForm = new FormGroup({
       name: new FormControl('', [Validators.required, createOrganisationValidator()])
     });
   }
-
-
 }

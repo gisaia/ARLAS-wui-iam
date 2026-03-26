@@ -1,12 +1,11 @@
 ### STAGE 1: Build ###
 
 # We label our stage as 'builder'
-FROM node:18.20.5 AS builder
+FROM node:24.2.0 AS builder
 WORKDIR /app
 
 COPY ./package.json  ./
 COPY ./package-lock.json  ./
-COPY ./patches/ ./patches/
 
 ## installing necessary libraries
 RUN npm install --ignore-scripts && npm run postinstall
@@ -20,14 +19,14 @@ RUN npm run build
 
 ### STAGE 2: Setup ###
 
-FROM nginx:1.28.0-alpine3.21-slim
+FROM nginx:1.29-alpine3.23-slim
 ARG version="latest"
 
 LABEL io.arlas.wui-iam.version=${version}
 LABEL vendor="Gisaïa"
 LABEL description="This container build and serve the ARLAS-wui-iam app"
 
-RUN apk add --no-cache --update bash jq netcat-openbsd curl && rm -rf /var/cache/apk/*
+RUN apk add --no-cache --update bash jq netcat-openbsd curl && rm -rf /var/cache/apk/* && apk add 'zlib==1.3.2-r0'
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/
@@ -41,4 +40,4 @@ COPY --from=builder /app/start.sh /usr/share/nginx/
 
 HEALTHCHECK CMD curl --fail http://localhost:8080/ || exit 1
 
-CMD /usr/share/nginx/start.sh
+CMD ["/usr/share/nginx/start.sh"]

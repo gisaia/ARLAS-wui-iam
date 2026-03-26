@@ -57,20 +57,26 @@ export class UserFormComponent implements OnInit {
   public pages: Page[] = [];
 
   public constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private managerService: ManagerService,
-    private translate: TranslateService,
-    private toastr: ToastrService,
-    private arlasIamService: ArlasIamService,
-    private dialog: MatDialog
-  ) { }
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly managerService: ManagerService,
+    private readonly translate: TranslateService,
+    private readonly toastr: ToastrService,
+    private readonly arlasIamService: ArlasIamService,
+    private readonly dialog: MatDialog
+  ) {
+    this.userForm = new FormGroup({
+      groups: new FormControl([], [Validators.required]),
+      roles: new FormControl([], [Validators.required]),
+      active: new FormControl()
+    });
+  }
 
   public ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id');
     this.isSuperAdmin = !!this.arlasIamService.user?.roles.find(r => r.name === 'role/iam/admin');
     this.roleSubscription = this.managerService.currentOrga.subscribe(org => {
-      if (!!org) {
+      if (org) {
         forkJoin([
           this.managerService.getOrgGroups(),
           this.managerService.getUserGroups(this.userId),
@@ -97,12 +103,6 @@ export class UserFormComponent implements OnInit {
         });
       }
     });
-    this.userForm = new FormGroup({
-      groups: new FormControl([], [Validators.required]),
-      roles: new FormControl([], [Validators.required]),
-      active: new FormControl()
-    });
-
   }
 
   public back() {

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
-import { TopMenuComponent } from './top-menu.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
+import { TopMenuComponent } from './top-menu.component';
 
 describe('TopMenuComponent', () => {
   let component: TopMenuComponent;
@@ -11,7 +11,7 @@ describe('TopMenuComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })
       ],
       declarations: [TopMenuComponent]
     })

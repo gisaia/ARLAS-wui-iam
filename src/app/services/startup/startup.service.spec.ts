@@ -1,17 +1,19 @@
-import { TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import {
-  TranslateModule, TranslateService, TranslateLoader,
-  TranslateFakeLoader, TranslateStore
+  TranslateLoader,
+  TranslateModule,
+  TranslateNoOpLoader,
+  TranslateService,
+  TranslateStore
 } from '@ngx-translate/core';
 import { ArlasSettingsService } from 'arlas-wui-toolkit';
-import { IamStartupService } from './startup.service';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IamStartupService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+      imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         RouterTestingModule],
       providers: [
         ArlasSettingsService,

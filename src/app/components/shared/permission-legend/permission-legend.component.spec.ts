@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { PermissionLegendComponent } from './permission-legend.component';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('PermissionLegendComponent', () => {
   let component: PermissionLegendComponent;
@@ -10,7 +10,7 @@ describe('PermissionLegendComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PermissionLegendComponent ],
-      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),]
+      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),]
     })
       .compileComponents();
 

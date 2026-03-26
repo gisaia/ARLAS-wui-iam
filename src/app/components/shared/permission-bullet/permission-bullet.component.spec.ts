@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { PermissionBulletComponent } from './permission-bullet.component';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('PermissionBulletComponent', () => {
   let component: PermissionBulletComponent;
@@ -10,7 +10,7 @@ describe('PermissionBulletComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PermissionBulletComponent ],
-      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),]
+      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),]
     })
       .compileComponents();
 
