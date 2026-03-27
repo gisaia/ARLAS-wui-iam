@@ -1,5 +1,9 @@
 # Change Log
 
+## [v28.0.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v28.0.0-rc.1) (2026-03-27)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v27.2.0-rc.1...v28.0.0-rc.1)
+
 ## [v27.2.0-rc.1](https://github.com/gisaia/ARLAS-wui-iam/tree/v27.2.0-rc.1) (2026-03-24)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v27.1.1...v27.2.0-rc.1)

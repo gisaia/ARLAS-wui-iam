@@ -1,6 +1,6 @@
 {
   "name": "arlas-wui-iam",
-  "version": "27.3.0-dev",
+  "version": "28.0.0-rc.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
