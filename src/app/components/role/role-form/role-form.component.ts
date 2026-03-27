@@ -18,17 +18,18 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'arlas-iam-role-create',
   templateUrl: './role-form.component.html',
-  styleUrls: ['./role-form.component.scss']
+  styleUrls: ['./role-form.component.scss'],
+  standalone: false
 })
 export class RoleFormComponent implements OnInit {
 

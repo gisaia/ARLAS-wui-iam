@@ -25,7 +25,7 @@ export class RoleNamePipe implements PipeTransform {
 
   public transform(value: string): string {
     let newValue = value;
-    if (!!value) {
+    if (value) {
       newValue = value.replace('role/arlas/', '');
     }
     return newValue;

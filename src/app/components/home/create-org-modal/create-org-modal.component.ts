@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export function createOrganisationValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -25,7 +29,7 @@ export function createOrganisationValidator(): ValidatorFn {
     if (!value) {
       return null;
     }
-    const hasArobase = value.indexOf('@') >= 0;
+    const hasArobase = value.includes('@');
     return hasArobase ? { hasArobase: true } : null;
   };
 }
@@ -33,18 +37,21 @@ export function createOrganisationValidator(): ValidatorFn {
 @Component({
   selector: 'arlas-iam-create-org-modal',
   templateUrl: './create-org-modal.component.html',
-  styleUrls: ['./create-org-modal.component.scss']
+  styleUrls: ['./create-org-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    TranslatePipe,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
+  ]
 })
-export class CreateOrgModalComponent implements OnInit {
-
+export class CreateOrgModalComponent {
   public createOrgForm: FormGroup;
-  public constructor() { }
 
-  public ngOnInit(): void {
+  public constructor() {
     this.createOrgForm = new FormGroup({
       name: new FormControl('', [Validators.required, createOrganisationValidator()])
     });
   }
-
-
 }

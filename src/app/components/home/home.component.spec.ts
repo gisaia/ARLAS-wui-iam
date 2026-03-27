@@ -9,19 +9,21 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ArlasCollaborativesearchService, ArlasConfigService,
-  ArlasConfigurationUpdaterService, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
+import {
+    ArlasCollaborativesearchService, ArlasConfigService,
+    ArlasConfigurationUpdaterService, ArlasIamService, ArlasStartupService
+} from 'arlas-wui-toolkit';
 
-import { HomeComponent } from './home.component';
-import { ManagerService } from '@services/manager/manager.service';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDividerModule } from '@angular/material/divider';
-import { TopMenuComponent } from '../top-menu/top-menu.component';
-import { ToastrService } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ManagerService } from '@services/manager/manager.service';
 import { MockManagerService, MockToastrService } from '@tools/mock';
+import { ToastrService } from 'ngx-toastr';
+import { TopMenuComponent } from '../top-menu/top-menu.component';
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -31,7 +33,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         MatTableModule,
         MatDialogModule,
         MatInputModule,

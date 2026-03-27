@@ -17,12 +17,17 @@
  * under the License.
  */
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'arlas-iam-confirm-modal-msg',
   templateUrl: './confirm-modal.component.html',
-  styleUrls: ['./confirm-modal.component.css']
+  styleUrls: ['./confirm-modal.component.css'],
+  imports: [
+    MatDialogModule,
+    TranslatePipe
+  ]
 })
 export class ConfirmModalComponent {
 

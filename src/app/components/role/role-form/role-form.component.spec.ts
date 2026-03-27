@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { RoleFormComponent } from './role-form.component';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { MockToastrService } from '@tools/mock';
+import { ToastrService } from 'ngx-toastr';
+import { RoleFormComponent } from './role-form.component';
 
 describe('RoleCreateComponent', () => {
   let component: RoleFormComponent;
@@ -15,7 +15,7 @@ describe('RoleCreateComponent', () => {
       declarations: [RoleFormComponent],
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
       ],
       providers: [
         {

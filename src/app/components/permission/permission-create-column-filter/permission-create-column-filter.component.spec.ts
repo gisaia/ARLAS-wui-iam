@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { PermissionCreateColumnFilterComponent } from './permission-create-column-filter.component';
 import { MockToastrService } from '@tools/mock';
+import { PermissionCreateColumnFilterComponent } from './permission-create-column-filter.component';
 
 describe('PermissionCreateColumnFilterComponent', () => {
   let component: PermissionCreateColumnFilterComponent;
@@ -15,7 +15,7 @@ describe('PermissionCreateColumnFilterComponent', () => {
       declarations: [PermissionCreateColumnFilterComponent],
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
       ],
       providers: [
         {

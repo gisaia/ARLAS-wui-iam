@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { PermissionCreateComponent } from './permission-create.component';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { MockToastrService } from '@tools/mock';
+import { ToastrService } from 'ngx-toastr';
+import { PermissionCreateComponent } from './permission-create.component';
 
 describe('PermissionCreateComponent', () => {
   let component: PermissionCreateComponent;
@@ -15,7 +15,7 @@ describe('PermissionCreateComponent', () => {
       declarations: [PermissionCreateComponent],
       imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
       ],
       providers: [
         {

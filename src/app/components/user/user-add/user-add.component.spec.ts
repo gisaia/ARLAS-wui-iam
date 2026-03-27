@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { UserAddComponent } from './user-add.component';
-import { MockManagerService, MockToastrService } from '@tools/mock';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ManagerService } from '@services/manager/manager.service';
+import { MockManagerService, MockToastrService } from '@tools/mock';
+import { UserAddComponent } from './user-add.component';
 
 describe('UserAddComponent', () => {
   let component: UserAddComponent;
@@ -17,7 +17,7 @@ describe('UserAddComponent', () => {
       imports: [
         RouterTestingModule,
         MatAutocompleteModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } })
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })
       ],
       declarations: [UserAddComponent],
       providers: [

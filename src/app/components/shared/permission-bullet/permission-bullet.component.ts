@@ -21,7 +21,8 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'arlas-permission-bullet',
   templateUrl: './permission-bullet.component.html',
-  styleUrls: ['./permission-bullet.component.scss']
+  styleUrls: ['./permission-bullet.component.scss'],
+  standalone: false
 })
 export class PermissionBulletComponent implements OnInit {
   public color= '';

@@ -16,10 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { APP_INITIALIZER, forwardRef, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { forwardRef, inject, NgModule, provideAppInitializer } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,14 +31,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ArlasTranslateLoader } from '@tools/customLoader';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import {
   ArlasCollaborativesearchService,
   ArlasConfigurationDescriptor,
@@ -67,29 +70,19 @@ import {
   PermissionCreateColumnFilterComponent
 } from './components/permission/permission-create-column-filter/permission-create-column-filter.component';
 import { PermissionCreateComponent } from './components/permission/permission-create/permission-create.component';
-
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { ArlasTranslateLoader } from '@tools/customLoader';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { PermissionComponent } from './components/permission/permission.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
 import { RoleComponent } from './components/role/role.component';
 import { RulesItemComponent } from './components/rules-item/rules-item.component';
 import { RulesComponent } from './components/rules/rules.component';
+import { PermissionBulletComponent } from './components/shared/permission-bullet/permission-bullet.component';
+import { PermissionLegendComponent } from './components/shared/permission-legend/permission-legend.component';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { UserAddComponent } from './components/user/user-add/user-add.component';
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserComponent } from './components/user/user.component';
 import { RoleNamePipe } from './pipe/role-name.pipe';
 import { IamStartupService } from './services/startup/startup.service';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PermissionBulletComponent } from './components/shared/permission-bullet/permission-bullet.component';
-import { PermissionLegendComponent } from './components/shared/permission-legend/permission-legend.component';
-
-export function startupServiceFactory(startup: IamStartupService) {
-  const load = () => startup.load();
-  return load;
-}
 
 export function auhtentServiceFactory(service: AuthentificationService) {
   return service;
@@ -98,7 +91,6 @@ export function auhtentServiceFactory(service: AuthentificationService) {
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmModalComponent,
     UserComponent,
     HomeComponent,
     RoleComponent,
@@ -111,12 +103,11 @@ export function auhtentServiceFactory(service: AuthentificationService) {
     RulesComponent,
     RulesItemComponent,
     PermissionCreateColumnFilterComponent,
-    CreateOrgModalComponent,
-    RoleNamePipe,
     PermissionBulletComponent,
     PermissionLegendComponent
   ],
-  bootstrap: [AppComponent], imports: [BrowserModule,
+  bootstrap: [AppComponent],
+  imports: [BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ArlasToolkitSharedModule,
@@ -156,7 +147,12 @@ export function auhtentServiceFactory(service: AuthentificationService) {
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
     }),
-    OAuthModule.forRoot()], providers: [
+    OAuthModule.forRoot(),
+    CreateOrgModalComponent,
+    RoleNamePipe,
+    ConfirmModalComponent
+  ],
+  providers: [
     forwardRef(() => ArlasConfigurationDescriptor),
     forwardRef(() => ArlasCollaborativesearchService),
     forwardRef(() => ArlasStartupService),
@@ -170,12 +166,7 @@ export function auhtentServiceFactory(service: AuthentificationService) {
       provide: CONFIG_UPDATER,
       useValue: configUpdaterFactory
     },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: startupServiceFactory,
-      deps: [IamStartupService],
-      multi: true
-    },
+    provideAppInitializer(() => inject(IamStartupService).load()),
     {
       provide: 'AuthentificationService',
       useFactory: auhtentServiceFactory,

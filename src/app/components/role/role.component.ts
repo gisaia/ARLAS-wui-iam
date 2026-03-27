@@ -34,7 +34,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'arlas-iam-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.scss']
+  styleUrls: ['./role.component.scss'],
+  standalone: false
 })
 export class RoleComponent implements OnInit {
 

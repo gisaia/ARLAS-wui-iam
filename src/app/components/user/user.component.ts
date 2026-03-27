@@ -21,20 +21,21 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { TranslateService } from '@ngx-translate/core';
+import { ManagerService } from '@services/manager/manager.service';
+import { Page } from '@tools/model';
+import { getPrivateOrgDisplayName } from '@tools/utils';
 import { MemberData, UserData } from 'arlas-iam-api';
+import { ArlasIamService } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { ManagerService } from '@services/manager/manager.service';
-import { ArlasIamService } from 'arlas-wui-toolkit';
-import { Page } from '@tools/model';
-import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { getPrivateOrgDisplayName } from '@tools/utils';
 
 @Component({
   selector: 'arlas-iam-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
+  standalone: false
 })
 export class UserComponent implements OnInit, OnDestroy {
 

@@ -34,7 +34,8 @@ import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.com
 @Component({
   selector: 'arlas-iam-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  standalone: false
 })
 export class HomeComponent implements OnInit {
 

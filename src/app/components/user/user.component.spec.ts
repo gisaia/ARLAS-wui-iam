@@ -1,7 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule, TranslateLoader, TranslateFakeLoader } from '@ngx-translate/core';
-import { UserComponent } from './user.component';
-import { TopMenuComponent } from '../top-menu/top-menu.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,8 +13,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ToastrService } from 'ngx-toastr';
+import { TranslateLoader, TranslateModule, TranslateNoOpLoader } from '@ngx-translate/core';
 import { MockToastrService } from '@tools/mock';
+import { ToastrService } from 'ngx-toastr';
+import { TopMenuComponent } from '../top-menu/top-menu.component';
+import { UserComponent } from './user.component';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -26,7 +26,7 @@ describe('UserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateFakeLoader } }),
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         BrowserAnimationsModule,
         MatTableModule,
         MatInputModule,
