@@ -1,17 +1,23 @@
 <arlas-top-menu [showAboutButton]="false">
   <div left-menu>{{'ARLAS IAM' | translate}}</div>
   <div right-menu class="right-menu">
-    <div *ngIf="!domainOrgExist || isSuperAdmin" class="create-org">
-      <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
+    @if (!domainOrgExist || isSuperAdmin) {
+      <div class="create-org">
+        <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
         translate}}</button>
-    </div>
-    <div class="orga" *ngIf="organisations.length > 0">
-      {{'Organisation'| translate}}
-      <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
-        (selectionChange)="updateCurrentOrga(currentOrg.value)">
-        <mat-option *ngFor="let org of organisations" [value]="org">{{org.name}}</mat-option>
-      </mat-select>
-    </div>
+      </div>
+    }
+    @if (organisations.length > 0) {
+      <div class="orga">
+        {{'Organisation'| translate}}
+        <mat-select #currentOrg class="current-orga" [value]="currentSelectedOrg"
+          (selectionChange)="updateCurrentOrga(currentOrg.value)">
+          @for (org of organisations; track org) {
+            <mat-option [value]="org">{{org.name}}</mat-option>
+          }
+        </mat-select>
+      </div>
+    }
   </div>
 </arlas-top-menu>
 <div class="app">
@@ -60,31 +66,36 @@
   </div>
 
   <div class="main-view">
-    <div *ngIf="displayDashboard" class="profile">
-      <arlas-iam-top-menu [pages]="pages">
-      </arlas-iam-top-menu>
-
-      <div class="content">
-        <div class="orgs">
-          <h3>{{'My organisations' | translate}}</h3>
-          <div class="list">
-            <div *ngFor="let org of allMyOrgs" class="card" [class.selected]="org.id == currentSelectedOrg?.id">
-              <div class="info">
-                <div class="title">{{org.displayName}}</div>
-                <div class="role">{{'Role' | translate}} : {{org.isOwner ? ('Owner' | translate) : ('Member' |
-                  translate)}}</div>
-              </div>
-              <button [class.selected-btn]="org.id == currentSelectedOrg.id" *ngIf="org.isOwner" mat-stroked-button
-                (click)="manage(org)">{{'Manage' | translate}}</button>
+    @if (displayDashboard) {
+      <div class="profile">
+        <arlas-iam-top-menu [pages]="pages">
+        </arlas-iam-top-menu>
+        <div class="content">
+          <div class="orgs">
+            <h3>{{'My organisations' | translate}}</h3>
+            <div class="list">
+              @for (org of allMyOrgs; track org) {
+                <div class="card" [class.selected]="org.id == currentSelectedOrg?.id">
+                  <div class="info">
+                    <div class="title">{{org.displayName}}</div>
+                    <div class="role">{{'Role' | translate}} : {{($any(org).isOwner ? 'Owner' : 'Member') | translate}}</div>
+                  </div>
+                  @if ($any(org).isOwner) {
+                    <button [class.selected-btn]="org.id == currentSelectedOrg.id" mat-stroked-button
+                      (click)="manage(org)">{{'Manage' | translate}}</button>
+                  }
+                </div>
+              }
             </div>
           </div>
         </div>
       </div>
-    </div>
+    }
     <router-outlet></router-outlet>
   </div>
 </div>
 <mat-toolbar class="footer">© Gisaïa 2024
-  <mat-progress-bar *ngIf="managerService.managerLoading"
-    class="loading-progress" color="primary" mode="indeterminate"></mat-progress-bar>
+  @if (managerService.managerLoading) {
+    <mat-progress-bar class="loading-progress" color="primary" mode="indeterminate"></mat-progress-bar>
+  }
 </mat-toolbar>
