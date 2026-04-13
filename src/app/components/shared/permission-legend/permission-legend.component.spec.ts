@@ -9,9 +9,8 @@ describe('PermissionLegendComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PermissionLegendComponent ],
-      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),]
-    })
+    imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }), PermissionLegendComponent,]
+})
       .compileComponents();
 
     fixture = TestBed.createComponent(PermissionLegendComponent);

@@ -12,18 +12,18 @@ describe('RoleCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RoleFormComponent],
-      imports: [
+    imports: [
         RouterTestingModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
-      ],
-      providers: [
+        RoleFormComponent,
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         }
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

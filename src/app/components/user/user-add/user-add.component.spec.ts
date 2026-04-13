@@ -14,23 +14,23 @@ describe('UserAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         MatAutocompleteModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })
-      ],
-      declarations: [UserAddComponent],
-      providers: [
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
+        UserAddComponent
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         },
         {
-          provide: ManagerService,
-          useClass: MockManagerService
+            provide: ManagerService,
+            useClass: MockManagerService
         },
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

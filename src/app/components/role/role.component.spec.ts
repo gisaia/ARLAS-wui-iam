@@ -26,7 +26,7 @@ describe('RoleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         BrowserAnimationsModule,
         MatTableModule,
@@ -42,16 +42,16 @@ describe('RoleComponent', () => {
         MatDividerModule,
         MatPaginatorModule,
         RouterTestingModule,
-        MatDialogModule
-      ],
-      declarations: [RoleComponent, TopMenuComponent],
-      providers: [
+        MatDialogModule,
+        RoleComponent, TopMenuComponent
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         }
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

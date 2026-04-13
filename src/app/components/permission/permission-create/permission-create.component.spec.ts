@@ -12,18 +12,18 @@ describe('PermissionCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PermissionCreateComponent],
-      imports: [
+    imports: [
         RouterTestingModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
-      ],
-      providers: [
+        PermissionCreateComponent,
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         }
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

@@ -9,9 +9,8 @@ describe('PermissionBulletComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PermissionBulletComponent ],
-      imports: [ TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),]
-    })
+    imports: [TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }), PermissionBulletComponent,]
+})
       .compileComponents();
 
     fixture = TestBed.createComponent(PermissionBulletComponent);

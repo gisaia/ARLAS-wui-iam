@@ -16,10 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Component, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Page } from '@tools/model';
 import { Subject } from 'rxjs';
 
@@ -27,9 +30,14 @@ import { Subject } from 'rxjs';
   selector: 'arlas-iam-top-menu',
   templateUrl: './top-menu.component.html',
   styleUrls: ['./top-menu.component.scss'],
-  standalone: false
+  imports: [
+    TranslatePipe,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatButtonModule
+  ]
 })
-export class TopMenuComponent implements OnInit {
+export class TopMenuComponent {
 
   @Input() public showCreate = false;
   @Input() public showSpinner = false;
@@ -44,9 +52,6 @@ export class TopMenuComponent implements OnInit {
   public constructor(
     private router: Router
   ) { }
-
-  public ngOnInit(): void {
-  }
 
   public addEvent() {
     this.createEvent.next(true);

@@ -17,13 +17,18 @@
  * under the License.
  */
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { PermissionBulletComponent } from '../permission-bullet/permission-bullet.component';
 
 @Component({
   selector: 'arlas-permission-legend',
   templateUrl: './permission-legend.component.html',
   styleUrls: ['./permission-legend.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  imports: [
+    PermissionBulletComponent,
+    TranslatePipe
+  ]
 })
 export class PermissionLegendComponent  {
 

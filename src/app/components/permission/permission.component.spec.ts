@@ -26,7 +26,7 @@ describe('PermissionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         BrowserAnimationsModule,
         RouterTestingModule,
@@ -42,16 +42,16 @@ describe('PermissionComponent', () => {
         MatToolbarModule,
         MatDividerModule,
         MatPaginatorModule,
-        MatDialogModule
-      ],
-      declarations: [PermissionComponent, TopMenuComponent],
-      providers: [
+        MatDialogModule,
+        PermissionComponent, TopMenuComponent
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         },
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

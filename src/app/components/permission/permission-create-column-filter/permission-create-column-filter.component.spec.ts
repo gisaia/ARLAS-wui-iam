@@ -12,18 +12,18 @@ describe('PermissionCreateColumnFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PermissionCreateColumnFilterComponent],
-      imports: [
+    imports: [
         RouterTestingModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
-      ],
-      providers: [
+        PermissionCreateColumnFilterComponent,
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         }
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

@@ -4,6 +4,7 @@
       @if (!!page.route) {
         <span class="link" (click)="navigateTo(page.route)">{{page.label | translate}}</span>
         <span class="divider">></span>
+      } @else {
         <span>{{page.label | translate}}</span>
       }
     }

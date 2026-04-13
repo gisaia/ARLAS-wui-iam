@@ -25,7 +25,7 @@ describe('UserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
         BrowserAnimationsModule,
         MatTableModule,
@@ -40,16 +40,16 @@ describe('UserComponent', () => {
         MatToolbarModule,
         MatDividerModule,
         MatPaginatorModule,
-        RouterTestingModule
-      ],
-      declarations: [UserComponent, TopMenuComponent],
-      providers: [
+        RouterTestingModule,
+        UserComponent, TopMenuComponent
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         }
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

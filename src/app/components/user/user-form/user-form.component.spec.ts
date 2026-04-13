@@ -14,24 +14,24 @@ describe('UserFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserFormComponent],
-      imports: [
+    imports: [
         RouterTestingModule,
         MatDialogModule,
         TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
-        RoleNamePipe
-      ],
-      providers: [
+        RoleNamePipe,
+        UserFormComponent
+    ],
+    providers: [
         {
-          provide: ToastrService,
-          useClass: MockToastrService
+            provide: ToastrService,
+            useClass: MockToastrService
         },
         {
-          provide: ManagerService,
-          useClass: MockManagerService
+            provide: ManagerService,
+            useClass: MockManagerService
         },
-      ]
-    })
+    ]
+})
       .compileComponents();
   });
 

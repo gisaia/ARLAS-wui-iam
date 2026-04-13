@@ -9,12 +9,12 @@ describe('TopMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
-        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } })
-      ],
-      declarations: [TopMenuComponent]
-    })
+        TranslateModule.forRoot({ loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader } }),
+        TopMenuComponent
+    ]
+})
       .compileComponents();
   });
 

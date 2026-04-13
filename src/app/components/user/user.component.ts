@@ -16,13 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { RoleNamePipe } from '@app/pipe/role-name.pipe';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { TranslateService } from '@ngx-translate/core';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getPrivateOrgDisplayName } from '@tools/utils';
@@ -35,7 +40,16 @@ import { Subscription } from 'rxjs';
   selector: 'arlas-iam-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    TranslatePipe,
+    MatTableModule,
+    RoleNamePipe,
+    DatePipe,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatButtonModule
+  ]
 })
 export class UserComponent implements OnInit, OnDestroy {
 

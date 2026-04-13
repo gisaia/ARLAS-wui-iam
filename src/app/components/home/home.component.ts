@@ -17,25 +17,47 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationEnd, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getPrivateOrgDisplayName } from '@tools/utils';
 import { OrgData, UserData } from 'arlas-iam-api';
-import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService } from 'arlas-wui-toolkit';
+import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService, TopMenuComponent } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { TopMenuComponent as IamTopMenuComponent } from '../top-menu/top-menu.component';
 import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.component';
 
 @Component({
   selector: 'arlas-iam-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    MatButtonModule,
+    TranslatePipe,
+    MatSelectModule,
+    MatListModule,
+    MatTooltipModule,
+    RouterLink,
+    RouterLinkActive,
+    MatIconModule,
+    IamTopMenuComponent,
+    RouterOutlet,
+    MatToolbarModule,
+    MatProgressBarModule
+  ]
 })
 export class HomeComponent implements OnInit {
 

@@ -3,8 +3,8 @@
   <div right-menu class="right-menu">
     @if (!domainOrgExist || isSuperAdmin) {
       <div class="create-org">
-        <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">{{'Create organisation' |
-        translate}}</button>
+        <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">
+          {{'Create organisation' | translate}}</button>
       </div>
     }
     @if (organisations.length > 0) {
@@ -94,7 +94,7 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-toolbar class="footer">© Gisaïa 2024
+<mat-toolbar class="footer">© Gisaïa 2026
   @if (managerService.managerLoading) {
     <mat-progress-bar class="loading-progress" color="primary" mode="indeterminate"></mat-progress-bar>
   }

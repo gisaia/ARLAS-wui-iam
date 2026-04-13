@@ -17,7 +17,8 @@
  * under the License.
  */
 import { Component, Input, OnInit } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { ToastrService } from 'ngx-toastr';
@@ -26,7 +27,10 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'arlas-iam-rules-item',
   templateUrl: './rules-item.component.html',
   styleUrls: ['./rules-item.component.scss'],
-  standalone: false
+  imports: [
+    MatProgressSpinnerModule,
+    MatCheckboxModule
+  ]
 })
 export class RulesItemComponent implements OnInit {
 

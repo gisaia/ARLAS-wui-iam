@@ -18,13 +18,17 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
-import { TranslateService } from '@ngx-translate/core';
+import { PermissionBulletComponent } from '@components/shared/permission-bullet/permission-bullet.component';
+import { PermissionLegendComponent } from '@components/shared/permission-legend/permission-legend.component';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { PermissionData } from 'arlas-iam-api';
@@ -37,7 +41,15 @@ export const DEFAULT_PERM_VALUE = 'h:column-filter:*:*';
   selector: 'arlas-iam-permission',
   templateUrl: './permission.component.html',
   styleUrls: ['./permission.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    PermissionLegendComponent,
+    MatTableModule,
+    PermissionBulletComponent,
+    TranslatePipe,
+    MatMenuModule,
+    MatPaginatorModule
+  ]
 })
 export class PermissionComponent implements OnInit {
 

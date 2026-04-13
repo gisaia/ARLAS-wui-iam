@@ -18,6 +18,7 @@
  */
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -43,7 +44,8 @@ export function createOrganisationValidator(): ValidatorFn {
     TranslatePipe,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class CreateOrgModalComponent {

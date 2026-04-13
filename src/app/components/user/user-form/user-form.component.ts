@@ -17,12 +17,17 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RoleNamePipe } from '@app/pipe/role-name.pipe';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { ARLAS_ROLE_PREFIX } from '@tools/utils';
@@ -35,7 +40,15 @@ import { Subscription, forkJoin } from 'rxjs';
   selector: 'arlas-iam-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    ReactiveFormsModule,
+    TranslatePipe,
+    MatFormFieldModule,
+    MatSelectModule,
+    RoleNamePipe,
+    MatButtonModule
+  ]
 })
 export class UserFormComponent implements OnInit {
 
