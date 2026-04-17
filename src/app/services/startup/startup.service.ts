@@ -89,7 +89,7 @@ export class IamStartupService {
       })
       .then(s => {
         this.settingsService.setSettings(s);
-        this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, window.fetch);
+        this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, globalThis.fetch);
         this.arlasIamService.setArlasIamApi(this.arlasIamApi);
         this.managerService.setArlasIamApi(this.arlasIamApi);
         return s;

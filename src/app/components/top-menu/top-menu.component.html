@@ -2,7 +2,8 @@
   <div class="title">
     @for (page of pages; track page) {
       @if (!!page.route) {
-        <span class="link" (click)="navigateTo(page.route)">{{page.label | translate}}</span>
+        <span class="link" (click)="navigateTo(page.route)" (keydown)="navigateTo(page.route)">
+          {{page.label | translate}}</span>
         <span class="divider">></span>
       } @else {
         <span>{{page.label | translate}}</span>
