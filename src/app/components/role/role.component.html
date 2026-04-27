@@ -16,9 +16,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> {{'Actions' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-        <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu" *ngIf="!row.isTechnical">
-          more_vert
-        </span>
+        @if (!row.isTechnical) {
+          <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu">
+            more_vert
+          </span>
+        }
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="editRole(row.id)">
             <span class="material-symbols-outlined button-actions">

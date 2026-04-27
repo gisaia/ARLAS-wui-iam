@@ -6,3 +6,5 @@ authentication:
   threshold: 60000
   url: https://localhost/arlas_iam_server
   sign_up_enabled: true
+
+whitelistedUrls: []

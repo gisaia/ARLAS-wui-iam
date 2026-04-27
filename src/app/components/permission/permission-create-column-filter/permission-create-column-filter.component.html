@@ -6,9 +6,11 @@
     <mat-form-field appearance="outline" class="name">
       <mat-label>{{'Collections' | translate}}</mat-label>
       <mat-select [multiple]="true" formControlName="collections" required>
-        <mat-option [value]="collect" *ngFor="let collect of collections">
-          {{collect}}
-        </mat-option>
+        @for (collect of collections; track collect) {
+          <mat-option [value]="collect">
+            {{collect}}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
   </div>

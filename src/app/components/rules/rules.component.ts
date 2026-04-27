@@ -17,7 +17,14 @@
  * under the License.
  */
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
+import { RulesItemComponent } from '@components/rules-item/rules-item.component';
+import { PermissionBulletComponent } from '@components/shared/permission-bullet/permission-bullet.component';
+import { PermissionLegendComponent } from '@components/shared/permission-legend/permission-legend.component';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getState, saveState } from '@tools/utils';
@@ -25,10 +32,18 @@ import { PermissionData, RoleData } from 'arlas-iam-api';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'arlas-iam-rules',
-  templateUrl: './rules.component.html',
-  styleUrls: ['./rules.component.scss'],
-  standalone: false
+    selector: 'arlas-iam-rules',
+    templateUrl: './rules.component.html',
+    styleUrls: ['./rules.component.scss'],
+    imports: [
+      TopMenuComponent,
+      MatButtonModule,
+      MatIconModule,
+      TranslatePipe,
+      PermissionLegendComponent,
+      PermissionBulletComponent,
+      RulesItemComponent
+    ]
 })
 export class RulesComponent implements OnInit, OnDestroy {
 

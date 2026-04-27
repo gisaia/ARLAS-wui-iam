@@ -73,7 +73,7 @@ export class IamStartupService {
         return {};
       })
       .then(s => {
-        const settings: ArlasSettings = YAML.load(s as string);
+        const settings = YAML.load(s as string) as ArlasSettings;
         return this.arlasStartupService.validateSettings(settings);
       }) // Validates settings against the correponding schema
       .catch((err: any) => {
@@ -89,7 +89,7 @@ export class IamStartupService {
       })
       .then(s => {
         this.settingsService.setSettings(s);
-        this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, window.fetch);
+        this.arlasIamApi = new ArlasIamApi(new Configuration(), s.authentication.url, globalThis.fetch);
         this.arlasIamService.setArlasIamApi(this.arlasIamApi);
         this.managerService.setArlasIamApi(this.arlasIamApi);
         return s;

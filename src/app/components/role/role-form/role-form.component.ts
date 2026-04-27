@@ -17,10 +17,14 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { TranslateService } from '@ngx-translate/core';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +33,14 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'arlas-iam-role-create',
   templateUrl: './role-form.component.html',
   styleUrls: ['./role-form.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    TranslatePipe,
+    MatButtonModule,
+    MatInputModule
+  ]
 })
 export class RoleFormComponent implements OnInit {
 

@@ -1,14 +1,24 @@
 <div class="inner-menu">
   <div class="title">
-    <ng-container *ngFor="let page of pages">
-      <span class="link" *ngIf="!!page.route" (click)="navigateTo(page.route)">{{page.label | translate}}</span>
-      <span class="divider" *ngIf="!!page.route">></span>
-      <span *ngIf="!page.route">{{page.label | translate}}</span>
-    </ng-container>
-    <mat-spinner class="spinner" [diameter]="40" *ngIf="showSpinner"></mat-spinner>
+    @for (page of pages; track page) {
+      @if (!!page.route) {
+        <span class="link" (click)="navigateTo(page.route)" (keydown)="navigateTo(page.route)">
+          {{page.label | translate}}</span>
+        <span class="divider">></span>
+      } @else {
+        <span>{{page.label | translate}}</span>
+      }
+    }
+    @if (showSpinner) {
+      <mat-spinner class="spinner" [diameter]="40"></mat-spinner>
+    }
   </div>
   <div class="actions">
-    <mat-checkbox *ngIf="showTechnical" [checked]="showTechnicalState" (change)="emitTechnical($event)" class="show-technical">{{'Show technical roles' | translate}}</mat-checkbox>
-    <button *ngIf="showCreate" class="add-button" (click)="addEvent()" mat-flat-button color="accent">{{createText | translate}}</button>
+    @if (showTechnical) {
+      <mat-checkbox [checked]="showTechnicalState" (change)="emitTechnical($event)" class="show-technical">{{'Show technical roles' | translate}}</mat-checkbox>
+    }
+    @if (showCreate) {
+      <button class="add-button" (click)="addEvent()" mat-flat-button color="accent">{{createText | translate}}</button>
+    }
   </div>
 </div>

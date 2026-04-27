@@ -8,41 +8,51 @@
       <mat-label>{{'Email' | translate}}</mat-label>
       <input type="text" formControlName="email" matInput [matAutocomplete]="auto" required>
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-        <mat-option *ngFor="let email of filteredEmails | async" [value]="email">
-          {{email}}
-        </mat-option>
+        @for (email of filteredEmails | async; track email) {
+          <mat-option [value]="email">
+            {{email}}
+          </mat-option>
+        }
       </mat-autocomplete>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{'Groups' | translate}}</mat-label>
-       <mat-select formControlName="groups" multiple required>
+      <mat-select formControlName="groups" multiple required>
         <mat-select-trigger>
-          {{userForm.get('groups').value?.[0]?.name || ''}}
-          <span *ngIf="(userForm.get('groups').value?.length || 0) > 1" class="trigger-description">
-            (+{{(userForm.get('groups').value?.length || 0) - 1}} {{userForm.get('groups').value?.length === 2 ? 'other' :
-            'others'}})
-          </span>
+          @let groups = userForm.get('groups').value;
+          {{groups?.[0]?.name || ''}}
+          @if ((groups?.length || 0) > 1) {
+            <span class="trigger-description">
+              (+{{(groups?.length || 0) - 1}} {{groups?.length === 2 ? 'other' : 'others'}})
+            </span>
+          }
         </mat-select-trigger>
-        <mat-option *ngFor="let group of orgGroups" [value]="group">
-          {{group.name}} -
-          <span class="option-description">{{group.description | translate}}</span>
-        </mat-option>
+        @for (group of orgGroups; track group) {
+          <mat-option [value]="group">
+            {{group.name}} -
+            <span class="option-description">{{group.description | translate}}</span>
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{'Roles' | translate}}</mat-label>
       <mat-select [multiple]="true" formControlName="roles" required>
         <mat-select-trigger>
-          {{userForm.get('roles').value?.[0]?.name || ''}}
-          <span *ngIf="(userForm.get('roles').value?.length || 0) > 1" class="trigger-description">
-            (+{{(userForm.get('roles').value?.length || 0) - 1}} {{userForm.get('roles').value?.length === 2 ? 'other' :
-            'others'}})
-          </span>
+          @let roles = userForm.get('roles').value;
+          {{roles?.[0]?.name || ''}}
+          @if ((roles?.length || 0) > 1) {
+            <span class="trigger-description">
+              (+{{(roles?.length || 0) - 1}} {{roles?.length === 2 ? 'other' : 'others'}})
+            </span>
+          }
         </mat-select-trigger>
-        <mat-option [value]="role" *ngFor="let role of orgRoles">
-          {{role.name | roleName}} -
-          <span class="option-description">{{role.description | translate}}</span>
-        </mat-option>
+        @for (role of orgRoles; track role) {
+          <mat-option [value]="role">
+            {{role.name | roleName}} -
+            <span class="option-description">{{role.description | translate}}</span>
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
   </div>

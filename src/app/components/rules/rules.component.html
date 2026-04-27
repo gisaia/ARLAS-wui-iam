@@ -1,21 +1,24 @@
 <arlas-iam-top-menu [pages]="pages"></arlas-iam-top-menu>
 
-<div *ngIf="updateLock" class="lock" (click)="updateLock = !updateLock">
-  <button mat-icon-button >
-    <span class="material-symbols-outlined">
-      lock
-    </span>
-  </button>
-  <div class="description">{{'Locked, click to edit' | translate}}</div>
-</div>
-<div *ngIf="!updateLock" class="lock" (click)="updateLock = !updateLock">
-  <button mat-icon-button >
-    <span class="material-symbols-outlined">
-      lock_open
-    </span>
-  </button>
-  <div class="description">{{'Unlocked, click to prevent changes' | translate}}</div>
-</div>
+@if (updateLock) {
+  <div class="lock">
+    <button mat-icon-button (click)="updateLock = !updateLock">
+      <span class="material-symbols-outlined">
+        lock
+      </span>
+    </button>
+    <div class="description">{{'Locked, click to edit' | translate}}</div>
+  </div>
+} @else {
+  <div class="lock">
+    <button mat-icon-button (click)="updateLock = !updateLock">
+      <span class="material-symbols-outlined">
+        lock_open
+      </span>
+    </button>
+    <div class="description">{{'Unlocked, click to prevent changes' | translate}}</div>
+  </div>
+}
 <arlas-permission-legend class="permission-legend"></arlas-permission-legend>
 <table class="rules">
   <tr>
@@ -23,15 +26,22 @@
       <div style="text-align: right;padding-right: 5px;">{{'Groups' | translate}}</div>
       <div style="text-align: left;padding-left: 5px;">{{'Permissions' | translate}}</div>
     </th>
-    <th class="roles" *ngFor="let role of groups">{{role.name}}</th>
+    @for (role of groups; track role) {
+      <th class="roles" scope="col">{{role.name}}</th>
+    }
   </tr>
-  <tr *ngFor="let perm of perms">
-    <th class="perm">
-      <arlas-permission-bullet [permissionValue]="perm.value"></arlas-permission-bullet>
-      {{perm.description | translate}}</th>
-    <td *ngFor="let role of groups">
-      <arlas-iam-rules-item [disabled]="updateLock" [checked]="perm.roleIds.includes(role.id)" [roleId]="role.id"
-        [permId]="perm.id"></arlas-iam-rules-item>
-    </td>
-  </tr>
+  @for (perm of perms; track perm) {
+    <tr>
+      <th class="perm" scope="row">
+        <arlas-permission-bullet [permissionValue]="perm.value"></arlas-permission-bullet>
+        {{perm.description | translate}}
+      </th>
+      @for (role of groups; track role) {
+        <td>
+          <arlas-iam-rules-item [disabled]="updateLock" [checked]="perm.roles.map(r => r.id).includes(role.id)" [roleId]="role.id"
+            [permId]="perm.id"></arlas-iam-rules-item>
+        </td>
+      }
+    </tr>
+  }
 </table>

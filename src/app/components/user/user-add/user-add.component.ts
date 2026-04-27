@@ -16,11 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { RoleNamePipe } from '@app/pipe/role-name.pipe';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
-import { TranslateService } from '@ngx-translate/core';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { RoleData } from 'arlas-iam-api';
@@ -31,7 +38,17 @@ import { debounceTime, distinctUntilChanged, map, Observable, startWith, Subscri
   selector: 'arlas-iam-user-add',
   templateUrl: './user-add.component.html',
   styleUrls: ['./user-add.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    ReactiveFormsModule,
+    TranslatePipe,
+    MatInputModule,
+    MatAutocompleteModule,
+    AsyncPipe,
+    MatSelectModule,
+    MatButtonModule,
+    RoleNamePipe
+  ]
 })
 export class UserAddComponent implements OnInit, OnDestroy {
 

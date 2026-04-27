@@ -18,13 +18,15 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 import { ConfirmModalComponent } from '@components/confirm-modal/confirm-modal.component';
-import { TranslateService } from '@ngx-translate/core';
+import { TopMenuComponent } from '@components/top-menu/top-menu.component';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { RoleData } from 'arlas-iam-api';
@@ -35,7 +37,13 @@ import { Subscription } from 'rxjs';
   selector: 'arlas-iam-role',
   templateUrl: './role.component.html',
   styleUrls: ['./role.component.scss'],
-  standalone: false
+  imports: [
+    TopMenuComponent,
+    MatTableModule,
+    TranslatePipe,
+    MatMenuModule,
+    MatPaginatorModule
+  ]
 })
 export class RoleComponent implements OnInit {
 

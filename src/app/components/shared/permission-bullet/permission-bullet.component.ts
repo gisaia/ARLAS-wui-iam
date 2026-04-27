@@ -17,12 +17,17 @@
  * under the License.
  */
 import { Component, Input, OnInit } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'arlas-permission-bullet',
   templateUrl: './permission-bullet.component.html',
   styleUrls: ['./permission-bullet.component.scss'],
-  standalone: false
+  imports: [
+    MatTooltipModule,
+    TranslatePipe
+  ]
 })
 export class PermissionBulletComponent implements OnInit {
   public color= '';

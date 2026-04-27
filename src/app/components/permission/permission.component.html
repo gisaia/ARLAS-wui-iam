@@ -13,7 +13,7 @@
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Value' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-          {{row.value}}
+        {{row.value}}
       </td>
     </ng-container>
 
@@ -30,9 +30,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> {{'Actions' | translate}} </th>
       <td mat-cell *matCellDef="let row">
-        <span [matMenuTriggerFor]="menu" *ngIf="row.value !== DEFAULT_PERM_VALUE" class="material-symbols-outlined actions-menu">
-          more_vert
-        </span>
+        @if (row.value !== DEFAULT_PERM_VALUE) {
+          <span [matMenuTriggerFor]="menu" class="material-symbols-outlined actions-menu">
+            more_vert
+          </span>
+        }
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="edit(row.id)">
             <span class="material-symbols-outlined button-actions">
