@@ -13,6 +13,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="false">{{'Cancel' | translate}}</button>
-  <button mat-button [disabled]="!createOrgForm.valid" [mat-dialog-close]="createOrgForm.get('name').value">{{'Create' | translate}}</button>
+  <button matButton="outlined" [mat-dialog-close]="false">{{'Cancel' | translate}}</button>
+  <button matButton="filled" color="primary" [disabled]="!createOrgForm.valid" [mat-dialog-close]="createOrgForm.get('name').value">{{'Create' | translate}}</button>
 </mat-dialog-actions>

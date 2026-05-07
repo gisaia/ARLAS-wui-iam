@@ -3,7 +3,7 @@
   <div right-menu class="right-menu">
     @if (!domainOrgExist || isSuperAdmin) {
       <div class="create-org">
-        <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">
+        <button class="add-org" (click)="addOrg()" matButton="filled" color="accent">
           {{'Create organisation' | translate}}</button>
       </div>
     }
@@ -81,7 +81,7 @@
                     <div class="role">{{'Role' | translate}} : {{($any(org).isOwner ? 'Owner' : 'Member') | translate}}</div>
                   </div>
                   @if ($any(org).isOwner) {
-                    <button [class.selected-btn]="org.id == currentSelectedOrg.id" mat-stroked-button
+                    <button [class.selected-btn]="org.id == currentSelectedOrg.id" matButton="outlined" color="primary"
                       (click)="manage(org)">{{'Manage' | translate}}</button>
                   }
                 </div>
