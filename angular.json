@@ -64,6 +64,9 @@
               "browser": ""
             },
             "index": "src/index.html",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -74,7 +77,8 @@
             "styles": [
               "src/theme.scss",
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/arlas-web-components/assets/styles.css"
             ],
             "scripts": [],
             "browser": "src/main.ts"

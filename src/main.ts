@@ -17,7 +17,7 @@
  * under the License.
  */
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { enableProdMode, forwardRef, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
+import { enableProdMode, forwardRef, importProvidersFrom, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -75,7 +75,8 @@ bootstrapApplication(AppComponent, {
         },
         provideAppInitializer(() => inject(IamStartupService).load()),
         AuthentificationService,
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideZoneChangeDetection()
     ]
 })
   .catch(err => console.error(err));
