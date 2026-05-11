@@ -18,7 +18,7 @@
       <mat-checkbox [checked]="showTechnicalState" (change)="emitTechnical($event)" class="show-technical">{{'Show technical roles' | translate}}</mat-checkbox>
     }
     @if (showCreate) {
-      <button class="add-button" (click)="addEvent()" mat-flat-button color="accent">{{createText | translate}}</button>
+      <button class="add-button" (click)="addEvent()" matButton="filled" color="accent">{{createText | translate}}</button>
     }
   </div>
 </div>

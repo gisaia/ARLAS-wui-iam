@@ -50,17 +50,17 @@
     }
   </div>
   <div class="form-actions">
-    <button mat-flat-button color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
-      {{'Save' | translate}}
+    <button matButton="outlined" type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
     </button>
-    <button mat-button type="button" (click)="back()" tabindex="-1"> {{'Cancel' | translate}}
+    <button matButton="filled" color="accent" [disabled]="!userForm.valid" (click)="submit()" tabindex="-1">
+      {{'Save' | translate}}
     </button>
   </div>
   @if (isSuperAdmin) {
     <div class="advanced">
       <h3>{{'Danger zone' | translate}}</h3>
       <div>{{'Once you delete an account, there is no going back. Please be certain.' | translate}}</div>
-      <button mat-stroked-button [color]="'warn'" (click)="deleteAccount()">{{'Delete user account' | translate}}</button>
+      <button matButton="outlined" [color]="'warn'" (click)="deleteAccount()">{{'Delete user account' | translate}}</button>
     </div>
   }
 </form>

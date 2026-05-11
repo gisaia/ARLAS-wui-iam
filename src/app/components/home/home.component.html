@@ -3,7 +3,7 @@
   <div right-menu class="right-menu">
     @if (!domainOrgExist || isSuperAdmin) {
       <div class="create-org">
-        <button class="add-org" (click)="addOrg()" mat-flat-button color="accent">
+        <button class="add-org" (click)="addOrg()" matButton="filled" color="accent">
           {{'Create organisation' | translate}}</button>
       </div>
     }
@@ -25,41 +25,31 @@
     <mat-nav-list class="route-nav-list">
       <mat-list-item [matTooltip]="'Home' | translate" [routerLink]="'/'" [routerLinkActiveOptions]="{ exact: true }"
         [queryParamsHandling]="'preserve'" routerLinkActive="active-page" [matTooltipPosition]="'right'">
-        <span class="material-symbols-outlined">
-          home
-        </span>
+        <mat-icon>home</mat-icon>
         <span class="label">{{'Home' | translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'User' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'user'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
-        <span class="material-symbols-outlined">
-          person
-        </span>
+        <mat-icon>person</mat-icon>
         <span class="label">{{'Users' | translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'Groups' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'role'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
-        <span class="material-symbols-outlined">
-          group
-        </span>
+        <mat-icon>group</mat-icon>
         <span class="label">{{'Groups'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'Permissions' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'permission'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
-        <span class="material-symbols-outlined">
-          verified_user
-        </span>
+        <mat-icon>verified_user</mat-icon>
         <span class="label">{{'Permissions'| translate}}</span>
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item [matTooltip]="'Rules' | translate" [disabled]="currentSelectedOrg === null" [routerLink]="'rule'" routerLinkActive="active-page" [matTooltipPosition]="'right'"
         [queryParamsHandling]="'preserve'">
-        <span class="material-symbols-outlined">
-          rule
-        </span>
+        <mat-icon>rule</mat-icon>
         <span class="label">{{'Rules'| translate}}</span>
       </mat-list-item>
     </mat-nav-list>
@@ -81,7 +71,7 @@
                     <div class="role">{{'Role' | translate}} : {{($any(org).isOwner ? 'Owner' : 'Member') | translate}}</div>
                   </div>
                   @if ($any(org).isOwner) {
-                    <button [class.selected-btn]="org.id == currentSelectedOrg.id" mat-stroked-button
+                    <button [class.selected-btn]="org.id == currentSelectedOrg.id" matButton="outlined" color="primary"
                       (click)="manage(org)">{{'Manage' | translate}}</button>
                   }
                 </div>

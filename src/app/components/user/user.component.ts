@@ -19,6 +19,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -48,7 +49,8 @@ import { Subscription } from 'rxjs';
     DatePipe,
     MatMenuModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class UserComponent implements OnInit, OnDestroy {

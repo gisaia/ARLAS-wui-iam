@@ -17,7 +17,7 @@
  * under the License.
  */
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { enableProdMode, forwardRef, importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
+import { enableProdMode, forwardRef, importProvidersFrom, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -26,7 +26,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import {
     ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService, ArlasSettingsService,
     ArlasStartupService, ArlasToolkitSharedModule, AuthentificationService, CONFIG_UPDATER, FETCH_OPTIONS,
-    GET_OPTIONS, LoginModule, PersistenceService, configUpdaterFactory, getOptionsFactory
+    GET_OPTIONS, PersistenceService, configUpdaterFactory, getOptionsFactory
 } from 'arlas-wui-toolkit';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app/app-routing.module';
@@ -45,7 +45,6 @@ bootstrapApplication(AppComponent, {
             BrowserAnimationsModule,
             AppRoutingModule,
             ArlasToolkitSharedModule,
-            LoginModule,
             TranslateModule.forRoot({
                 loader: {
                     provide: TranslateLoader,
@@ -75,7 +74,8 @@ bootstrapApplication(AppComponent, {
         },
         provideAppInitializer(() => inject(IamStartupService).load()),
         AuthentificationService,
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideZoneChangeDetection()
     ]
 })
   .catch(err => console.error(err));
