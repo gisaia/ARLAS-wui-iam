@@ -26,7 +26,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import {
     ArlasCollaborativesearchService, ArlasConfigurationDescriptor, ArlasIamService, ArlasSettingsService,
     ArlasStartupService, ArlasToolkitSharedModule, AuthentificationService, CONFIG_UPDATER, FETCH_OPTIONS,
-    GET_OPTIONS, LoginModule, PersistenceService, configUpdaterFactory, getOptionsFactory
+    GET_OPTIONS, PersistenceService, configUpdaterFactory, getOptionsFactory
 } from 'arlas-wui-toolkit';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app/app-routing.module';
@@ -45,7 +45,6 @@ bootstrapApplication(AppComponent, {
             BrowserAnimationsModule,
             AppRoutingModule,
             ArlasToolkitSharedModule,
-            LoginModule,
             TranslateModule.forRoot({
                 loader: {
                     provide: TranslateLoader,
