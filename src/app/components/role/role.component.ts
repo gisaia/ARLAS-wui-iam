@@ -18,6 +18,7 @@
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -42,8 +43,9 @@ import { Subscription } from 'rxjs';
     MatTableModule,
     TranslatePipe,
     MatMenuModule,
-    MatPaginatorModule
-  ]
+    MatPaginatorModule,
+    MatIconModule
+]
 })
 export class RoleComponent implements OnInit {
 

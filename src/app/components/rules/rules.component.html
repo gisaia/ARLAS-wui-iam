@@ -3,18 +3,14 @@
 @if (updateLock) {
   <div class="lock">
     <button mat-icon-button (click)="updateLock = !updateLock">
-      <span class="material-symbols-outlined">
-        lock
-      </span>
+      <mat-icon>lock</mat-icon>
     </button>
     <div class="description">{{'Locked, click to edit' | translate}}</div>
   </div>
 } @else {
   <div class="lock">
     <button mat-icon-button (click)="updateLock = !updateLock">
-      <span class="material-symbols-outlined">
-        lock_open
-      </span>
+      <mat-icon>lock_open</mat-icon>
     </button>
     <div class="description">{{'Unlocked, click to prevent changes' | translate}}</div>
   </div>
