@@ -17,20 +17,20 @@
  * under the License.
  */
 
-@import 'styles/material-override.scss';
-@import 'styles/paginator.scss';
+@use "styles/material-override.scss" as *;
+@use "styles/paginator.scss" as *;
 
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-  font-family: 'Material Symbols Outlined';
+  font-family: "Material Symbols Outlined";
   font-display: auto;
   font-style: normal;
   font-weight: 400;
-  src: url('./assets/fonts/material-symbols-outlined.woff2') format('woff2')
+  src: url("./assets/fonts/material-symbols-outlined.woff2") format("woff2")
 }
 
 .material-icons {
-  font-family: 'Material Symbols Outlined', "Roboto", "Helvetica Neue", sans-serif;
+  font-family: "Material Symbols Outlined", "Roboto", "Helvetica Neue", sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
