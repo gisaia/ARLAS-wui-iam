@@ -17,12 +17,12 @@
  * under the License.
  */
 
-@use '@angular/material' as mat;
-@use '../../../theme.scss' as *;
+@use "@angular/material" as mat;
+@use "theme.scss" as theme;
 
 
 ::ng-deep .top-menu {
-  background-color: mat.get-theme-color($app-theme, primary) !important;
+  background-color: mat.get-theme-color(theme.$app-theme, primary) !important;
   padding: 0 10px !important;
   color: white !important;
 
