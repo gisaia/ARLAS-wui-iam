@@ -1,5 +1,13 @@
 # Change Log
 
+## [v28.0.0](https://github.com/gisaia/ARLAS-wui-iam/tree/v28.0.0) (2026-05-21)
+
+[Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v28.0.0-rc.5...v28.0.0)
+
+**Miscellaneous:**
+
+- Uniformize buttons [\#138](https://github.com/gisaia/ARLAS-wui-iam/issues/138)
+
 ## [v28.0.0-rc.5](https://github.com/gisaia/ARLAS-wui-iam/tree/v28.0.0-rc.5) (2026-05-18)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v28.0.0-rc.4...v28.0.0-rc.5)
@@ -7,10 +15,6 @@
 ## [v28.0.0-rc.4](https://github.com/gisaia/ARLAS-wui-iam/tree/v28.0.0-rc.4) (2026-05-11)
 
 [Full Changelog](https://github.com/gisaia/ARLAS-wui-iam/compare/v28.0.0-rc.3...v28.0.0-rc.4)
-
-**Miscellaneous:**
-
-- Uniformize buttons [\#138](https://github.com/gisaia/ARLAS-wui-iam/issues/138)
 
 ## [v28.0.0-rc.3](https://github.com/gisaia/ARLAS-wui-iam/tree/v28.0.0-rc.3) (2026-04-29)
 
