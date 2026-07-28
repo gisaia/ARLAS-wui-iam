@@ -33,7 +33,7 @@
     "@colsen1991/ngx-translate-extract-marker": "^3.0.1",
     "@ngx-translate/core": "^17.0.0",
     "arlas-wui-toolkit": "^28.0.0",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.3.0",
     "ngx-toastr": "^20.0.0",
     "tslib": "^2.3.0"
   },
