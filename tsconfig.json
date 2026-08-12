@@ -47,6 +47,7 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "annotateForClosureCompiler": false,
+    "strictInjectionParameters": true,
     "strictTemplates": true
   }
 }

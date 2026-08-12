@@ -70,7 +70,7 @@
                     <div class="title">{{org.displayName}}</div>
                     <div class="role">{{'Role' | translate}} : {{($any(org).isOwner ? 'Owner' : 'Member') | translate}}</div>
                   </div>
-                  @if ($any(org).isOwner) {
+                  @if (org.isOwner) {
                     <button [class.selected-btn]="org.id == currentSelectedOrg.id" matButton="outlined" color="primary"
                       (click)="manage(org)">{{'Manage' | translate}}</button>
                   }

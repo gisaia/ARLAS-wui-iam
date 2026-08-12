@@ -31,7 +31,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getPrivateOrgDisplayName } from '@tools/utils';
-import { OrgData, UserData } from 'arlas-iam-api';
+import { OrgData, UserData, UserOrgData } from 'arlas-iam-api';
 import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService, TopMenuComponent } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
@@ -61,9 +61,9 @@ import { CreateOrgModalComponent } from './create-org-modal/create-org-modal.com
 })
 export class HomeComponent implements OnInit {
 
-  public organisations: OrgData[] = [];
-  public allMyOrgs: OrgData[] = [];
-  public currentSelectedOrg: OrgData = null;
+  public organisations: UserOrgData[] = [];
+  public allMyOrgs: UserOrgData[] = [];
+  public currentSelectedOrg: UserOrgData = null;
 
   public domainOrgExist = true;
   public isSuperAdmin = false;
@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  public updateCurrentOrga(org: OrgData) {
+  public updateCurrentOrga(org: UserOrgData) {
     const accessToken = this.arlasIamService.getAccessToken();
     this.arlasStartupService.changeOrgHeader(org.name, accessToken);
     const iamHeader = {
@@ -171,7 +171,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  public getOrganisations(currentOrg?: OrgData): void {
+  public getOrganisations(currentOrg?: UserOrgData): void {
     this.managerService.getOrganisations().subscribe({
       next: orgs => {
         /** why is_owner is not part of OrgData */
@@ -209,7 +209,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public manage(org: OrgData) {
+  public manage(org: UserOrgData) {
     this.managerService.currentOrga.next({ id: org.id, name: org.name, displayName: org.displayName });
     this.currentSelectedOrg = this.organisations.find(o => o.id === org.id);
     this.arlasIamService.storeOrganisation(org.name);
