@@ -59,4 +59,9 @@ body {
   min-height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+  --arlas-top-menu-background: #00bcd4;
+  --arlas-iam-form-bg-color: #ededed;
+  /** We need to introduce to colors, when disabled and when enabled */
+  // --arlas-login-button-background: #d1c7c7;
 }
