@@ -5,7 +5,9 @@ import { ManagerService } from '@services/manager/manager.service';
 import { MockManagerService, MockToastrService } from '@tools/mock';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import {
-    ArlasCollaborativesearchService, ArlasConfigService, ArlasConfigurationUpdaterService, ArlasIamService, ArlasStartupService
+    ArlasCollaborativesearchService, ArlasConfigService, ArlasConfigurationUpdaterService, ArlasIamService, ArlasStartupService,
+    ArlasTaskService,
+    GET_OPTIONS
 } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -23,6 +25,11 @@ describe('HomeComponent', () => {
                 OAuthModule.forRoot()
             ],
             providers: [
+                ArlasTaskService,
+                {
+                    provide: GET_OPTIONS,
+                    useValue: () => { }
+                },
                 {
                     provide: ManagerService,
                     useClass: MockManagerService

@@ -25,7 +25,8 @@ import {
   RoleData,
   UpdateUserDef,
   UserData,
-  ArlasMessage
+  ArlasMessage,
+  UserOrgData
 } from 'arlas-iam-api';
 import { ArlasIamApi } from 'arlas-wui-toolkit';
 import { BehaviorSubject, Observable, finalize, from } from 'rxjs';
@@ -52,7 +53,7 @@ export class ManagerService {
   }
 
   /** ORGA **/
-  public getOrganisations(): Observable<OrgData[]> {
+  public getOrganisations(): Observable<UserOrgData[]> {
     // Use Set Timeout to fix  error ngIf - Expression has changed after it was checked
     setTimeout(() => this.managerLoading = true);
     return from(this.arlasIamApi.getOrganisations(this.options))

@@ -126,7 +126,7 @@ export class IamStartupService {
         });
 
       })
-      .then((data) => this.arlasStartupService.translationLoaded(data))
+      .then((_) => this.arlasStartupService.translationLoaded({}))
       .catch((err: any) => {
         this.shouldRunApp = false;
         console.error(err);

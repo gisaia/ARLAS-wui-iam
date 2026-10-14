@@ -31,6 +31,11 @@ jobs:
           exit-code: 1
           failure-threshold: fatal
           accept-keywords:	KEY_SHA512
+      - name: Manual Trivy Setup
+        uses: aquasecurity/setup-trivy@v0.3.1
+        with:
+          cache: true
+          version: v0.75.0
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         env:
@@ -39,10 +44,11 @@ jobs:
           image-ref: "docker.io/gisaia/arlas-wui-iam:${{ github.sha }}"
           format: "table"
           exit-code: "1"
-          ignore-unfixed: true
+          ignore-unfixed: false
           vuln-type: "os,library"
           severity: "CRITICAL,HIGH"
           trivyignores: .github/workflows/.trivyignore
+          skip-setup-trivy: true
       - name: Notify Google Chat
         if: ${{ always() }} # Use always to ensure that the notification is also send on failure of former steps
         uses: SimonScholz/google-chat-action@main
