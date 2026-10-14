@@ -31,7 +31,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ManagerService } from '@services/manager/manager.service';
 import { Page } from '@tools/model';
 import { getPrivateOrgDisplayName } from '@tools/utils';
-import { OrgData, UserData, UserOrgData } from 'arlas-iam-api';
+import { UserData, UserOrgData } from 'arlas-iam-api';
 import { ARLAS_ORG_FILTER, ArlasIamService, ArlasStartupService, TopMenuComponent } from 'arlas-wui-toolkit';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
